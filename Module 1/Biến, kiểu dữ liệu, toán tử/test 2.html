@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển tiền</title>
+</head>
+<body>
+<form>
+    <table>
+        <tr>
+            <td>Amount</td>
+            <td>From Currency</td>
+            <td>To Curency</td>
+        </tr>
+        <tr>
+            <td>
+                <input type=number id="soTien"></input>
+            </td>
+            <td>
+                <select id="from">
+                    <option>VietNam</option>
+                    <option>USD</option>
+                    <option>Yen</option>
+                </select>
+            </td>
+            <td>
+                <select id="to">
+                    <option>USD</option>
+                    <option>VietNam</option>
+                    <option>Yen</option>
+                </select>
+            </td>
+            <td>
+                <input type="button" onclick="show()"; value="Convert"></input>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script>
+
+    function show() {
+        let ketQua;
+        let tien = parseInt(document.getElementById('soTien').value);
+        let bandau = document.getElementById("from").value;
+        let sau= document.getElementById("to").value;
+        if(bandau=="VietNam") {
+            if(sau=="USD")
+                ketQua = (tien/23000);
+            if(sau=="Yen")
+                ketQua = (tien/250);
+        }
+        if(bandau=="USD"){
+            if(sau=="VietNam")
+                ketQua = (tien*23000);
+            if(sau=="Yen")
+                ketQua = (tien*92);
+        }
+        if(bandau=="Yen"){
+            if(sau=="VietNam")
+                ketQua = (tien*250);
+            if(sau=="USD")
+                ketQua = (tien/92);
+        }
+        alert("Result: "+ketQua);
+
+    }
+
+</script>
+
+</body>
+</html>
