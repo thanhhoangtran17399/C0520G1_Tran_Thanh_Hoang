@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="ChuyenDoiTienTe.js"></script>
 </head>
 <body>
-<script>
-    
-</script>
+<table>
+    <tr>
+        <th>Amount</th>
+        <th>From Curency</th>
+        <th>To Currency</th>
+    </tr>
+    <tr>
+        <td><input type="number" id="soTien"></td>
+        <td>
+            <select id="from">
+                <option>VietNam</option>
+                <option>USD</option>
+            </select>
+        </td>
+        <td>
+            <select id="to">
+                <option>VietNam</option>
+                <option>USD</option>
+            </select>
+        </td>
+        <td><input type="button" onclick="show()" value="Convert" ></td>
+    </tr>
+</table>
 </body>
 </html>

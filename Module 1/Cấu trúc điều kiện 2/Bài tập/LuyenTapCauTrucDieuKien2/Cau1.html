@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giai phuong trinh bac 2</title>
+</head>
+<body>
+    <script>
+        let a = parseInt(prompt("Nhap vao so a khac 0: "));
+        if (a === 0){
+            alert("vui long nhap lai!");
+            a = parseInt(prompt("Nhap vao so a khac 0: "));
+        }
+        let b = prompt("Nhap vao so b: ")*1;
+        let c = prompt("Nhap vao so c: ")*1;
+        let x1;
+        let x2;
+        let delta = b*b - 4*a*c;
+        alert("delta = "+delta);
+        if (delta > 0){
+            x1 = (-b - Math.sqrt(delta)) / (2 * a);
+            x2 = (-b + Math.sqrt(delta)) / (2 * a);
+            alert("Phuong trinh co hai nghiem la "+x1+" va "+x2);
+        }else if (delta = 0){
+            x1 = -b / (2 * a);
+            alert("Phuong trinh co nghiem kep  x1 = x2 = "+x1);
+        }else alert("Phuong trinh vo nghiem");
+    </script>
+</body>
+</html>

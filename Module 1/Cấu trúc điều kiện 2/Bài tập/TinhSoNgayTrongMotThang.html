@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CauLenhSwitchCase</title>
+</head>
+<body>
+<h1>Tính Số Ngày</h1>
+
+<b>Nhập Tháng :</b><input id="Thang" type="text">
+<button onclick="Calculation()" value="check">Tính Số Ngày</button>
+<h3 id="result"></h3>
+<script>
+    function Calculation(){
+        let thang = document.getElementById("Thang").value;
+        let result = document.getElementById("result");
+        switch (thang.value) {
+            case '1':
+            case '3':
+            case '5':
+            case '7':
+            case '8':
+            case '10':
+            case '12':
+                document.getElementById('result').innerHTML ="Thang"+thang+"co 31 ngay";
+
+    }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+        <input type="number" id="so1">
+        <input type="number" id="so2">
+        <br>
+        <br>
+        <input type="button" onclick="cong()" value = "Addition(+)">
+        <input type="button" onclick="tru()" value = "Subtraction(-)">
+        <input type="button" onclick="nhan()" value = "Mulplication(x)">
+        <input type="button" onclick="chia()" value = "Division(/)">
+</form>
+<script>
+    function cong() {
+        let ketQua;
+        let soTruoc = (document.getElementById("so1").value)*1;
+        let soSau = (document.getElementById("so2").value)*1;
+        ketQua = soTruoc + soSau;
+        alert(ketQua);
+    }
+    function tru() {
+        let ketQua;
+        let soTruoc = (document.getElementById("so1").value)*1;
+        let soSau = (document.getElementById("so2").value)*1;
+        ketQua = soTruoc - soSau;
+        alert(ketQua);
+    }
+    function nhan() {
+        let ketQua;
+        let soTruoc = (document.getElementById("so1").value)*1;
+        let soSau = (document.getElementById("so2").value)*1;
+        ketQua = soTruoc * soSau;
+        alert(ketQua);
+    }
+    function chia() {
+        let ketQua;
+        let soTruoc = (document.getElementById("so1").value)*1;
+        let soSau = (document.getElementById("so2").value)*1;
+        ketQua = soTruoc / soSau;
+        alert(ketQua);
+    }
+
+</script>
+</body>
+</html>

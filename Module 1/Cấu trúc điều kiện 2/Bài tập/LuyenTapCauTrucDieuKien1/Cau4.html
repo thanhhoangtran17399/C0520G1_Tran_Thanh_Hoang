@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhập 3 số nguyên và tìm giá trị lớn nhất của ba số nguyên đó</title>
+</head>
+<body>
+    <script>
+        let a;
+        let b;
+        let c;
+        let max;
+        do {
+            a = parseInt(prompt("Nhap vao so a: "));
+            if (!isNaN(a)){
+                break;
+            }else {
+                alert("Ban can nhap vao 1 so");
+            }
+        }while (isNaN(a));
+        do {
+            b = parseInt(prompt("Nhap vao so b: "));
+            if (!isNaN(b)){
+                break;
+            }else {
+                alert("Ban can nhap vao 1 so");
+            }
+        }while (isNaN(b));
+
+        do {
+            c = parseInt(prompt("Nhap vao so c: "));
+            if (!isNaN(c)){
+                break;
+            }else {
+                alert("Ban can nhap vao 1 so");
+            }
+        }while (isNaN(c));
+        function soLonNhat() {
+            max = a;
+            if (b > max){
+                if (c > max){
+                    alert("Max = "+c);
+                }else alert("Max = "+b);
+            }else if (c > max){
+                alert("Max = "+c);
+            }else alert("Max = "+a);
+        }
+        soLonNhat();
+    </script>
+</body>
+</html>

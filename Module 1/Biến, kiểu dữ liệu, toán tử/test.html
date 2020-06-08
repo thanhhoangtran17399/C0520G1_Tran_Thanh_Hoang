@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let ketQua;
+    let soTruoc = prompt("Nhap vao so thư nhat: ")*1;
+    let soSau = prompt("Nhap vao so thu 2: ")*1;
+    function cong() {
+        ketQua = soTruoc + soSau;
+        return ketQua;
+    }
+    function tru() {
+        ketQua = soTruoc - soSau;
+        return ketQua;
+    }
+let luaChon = prompt("Chon dau '+' hoac dau '-' de thuc hien phep tinh: ");
+    if (luaChon == '+'){
+        alert(cong());
+    }
+    if (luaChon == '-'){
+        alert(tru());
+    }
+</script>
+</body>
+</html>

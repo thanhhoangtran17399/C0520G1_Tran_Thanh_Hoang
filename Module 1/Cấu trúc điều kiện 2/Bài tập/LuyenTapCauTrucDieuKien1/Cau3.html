@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhập một số nguyên bất kỳ và in kết quả ra màn hình để nói cho người dùng biết số đó là lớn hay nhỏ hơn 0</title>
+</head>
+<body>
+    <script>
+        let a;
+        do {
+            a = parseInt(prompt("Nhap vao so a: "));
+            if (!isNaN(a)){
+                break;
+            }else {
+                alert("Ban can nhap vao 1 so");
+            }
+        }while (isNaN(a));
+        if (a < 0){
+            alert("So ban vua nhap nho hon 0");
+        }else alert("so ban vua nhap lon hon 0");
+    </script>
+</body>
+</html>

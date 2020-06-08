@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let weight;
+        let height;
+        do {
+            weight = parseFloat(prompt("Nhap vao can nang cua ban: "));
+            if (!isNaN(weight)){
+                break;
+            }else {
+                alert("Ban can nhap vao 1 so");
+            }
+        }while (isNaN(weight));
+        do {
+            height = parseFloat(prompt("Nhap vao chieu cao cua ban: "));
+            if (!isNaN(height)){
+                break;
+            }else {
+                alert("Ban can nhap vao 1 so");
+            }
+        }while (isNaN(height));
+        let bmi = weight / (height * height);
+        if (bmi < 18)
+            document.write("Underweight");
+        else if (bmi < 25.0)
+            document.write("Normal");
+        else if (bmi < 30.0)
+            document.write("Overweight");
+        else
+            document.write("Obese");
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let a;
+        let b;
+        do {
+            a = parseInt(prompt("Nhap vao so a: "));
+            if (!isNaN(a)){
+                break;
+            }else {
+                alert("Ban can nhap vao 1 so");
+            }
+        }while (isNaN(a));
+        do {
+            b = parseInt(prompt("Nhap vao so b: "));
+            if (!isNaN(b)){
+                break;
+            }else {
+                alert("Ban can nhap vao 1 so");
+            }
+        }while (isNaN(b));
+        if (a % b == 0){
+            alert("a chia het cho b");
+        }else alert("a khong chia het cho b");
+    </script>
+</body>
+</html>

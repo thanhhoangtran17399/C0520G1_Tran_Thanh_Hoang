@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="docReady()">
+<img src="2.png" id="Nobita" style="position:absolute;left:0px; top:0px;" height="100" width="80"/>
+    <script>
+        function diChuyenLenTren() {
+            let element = document.getElementById("Nobita");
+            element.style.top = parseInt(element.style.top) - 5 + 'px';
+        }
+        function diChuyenXuongDuoi() {
+            let element = document.getElementById("Nobita");
+            element.style.top = parseInt(element.style.top) + 5 +'px';
+        }
+        function diChuyenSangTrai() {
+            let element = document.getElementById("Nobita");
+            element.style.left = parseInt(element.style.left) - 5 +'px';
+        }
+        function diChuyenSangPhai() {
+            let element = document.getElementById("Nobita");
+            element.style.left = parseInt(element.style.left) + 5 +'px';
+        }
+        function moveSelection(evt) {
+            switch (evt.keyCode) {
+                case 37:
+                    diChuyenSangTrai();
+                    break;
+                case 39:
+                   diChuyenSangPhai();
+                    break;
+                case 38:
+                    diChuyenLenTren();
+                    break;
+                case 40:
+                    diChuyenXuongDuoi();
+                    break;
+            }
+        }
+        function docReady() {
+            window.addEventListener('keydown', moveSelection);
+        }
+    </script>
+</body>
+</html>

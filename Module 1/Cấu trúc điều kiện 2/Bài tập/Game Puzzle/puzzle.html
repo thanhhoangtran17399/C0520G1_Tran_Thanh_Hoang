@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <img src="funny-cat1_part1x1.jpg" id="img1" onclick="ChangeImg('1')"><br>
+    <img src="monkey_part2x1.jpg" id="img2" onclick="ChangeImg('2')"><br>
+    <img src="panda_swap_part3x1.jpg" id="img3" onclick="ChangeImg('3')"><br>
+</div>
+<script>
+    function ChangeImg(chiSo) {
+        let img1 = document.getElementById("img1");
+        let img2 = document.getElementById("img2");
+        let img3 = document.getElementById("img3");
+        switch (chiSo) {
+            case '1':
+                alert(img1.src);
+                if (img1.getAttribute("src") == "funny-cat1_part1x1.jpg"){
+                    img1.src = "monkey_part1x1.jpg"
+                }else if (img1.getAttribute("src") == "monkey_part1x1.jpg"){
+                    img1.src = "panda_swap_part1x1.jpg"
+                }else img1.src = "funny-cat1_part1x1.jpg"
+                break;
+            case '2':
+                alert(img2.src);
+                if (img2.getAttribute("src") == "monkey_part2x1.jpg"){
+                    img2.src = "panda_swap_part2x1.jpg"
+                }else if (img2.getAttribute("src") == "panda_swap_part2x1.jpg"){
+                    img2.src = "funny-cat1_part2x1.jpg"
+                }else img2.src = "monkey_part2x1.jpg"
+                break;
+            case '3':
+                alert(img3.src);
+                if (img3.getAttribute("src") == "panda_swap_part3x1.jpg"){
+                    img3.src = "funny-cat1_part3x1.jpg"
+                }else if (img1.getAttribute("src") == "funny-cat1_part3x1.jpg"){
+                    img3.src = "monkey_part3x1.jpg"
+                }else img3.src = "panda_swap_part3x1.jpg"
+                break;
+        }
+
+    }
+</script>
+</body>
+</html>
