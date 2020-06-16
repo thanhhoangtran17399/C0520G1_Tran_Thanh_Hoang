@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+    /*    let numbers = prompt("Nhap vao so luong so nguyen to dau tien can hien thi");
+        let count = 0;
+        let ketQua = "";
+        let n  = 2;
+        while (count < numbers){
+          if (kTraSoNguyenTo(n)){
+              count++;
+              ketQua += n + ",";
+          }
+          n++;
+        }
+        alert(ketQua);
+
+
+
+        function kTraSoNguyenTo(a) {
+            let check =true;
+            for (let i = 2; i < a; i++){
+                if (a % i == 0){
+                    check=false;
+                    break;
+                }
+            }
+            if (check){
+                return true;
+            }else {
+                return false;
+            }
+        }*/
+    let number = parseInt(prompt("Nhập số lượng số NT cần tìm: "));
+    let count = 0;
+    let N = 2;
+    let i;
+    let text="";
+    while (count<number){
+        for(i=2;i<N;i++){
+            if(N%i==0)
+                break;
+        }
+        if(i==N){
+            text = text + N +" ";
+            count++;
+        }
+        N++;
+    }
+    document.write(number+" số nguyên tố cần tìm là: ");
+    document.write(text);
+    </script>
+</body>
+</html>

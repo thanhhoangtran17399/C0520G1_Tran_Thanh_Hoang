@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="nhap">
+    <input type="button" id="xuat" value="translation" onclick="translation()">
+    <p id="result"></p>
+    <script>
+        let english = ["father", "girlfriend", "black", "white"];
+        let tiengViet = ["ba", "bạn gái", "đen", "trắng"];
+        let b = "";
+
+    function translation() {
+        let a = document.getElementById("nhap").value;
+        for (let i = 0; i < english.length;i++){
+            if (a === english[i]){
+                b = tiengViet[i];
+                break;
+            }else  if (a === tiengViet[i]){
+                b = english[i];
+                break;
+            }else {
+                b="Tu ban nhap khong co trong danh sach";
+            }
+        }
+        document.getElementById("result").innerHTML = b;
+    }
+    </script>
+</body>
+</html>

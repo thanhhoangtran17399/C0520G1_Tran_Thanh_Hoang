@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="tenSanPham">
+<button onclick="themSP()">Thêm Sản phẩm</button><br>
+<p id="hienthi"></p>
+<script>
+    let listSanPham = ['Nokia', 'LG', 'Iphone'];
+    hienThiSanPham();
+    function hienThiSanPham() {
+        let table = '<table border="1">\n' +
+            '    <tr>\n' +
+            '        <th>Số thứ tự</th>\n' +
+            '        <th>Tên sản phẩm</th>\n' +
+            '        <th>Sửa sản phẩm</th>\n' +
+            '        <th>Xóa sản phẩm</th>\n' +
+            '    </tr>\n'
+
+
+        for(let i = 0; i < listSanPham.length; i++){
+         table += ' <tr>\n' +
+             '        <td>'+(i+1)+'</td>\n' +
+             '        <td>'+listSanPham[i]+'</td>\n' +
+             '        <td><button onclick="suaSP('+i+')">Sửa</button></td>\n' +
+             '        <td><button onclick="xoaSP('+i+')">Xóa</button></td>\n' +
+             '    </tr>'
+        }
+        table += '</table>';
+        document.getElementById("hienthi").innerHTML = table
+    }
+    function suaSP(i) {
+        let tenSP = prompt("Nhập tên sản phẩm ");
+        if (tenSP === ''){
+            alert("Bạn cần nhập vào tên sản phẩm");
+        }else if (tenSP == null){
+
+        }else {
+            listSanPham[i] = tenSP;
+            hienThiSanPham();
+        }
+    }
+    function xoaSP(i) {
+        listSanPham.splice(i,1);
+        hienThiSanPham();
+    }
+    function themSP() {
+       let tenSanPham = document.getElementById('tenSanPham').value;
+        if (tenSanPham === '') {
+            alert("Vui lòng nhập tên sản phẩm")
+        } else {
+            listSanPham.push(tenSanPham);
+            document.getElementById("tenSanPham").value = "";
+        }
+        hienThiSanPham();
+    }
+</script>
+</body>
+</html>

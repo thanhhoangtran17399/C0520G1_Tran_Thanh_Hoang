@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c1f0182a-dff2-4870-a42f-6db6586c4c74" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 1/Thực hành/[Thực hành] Sử dụng vòng lặp do-while.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 1/Thực hành/[Thực hành] Sử dụng vòng lặp for.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 1/Thực hành/[Thực hành] Sử dụng vòng lặp while.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 1/Thực hành/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/BangCuuChuong.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/HienThiCacSoNguyenToDauTien.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/Luyện tập sử dụng vòng lặp 1/20SoFiBolNaccyDauTien.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/Luyện tập sử dụng vòng lặp 1/SoFibolnaccyDauTienChiaHetCho5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/Luyện tập sử dụng vòng lặp 1/TinhTong20SoFibolnaccyDauTien.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/Luyện tập sử dụng vòng lặp 1/Tong30SoTuNhienDauTienChiaHetCho7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/Luyện tập sử dụng vòng lặp 1/bai7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/Luyện tập sử dụng vòng lặp 2/TinhGiaiThuaCuaMotSoNguyenDuong.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/Luyện tập sử dụng vòng lặp 2/VeSao.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/Luyện tập sử dụng vòng lặp 2/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Câu lệnh lặp 2/Bài tập/Luyện tập sử dụng vòng lặp 2/test2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cấu trúc điều kiện 2/Bài tập/LuyenTapCauTrucDieuKien1/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Hàm 1/Thực hành/TaoVaGoiHam.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Mảng 1/Thực hành/DaoNguocCacPhanTuTrongMang.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Mảng 1/Thực hành/TaoBanCoCaroDonGian.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Mảng 1/Thực hành/TimGiaTriTrongMang.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Mảng 1/TimGiaTriLonNhatTrongMang.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FakingTextareaOnTyping.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luyện tập mảng 1/DaoNguocCacPhanTuTrongMang.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luyện tập mảng 1/DemSoNguyenAmTrongMotChuoi.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luyện tập mảng 1/HienThiPhanTuLonNhatTrongMangVaViTriPhanTuDo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Luyện tập mảng 1/TrungBinhCacPhanTuTrognMang.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SuDungCacHamCoSanCuaMang/Cau1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SuDungCacHamCoSanCuaMang/Cau2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SuDungCacHamCoSanCuaMang/ChuyenChuHoaSangChuThuongVaNguocLai.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SuDungCacHamCoSanCuaMang/TimSoPhanTuLonHon10TrongMang.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TuDien.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ViDuThamChieuThamTri.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1dCbZVbWKkHT6ZfqNPKdg6Ppr5C" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c1f0182a-dff2-4870-a42f-6db6586c4c74" name="Default Changelist" comment="" />
+      <created>1591932077748</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591932077748</updated>
+      <workItem from="1591932078986" duration="51000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

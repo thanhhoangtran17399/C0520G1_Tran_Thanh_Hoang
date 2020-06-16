@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*    let up ="ABCDEFGHIJKLMNOPQRSTUVZXY";
+    let low ="abcdefghijklmnopqrstuvzxy";
+    let a = prompt("Nhap vao mot chuoi: ");
+    let result=[];
+    let tam;
+    for(let x=0;x<a.length;x++){
+        for(let i=0;i<up.length;i++){
+            if(a[x] === up[i]){
+                tam = a[x].toLowerCase();
+                result.push(tam);
+            }
+            if(a[x] === low[i]){
+                tam =  a[x].toUpperCase()
+                result.push(tam);
+            }
+        }
+    }
+    document.write(result.join(''));*/
+
+let firstString=prompt("Nhập vào 1 chuỗi");
+let array=[];
+for (let i=0; i<firstString.length; i++){
+    let check =(firstString.charAt(i).charCodeAt())>=65&&(firstString.charAt(i).charCodeAt())<=90;
+    if (check){
+        array.push(firstString.charAt(i).toLowerCase());
+    }else {
+        array.push(firstString.charAt(i).toUpperCase());
+    }
+}
+let kq =array.join("");
+document.write("Chuổi ban đầu: "+ firstString+"<br>");
+document.write("Chuỗi sau khi đảo: "+kq);
+</script>
+</body>
+</html>

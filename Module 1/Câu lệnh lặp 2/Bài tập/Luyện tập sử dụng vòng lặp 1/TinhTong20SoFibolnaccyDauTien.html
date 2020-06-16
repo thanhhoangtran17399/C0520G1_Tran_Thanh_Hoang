@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        document.write("20 số fibonaccy đầu tiên là: ");
+        let f0 = 0;
+        let f1 = 1;
+        let f2;
+        let kq = 1;
+        document.write(f0+" "+f1+" ");
+        for (let i = 0; i < 18; i++){
+            f2= f0 + f1;
+            document.write(f2+" ");
+            f0 = f1;
+            f1 = f2;
+            kq += f2;
+        }
+        alert(kq);
+    </script>
+</body>
+</html>

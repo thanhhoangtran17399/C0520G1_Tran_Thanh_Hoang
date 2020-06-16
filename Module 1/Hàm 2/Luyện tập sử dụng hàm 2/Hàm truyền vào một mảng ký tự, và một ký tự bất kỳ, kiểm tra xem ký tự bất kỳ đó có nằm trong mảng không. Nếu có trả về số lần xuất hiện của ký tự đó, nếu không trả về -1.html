@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function timKyTu() {
+        let kyTu = prompt("Nhập vào một chuỗi:");
+        let mangKyTu = kyTu.split("", kyTu.length);
+        let kyTuCanTim = prompt("Nhập ký tự cần tìm ");
+        let dem = 0;
+        check = false;
+        for (let i = 0; i < mangKyTu.length; i++) {
+            if (kyTuCanTim === mangKyTu[i]) {
+                dem++;
+                check = true;
+       }
+        }
+        if (check){
+            return "số lần lặp lại của ký tự đó là "+dem;
+        } else return -1;
+    }
+    alert(timKyTu());
+</script>
+</body>
+</html>

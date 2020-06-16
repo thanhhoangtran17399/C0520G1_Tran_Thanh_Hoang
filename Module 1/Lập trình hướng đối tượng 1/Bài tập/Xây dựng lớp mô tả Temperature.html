@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        class Temperature {
+            constructor(doC) {
+                this.doC = doC;
+            }
+            getDoC(){
+                return this.doC;
+            }
+            setDoC(doC){
+               this.doC = doC;
+            }
+            getDoF(){
+                return (this.doC * 9) / 5 + 32;
+            }
+            getDoK(){
+                return this.doC + 273.15;
+            }
+        }
+        let temperature = new Temperature();
+        temperature.setDoC(parseFloat(prompt("Nhap vao do c:")));
+        doC=temperature.getDoC();
+        alert(doC + " do C = " + temperature.getDoF() + " do F");
+        alert(doC + " do C = " + temperature.getDoK() + " do K");
+    </script>
+</body>
+</html>

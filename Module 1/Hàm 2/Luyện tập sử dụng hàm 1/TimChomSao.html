@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let timKiem = prompt("Nhap vao ten ngoi sao: ");
+        let ngoiSao = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+        let chomSao = ["Ursa Minor", "Tarurus", "Cygnus", " Lyra", "Aquila", "Ursa Major", "Leo"];
+            function timSao() {
+            for (let i = 0; i < ngoiSao.length; i++){
+                if (timKiem===ngoiSao[i]){
+                    return chomSao[i];
+                }
+            }
+                return "Ngôi sao bạn nhập không có trong danh sách";
+        }
+        alert(timSao())
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="hinh 1" onclick="hinh1()">
+<input type="button" value="hinh 2" onclick="hinh2()">
+<input type="button" value="hinh 3" onclick="hinh3()">
+<input type="button" value="hinh 4" onclick="hinh4()">
+<p id="1"></p>
+<p id="2"></p>
+<p id="3"></p>
+<p id="4"></p>
+    <script>
+
+        function hinh1() {
+            ketQua = "";
+            for (let i = 0; i < 5; i++){
+                for (let j = 0; j <= i; j++){
+                    ketQua += "*";
+                }
+                ketQua +="<br>";
+            }
+            document.getElementById("1").innerHTML = ketQua;
+        }
+        function hinh2() {
+            ketQua = "";
+            for (let i = 0; i < 5; i++){
+                for (let j = 0; j < (5 - i); j++){
+                    ketQua += "*";
+                }
+                ketQua +="<br>";
+            }
+            document.getElementById("2").innerHTML = ketQua;
+        }
+        function hinh3() {
+            ketQua = "";
+            for (let i = 0; i < 5; i++){
+                for (let j = 0; j < (5 - i); j++){
+                    ketQua += "&nbsp&nbsp"
+                }
+                for (let j = 0; j <= i; j++){
+                    ketQua += "*";
+                }
+                ketQua +="<br>";
+            }
+            document.getElementById("3").innerHTML = ketQua;
+        }
+        function hinh4() {
+            ketQua = "";
+            for (let i = 0; i < 5; i++){
+                for (let j = 0; j < i; j++){
+                    ketQua += "&nbsp&nbsp"
+                }
+                for (let j = 0; j < (5 - i); j++){
+                    ketQua += "*";
+                }
+                ketQua +="<br>";
+            }
+            document.getElementById("4").innerHTML = ketQua;
+        }
+
+    </script>
+</body>
+</html>

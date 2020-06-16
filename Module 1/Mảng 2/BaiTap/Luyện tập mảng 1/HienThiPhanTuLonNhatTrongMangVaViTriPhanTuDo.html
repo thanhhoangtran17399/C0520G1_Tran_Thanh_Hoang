@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let n = prompt("Nhap vao so luong phan tu cua mang: ");
+        let array = new Array(n);
+        let Max = array[0];
+        let index = 0;
+        for (let i = 0; i < n; i++){
+            array[i] = prompt("Nhap phan tu thu " + i)*1;
+            if (array[i] >= Max){
+                Max = array[i];
+                index = i;
+            }
+        }
+        document.write("Phan tu lon nhat trong mang la: "+Max+"<br>");
+        document.write("Vi tri cua phan tu do la: "+index);
+    </script>
+</body>
+</html>

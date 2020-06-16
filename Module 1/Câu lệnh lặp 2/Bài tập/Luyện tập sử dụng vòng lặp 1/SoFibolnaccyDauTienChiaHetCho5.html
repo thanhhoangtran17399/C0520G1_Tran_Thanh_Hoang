@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let f0 = 0;
+    let f1 = 1;
+    let f2;
+    for (let i = 0; i >= 0; i++){
+        f2= f0 + f1;
+        if(f2 % 5 === 0){
+            alert("so fibolnaccy dau tien chia het cho 5 là: "+f2);
+            break;
+        }
+        f0 = f1;
+        f1 = f2;
+    }
+</script>
+</body>
+</html>

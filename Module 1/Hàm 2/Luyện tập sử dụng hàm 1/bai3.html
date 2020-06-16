@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    
+    let a= parseInt(prompt("Nhập vào số thứ nhất: "));
+    let b= parseInt(prompt("Nhập vào số thứ hai: "));
+    let result = soSanh(a,b);
+    if(result == -1){
+        alert("Số thứ nhất lớn hơn số thứ 2");
+    } else alert("Tổng 2 số là: "+result);
+
+    function soSanh(x,y) {
+        if(x>y)
+            return -1;
+        else {
+            return x+y;
+        }
+    }
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    let n = prompt("Nhap vao so phan tu cua mang: ");
+    let array = new Array(n);
+    for (let i = 0; i < n; i++) {
+        array[i] = prompt("Nhap vao phan tu thu " + i);
+    }
+    swapArr(array);
+    alert(array);
+
+    function swapArr(x) {
+        for (let i=0;i<x.length/2;i++){
+            let temp = x[i];
+            x[i] = x[(x.length-1)-i];
+            x[(x.length-1)-i]= temp;
+        }
+        return x;
+    }
+
+</script>
+
+</body>
+</html>

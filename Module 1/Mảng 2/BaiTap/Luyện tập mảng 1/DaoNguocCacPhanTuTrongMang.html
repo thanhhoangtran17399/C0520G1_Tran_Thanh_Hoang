@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n = prompt("Nhap vao so phan tu cua mang: ");
+    let array = new Array(n);
+    for (let i = 0; i < n; i++) {
+        array[i] = prompt("Nhap vao phan tu thu " + i);
+    }
+    document.write("Mang ban dau:"+array+"<br>");
+    document.write("Mang sau khi dao nguoc: "+array.reverse());
+</script>
+</body>
+</html>

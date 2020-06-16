@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n = prompt("Nhap vao so phan tu cua mang: ");
+    let array = new Array(n);
+    let trungBinh = 0;
+    for (let i = 0; i < n; i++){
+        array[i] = prompt("Nhap vao phan tu thu "+i);
+        trungBinh +=array[i]/n;
+    }alert("Gia tri trung binh cua mang la: "+trungBinh);
+</script>
+</body>
+</html>
