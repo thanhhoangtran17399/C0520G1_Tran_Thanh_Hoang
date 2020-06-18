@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arrNameCustomer = [];
+    while (true) {
+        let choose = parseInt(prompt("1. Thêm khách hàng. " + '\n' + "2. Xoá khách hàng. "));
+        switch (choose) {
+            case 1: {
+                let numberCustomer = parseInt(prompt("Nhập lượng khách hàng cần thêm vào."));
+                for (let i = 0; i < numberCustomer; i++) {
+                    let nameCustomer = prompt("Nhập tên khách hàng: ");
+                    arrNameCustomer.push(nameCustomer);
+                }
+                let ketQua = "";
+                arrNameCustomer.sort();
+                arrNameCustomer.reverse();
+                for (let i = 0; i < arrNameCustomer.length; i++) {
+                    ketQua += (i + 1) + ". " + arrNameCustomer[i] + "\n";
+                }
+                alert(ketQua);
+                break;
+            }
+            case 2:{
+                let check = false;
+                let nameCustomer = prompt("Nhập tên khách hàng cần xoá");
+                for (let i = 0; i < arrNameCustomer.length; i++){
+                    if (arrNameCustomer[i] === nameCustomer){
+                        arrNameCustomer.splice(i, 1);
+                        check = true;
+                    }
+                }
+                if (!check){
+                    alert("Tên khách hàng cần xoá không có trong danh sách");
+                }
+                let ketQua = "";
+                arrNameCustomer.sort();
+                arrNameCustomer.reverse();
+                for (let i = 0; i < arrNameCustomer.length; i++) {
+                    ketQua += (i + 1) + "." + arrNameCustomer[i] + "\n";
+                }
+                alert(ketQua);
+                break;
+            }
+            default:
+                alert("Failed");
+        }
+    }
+</script>
+</body>
+</html>
