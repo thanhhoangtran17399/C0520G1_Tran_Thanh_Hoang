@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let arrayListCustomer = [];
+        function displayMainMenu() {
+            let choose = parseInt(prompt("1.Add new customer"+"\n2.Display information customer"+"\n3.Edit information customer"+"\n4.Delete customer"+"\n5.Exit"));
+            switch (choose) {
+                case 1:{
+                    addNewCustomer();
+                    break;
+                }
+                case 2:{
+                    displayCustomer();
+                    break;
+                }
+                case 3:{
+                    editIformationCustomer();
+                    break;
+                }
+                case 4:{
+                    deteteCustomer();
+                    break;
+                }
+                case 5:{
+                    break;
+                }
+            }
+        }
+        function addNewCustomer() {
+            let customerInformation = [];
+            let name = prompt("Input name: ");
+            let cmnd = prompt("Input cmnd: ");
+            let birthday = prompt("Input birthday: ");
+            let email = prompt("Input email: ");
+            let address = prompt("Input address: ");
+            let typeService = prompt("Input type type Service: ");
+            let typeRom = prompt("Input  type Rom: ");
+            let typeCustomer = prompt("Input type Customer: ");
+            let discount = prompt("Input discount: ");
+            let quantityIncluded = prompt("Input quantityIncluded: ");
+            let rendDays = prompt("Input rendDays: ");
+            customerInformation.push(name);
+            customerInformation.push(cmnd);
+            customerInformation.push(birthday);
+            customerInformation.push(email);
+            customerInformation.push(address);
+            customerInformation.push(typeService);
+            customerInformation.push(typeRom);
+            customerInformation.push(typeCustomer);
+            customerInformation.push(discount);
+            customerInformation.push(quantityIncluded);
+            customerInformation.push(rendDays);
+            arrayListCustomer.push(customerInformation);
+        }
+        displayMainMenu();
+        function displayCustomer() {
+            let temp = "";
+            for (let i = 0; i < arrayListCustomer; i++){
+                temp += i + " .Name: " + arrayListCustomer[i][0] + "\n";
+            }
+            let chooseDisplay = parseInt(prompt(temp));
+            alert("Tên:"+arrayListCustomer[chooseDisplay][0]+"\n"+
+                "cmnd:"+arrayListCustomer[chooseDisplay][1]+"\n"+
+                "Ngày sinh:"+arrayListCustomer[chooseDisplay][2]+"\n"+
+                "email:"+arrayListCustomer[chooseDisplay][3]+"\n"+
+                "Địa chỉ:"+arrayListCustomer[chooseDisplay][4]+"\n"+
+                "Loại dịch vụ"+arrayListCustomer[chooseDisplay][5]+"\n"+
+                "Loại phòng:"+arrayListCustomer[chooseDisplay][6]+"\n"+
+                "Loại khách hàng:"+arrayListCustomer[chooseDisplay][7]+"\n"+
+                "Giảm giá:"+arrayListCustomer[chooseDisplay][8]+"\n"+
+                "Số lượng ngày:"+arrayListCustomer[chooseDisplay][9]+"\n"+
+                "Số lượng đi kèm:"+arrayListCustomer[chooseDisplay][10]+"\n");
+        }
+        displayMainMenu();
+        function editIformationCustomer() {
+
+        }
+        function deteteCustomer() {
+
+        }
+    </script>
+</body>
+</html>

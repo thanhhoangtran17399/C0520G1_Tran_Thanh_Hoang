@@ -45,8 +45,8 @@
                     apple.weight--;
                 }
             }
-            say(Str){
-                alert(str);
+            say(string){
+                alert(string);
             }
             getName(){
                 return this.name;
@@ -64,11 +64,20 @@
         let apple=new Apple();
         let adam=new Human("Adam","Male",70);
         let eva=new Human("Eva","Female",40);
-        adam.eat(apple)
-        eva.eat(apple)
-        alert(apple.getWeight())
-        alert(adam.isMale())
-        alert(eva.isMale())
+        while (apple.weight > 0){
+            adam.say("ăn táo đi em");
+            eva.eat(apple);
+            alert("Trọng lượng trái táo giảm còn " + apple.getWeight());
+            alert("Úi, em tăng lên "+eva.getWeight()+" kg mất rồi anh êy :((");
+            eva.say("em ăn xong rồi 1 miếng rồi, anh ăn đi");
+            adam.eat(apple);
+            alert("Trọng lượng trái táo giảm còn " + apple.getWeight());
+            alert("Anh cũng tăng lên "+adam.getWeight()+" kg rồi :((");
+        }
+        alert("year, chúng ta ăn hết táo rồi !!!");
+        alert("Giới tính của anh là nam phải không Adam :)))" + "\n" + adam.isMale());
+        alert("Còn em không phải là nam đúng ko Eva" +"\n"+ eva.isMale());
+        alert("Vậy còn chờ gì nữa, hai chúng ta cùng tạo ra loài người nào =)))");
     </script>
 </body>
 </html>
