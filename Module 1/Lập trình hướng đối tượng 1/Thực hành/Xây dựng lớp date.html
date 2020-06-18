@@ -86,18 +86,18 @@
             this.year = year1;
         };
     }
-    let dateKhanh = new MyDate(2, 2, 2007);
-    let day11 = dateKhanh.getDay(); // 2
-    let month11 = dateKhanh.getMonth(); // 2
-    let year11 = dateKhanh.getYear(); // 2007
-    alert(day11 + "/" + month11 + "/" + year11);
-    dateKhanh.setDay(10);
-    dateKhanh.setMonth(10);
-    dateKhanh.setYear(2019);
-    let day222 = dateKhanh.getDay(); // 2
-    let  month222 = dateKhanh.getMonth(); // 2
-    let  year222 = dateKhanh.getYear(); // 2007
-    alert(day222 + "/" + month222 + "/" + year222)
+    let date = new MyDate(2, 2, 2007);
+    let day = date.getDay(); // 2
+    let month = date.getMonth(); // 2
+    let year = date.getYear(); // 2007
+    alert(day + "/" + month + "/" + year);
+    date.setDay(10);
+    date.setMonth(10);
+    date.setYear(2019);
+    day = date.getDay(); // 2
+    month = date.getMonth(); // 2
+    year = date.getYear(); // 2007
+    alert(day + "/" + month + "/" + year)
 </script>
 </body>
 </html>
