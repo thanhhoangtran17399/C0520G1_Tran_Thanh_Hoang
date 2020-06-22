@@ -16,8 +16,8 @@
     let typeRoom;
     let typeCustomer;
     let discount;
-    let renDays;
     let quantityIncluded;
+    let renDays;
     let totalpay;
     let check=false;
 
@@ -99,9 +99,9 @@
     typeRoom = prompt("Nhập loại phòng: ");
     typeCustomer = prompt("Nhập loại khách hàng ");
     discount = prompt("Nhập mã giảm giá: ");
-    quantityIncluded = prompt("Nhập quantityIncluded: ");
+    quantityIncluded = prompt("Nhập số lượng đi kèm: ");
     do {
-        renDays = prompt("Nhập rendays: ");
+        renDays = prompt("Nhập số ngày thuê: ");
         if(!isNaN(renDays)){
             renDays = Number.parseFloat(renDays);
             if(Number.isInteger(renDays)&&(renDays >0)){
@@ -116,7 +116,7 @@
 
     totalpay = 300*renDays*(1-discount/100);
 
-    alert("Tên:"+name+" cmnd:"+cmnd+" totalpay :"+totalpay);
+    alert("Tên:"+name+" cmnd:"+cmnd+" Tổng tiền phải trả :"+totalpay);
 
 </script>
 </body>

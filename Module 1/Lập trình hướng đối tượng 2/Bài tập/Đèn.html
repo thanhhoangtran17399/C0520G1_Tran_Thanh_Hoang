@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="ON/OFF" onclick="onOff()">
+<input type="button" value="connect" onclick="connect()">
+<img src="pic_bulboff.gif" height="180" width="100" id="img"/>
+<script>
+        class SwitchButton {
+            constructor() {
+                this.status = false;
+                this.lamp = false;
+            }
+            connectLamp(lamp){
+                this.lamp = lamp;
+            }
+            switchOn(){
+                this.status = true;
+                this.lamp.turnOn();
+            }
+            switchOff(){
+                this.status = false;
+                this.lamp.turnOff();
+            }
+        }
+        class Lamp {
+            constructor() {
+                this.src = "pic_bulboff.gif";
+                this.status = false;
+            }
+            turnOn(){
+                this.status = true;
+                this.src = "pic_bulbon.gif";
+            }
+            turnOff(){
+                this.status = false;
+                this.src ="pic_bulboff.gif";
+            }
+            getStatusLamp(){
+                return this.src;
+            }
+        }
+        let lamp = new Lamp();
+        let switchButton = new SwitchButton();
+        let check = false;
+        function onOff() {
+            if (!check) {
+                switchButton.switchOn();
+                document.getElementById("img").src = lamp.getStatusLamp();
+                check = true;
+            } else {
+                switchButton.switchOff();
+                document.getElementById("img").src = lamp.getStatusLamp();
+                check = false;
+            }
+        }
+            function connect() {
+                switchButton.connectLamp(lamp);
+            }
+</script>
+</body>
+</html>

@@ -15,8 +15,8 @@
     let typeRom = "Vip";
     let typeCustomer = "Diamond";
     let discount = "10";
-    let rendDays = "7";
     let quantityIncluded = "10";
+    let rendDays = "7";
     let totalPay;
     let choose = parseInt(prompt("1.Hiển thi thông tin khách hàng."+"\n"+
         "2.Chỉnh sửa thông tin khách hàng."+"\n"+
@@ -32,8 +32,8 @@
                 "Loại phòng:"+typeRom+"\n"+
                 "Loại khách hàng:"+typeCustomer+"\n"+
                 "Giảm giá:"+discount+"\n"+
-                "Số lượng ngày:"+rendDays+"\n"+
-                "Số lượng đi kèm:"+quantityIncluded+"\n");
+                "Số lượng đi kèm:"+quantityIncluded+"\n"+
+                "Số ngày thuê:"+rendDays+"\n");
                 break;
             }
             case 2: {
@@ -46,49 +46,53 @@
                     "7.Loại phòng: "+typeRom+"\n"+
                     "8.Loại khách hàng: "+typeCustomer+"\n"+
                     "9.Giảm giá: "+discount+"\n"+
-                    "10.Số lượng ngày: "+rendDays+"\n"+
-                    "11.Số lượng đi kèm: "+quantityIncluded+"\n"));
+                    "10.Số lượng đi kèm:"+quantityIncluded+"\n"+
+                    "11.Số ngày thuê:"+rendDays+"\n"));
                     switch (chooseEdit) {
                         case 1:{
-                            name = prompt("Nhập tên mới: ");
+                            name = prompt("Nhập tên: ");
                             break;
                         }
                         case 2: {
-                            cmnd = prompt("Nhập cmnd mới: ");
+                            cmnd = prompt("Nhập cmnd: ");
                             break;
                         }
                         case 3: {
-                            birthday = prompt("Nhập ngày sinh mới: ");
+                            birthday = prompt("Nhập ngày sinh: ");
                             break;
                         }
                         case 4: {
-                            address = prompt("Nhập địa mới: ");
+                            address = prompt("Nhập email: ");
                             break;
                         }
                         case 5: {
-                            typeService = prompt("Nhập loại dịch vụ mới: ");
+                            address = prompt("Nhập địa chỉ: ");
                             break;
                         }
                         case 6: {
-                            typeRoom = prompt("Nhập loại phòng mới: ");
+                            typeService = prompt("Nhập loại dịch vụ: ");
                             break;
                         }
                         case 7: {
-                            typeCustomer = prompt("Nhập loại khách hàng: mới: ");
+                            typeRoom = prompt("Nhập loại phòng: ");
                             break;
                         }
                         case 8: {
-                            discount= prompt("Nhập giảm giá mới: ");
+                            typeCustomer = prompt("Nhập loại khách hàng: ");
                             break;
                         }
                         case 9: {
-                            rendDays = prompt("Nhập Số lượng ngày mới: ");
+                            discount= prompt("Nhập giảm giá: ");
                             break;
                         }
                         case 10: {
-                            quantityIncluded = prompt("Nhập Số lượng đi kèm mới: ");
+                            quantityIncluded = prompt("Nhập Số lượng đi kèm: ");
                             break;
-                }
+                        }
+                        case 11: {
+                            rendDays = prompt("Nhập ngày thuê: ");
+                            break;
+                        }
                         default: {
                             alert("Failed!");
                         }
@@ -102,8 +106,9 @@
                         "Loại phòng:"+typeRom+"\n"+
                         "Loại khách hàng:"+typeCustomer+"\n"+
                         "Giảm giá:"+discount+"\n"+
-                        "Số lượng ngày:"+rendDays+"\n"+
-                        "Số lượng đi kèm:"+quantityIncluded+"\n");
+                        "Số lượng đi kèm:"+quantityIncluded+"\n"+
+                        "Số ngày thuê:"+rendDays+"\n");
+
             }
         case 3: {
             let money = 0;

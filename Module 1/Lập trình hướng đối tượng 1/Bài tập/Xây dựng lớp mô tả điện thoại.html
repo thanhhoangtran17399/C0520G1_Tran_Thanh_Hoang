@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        class Smartphone {
+            constructor(name, battery, status ) {
+                this.name = name;
+                this.battery = battery;
+                this.status = status;
+            }
+            isOnOrOff() {
+                if(this.status) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            onOrOffMobile() {
+                if(status) {
+                    this.status=false;
+                } else {
+                    this.status=true;
+                }
+            }
+            charge() {
+                while (this.battery<100){
+                    this.battery+=1;
+                }
+            }
+            setName(){
+                this.name = name;
+            }
+            getName(){
+                return this.name;
+            }
+        }
+        let sony = new Smartphone("sony");
+        let iphone = new Smartphone("iphone");
+
+    </script>
+</body>
+</html>
