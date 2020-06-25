@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .khung{
+            border: solid;
+            border-width: 1px;
+        }
+    </style>
+</head>
+<body>
+<div class="khung" style="margin-left: 200px;width: 700px;height: 500px">
+    <h1 style="margin-left: 150px">Quản lý học sinh</h1>
+    <input type="button" style="background: lightgreen" value="Thêm mới học sinh" onclick="addNewStudent()">
+    <input type="button" style="background: lightgreen" value="Danh sách tất cả học sinh" onclick="disPlayStudent(listStudent)">
+    <input type="button" onclick="search()" value="Danh sách học sin có tổng điểm lớn hơn 15">
+    <p id="display"></p>
+</div>
+<script>
+    let listStudent = [];
+    class Candidate{
+        constructor(id, name, birthday, math_score, literature_score, english_score) {
+            this.id = id;
+            this.name = name;
+            this.birthdhay = birthday;
+            this. math_score =  math_score;
+            this.literature_score = literature_score;
+            this.english_score = english_score;
+        }
+        setId(id){
+            this.id = id;
+        }
+        getId(){
+            return this.id;
+        }
+        setName(name){
+            this.name = name;
+        }
+        getName(){
+            return this.name;
+        }
+        setBirthday(birthday){
+            this.birthdhay = birthday;
+        }
+        getBirthday(){
+            return this.birthdhay;
+        }
+        setMath_score(math_score){
+            this.math_score = math_score;
+        }
+        getMath_score(){
+            return this.math_score;
+        }
+        setLiterature_score(literature_score){
+            this.literature_score = literature_score;
+        }
+        getLiterature_score(){
+            return this.literature_score;
+        }
+        setEnglish_score(english_score){
+            this.english_score = english_score;
+        }
+        getEnglish_score(){
+            return this.english_score;
+        }
+    }
+    class TestCandidate{
+        constructor(listStudent) {
+            this.listStudent = listStudent;
+        }
+        getDiemtTrungBinh(){
+            let list = [];
+            for (let i = 0; i < this.listStudent.length; i++){
+                let avg = (this.listStudent[i].getMath_score() + this.listStudent[i].getLiterature_score() + this.listStudent[i].getEnglish_score());
+                if (avg > 15){
+                    list.push(this.listStudent[i]);
+                }
+            }
+            return list;
+        }
+    }
+    function disPlayStudent(listStudent) {
+        let tableString = '<table border="1">\n' +
+            '<tr>\n' +
+            '<th>Id</th>\n' +
+            '<th>Name</th>\n' +
+            '<th>Birthday</th>\n'+
+            '<th>Math_score</th>\n'+
+            '<th>Literature_score</th>\n'+
+            '<th>English_score</th>\n'+
+            '</tr>';
+        for (let i = 0; i < listStudent.length; i++) {
+            tableString += ' <tr>\n' +
+                '<td>' + listStudent[i].getId()+ '</td>\n' +
+                '<td>' + listStudent[i].getName() + '</td>\n'+
+                '<td>' + listStudent[i].getBirthday() + '</td>\n'+
+                '<td>' + listStudent[i].getMath_score() + '</td>\n'+
+                '<td>' + listStudent[i].getLiterature_score() + '</td>\n'+
+                '<td>' + listStudent[i].getEnglish_score() + '</td>\n'+
+                '</tr>';
+        }
+        document.getElementById("display").innerHTML = tableString;
+    }
+    function addNewStudent() {
+        let id = prompt("Nhap ma hoc sinh");
+        let name = prompt("Nhap ten hoc sinh");
+        let birthday = prompt("Nhap ngay thang nam sinh");
+        let math_score = prompt("Nhap diem toan")*1;
+        let literature_score = prompt("Nhap diem ly")*1;
+        let english_score = prompt("Nhap diem hoa")*1;
+        let candidate = new Candidate(id, name, birthday, math_score, literature_score, english_score);
+        listStudent.push(candidate);
+        disPlayStudent(listStudent);
+    }
+    function search() {
+        let test= new TestCandidate(listStudent);
+        let list;
+        list=test.getDiemtTrungBinh();
+        disPlayStudent(list);
+    }
+    disPlayStudent(listStudent);
+</script>
+</body>

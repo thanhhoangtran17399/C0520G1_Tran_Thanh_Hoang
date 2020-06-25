@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = [];
+    for (let i = 2; i < 10000; i++){
+        if (kTraSoNguyenTo(i)){
+            array +=  i + ",";
+        }
+    }
+    alert(array);
+
+    function kTraSoNguyenTo(a) {
+        let check = true;
+        for (let i = 2; i < a; i++) {
+            if (a % i == 0) {
+                check = false;
+                break;
+            }
+        }
+        if (check) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

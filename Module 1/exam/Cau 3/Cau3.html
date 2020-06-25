@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+      let month_year;
+        do {
+            month_year = prompt("nhap thang, nam MM/YYYY");
+            let patMonth_year = /(0[1-9]|1[0-2])\/(19\d{2}|(20[0-2]\d))$/;
+            check = patMonth_year.test(month_year);
+        } while (!check);
+      let month = (month_year.substring(0,2));
+      let year =  month_year.substring(3,7);
+        alert(month_year + " co " + ngayTrongThang(month) + " ngay");
+        function namNhuan(year) {
+            let isLeapYear = false;
+            if (year % 4 == 0) {
+                if (year % 100 == 0) {
+                    if (year % 400 == 0) {
+                        isLeapYear = true;
+                    }
+                } else {
+                    isLeapYear = true;
+                }
+            }
+            if (isLeapYear) {
+                return year + " is a leap year";
+            } else {
+                return year + " is NOT a leap year";
+            }
+        }
+
+        function ngayTrongThang(month) {
+            switch (month) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    return 31;
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    return 30;
+                    break;
+                case 2:
+                    return 28;
+            }
+        }
+    </script>
+</body>
+</html>

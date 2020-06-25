@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let str = prompt("Nhap vao mot chuoi: ");
+    let arr = str.split(" ");
+    let dem = 0;
+    let tan_so = 0;
+    let tu = prompt("Nhap vao tu can hien thi tang so xuat hien");
+    for (let i = 0; i < arr.length; i++){
+        document.write(arr[i]+"<br>");
+        if (tu === arr[i]){
+            tan_so ++;
+        }
+        dem++;
+    }
+    document.write("So tu co trong chuoi la: "+dem+"\n");
+    document.write("Tan so xuat hien cua tu can kiem tra la: "+tan_so);
+</script>
+</body>
+</html>

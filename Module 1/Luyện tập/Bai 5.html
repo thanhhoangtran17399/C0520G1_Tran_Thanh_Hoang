@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.	Viết chương trình tính  :
+        S=1+1/3!+1/5!+…..+1/(2n-1)!
+    </title>
+</head>
+<body>
+    <script>
+        let n = parseInt(prompt("Nhập vào 1 số"));
+        let tong = 0;
+        let mau;
+        for (let i = 1; i <= n; i++){
+            mau = giaiThua(2 *i-1);
+            tong+=(1/mau);
+        }
+        alert(tong);
+
+
+        function giaiThua(x) {
+            let kq = 1;
+            for (let  j = 1; j <= x; j++ ){
+             kq*= j;
+            }
+            return kq;
+        }
+    </script>
+</body>
+</html>

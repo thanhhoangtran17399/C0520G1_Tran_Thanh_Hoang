@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let trungBinh;
+        let tong = 0;
+        let dem = 0;
+        let n;
+        do {
+            n = prompt("Nhap vao so phan tu cua mang")*1;
+        }
+        while (isNaN(n)|| n > 50);
+
+        arr = new Array(n);
+        for (let i = 0; i < n; i++){
+            do {
+                arr[i] = prompt("Nhap phan tu thu "+i)*1;
+                if (!isNaN(arr[i])){
+                    break;
+                }else {
+                    alert("Ban can nhap vao 1 so");
+                }
+            }while (isNaN(arr[i]));
+            if (arr[i] % 3 === 0){
+                tong += arr[i];
+                dem++
+            }
+        }
+        trungBinh = tong/dem;
+        alert("Gia tri trung binh la: "+trungBinh);
+
+    </script>
+</body>
+</html>
