@@ -27,11 +27,11 @@ public class TimGiaTriNhoNhat {
         }
         // Duyệt các phần tử trong mảng để tìm GTNN và vị trí
         int min = array[0];
-        int index = 1;
+        int index = 0;
         for (int j = 0; j < array.length; j++) {
             if (array[j] < min) {
                 min = array[j];
-                index = j + 1;
+                index = j ;
             }
         }
         System.out.println("The largest property value in the list is " + min + " ,at position " + index);

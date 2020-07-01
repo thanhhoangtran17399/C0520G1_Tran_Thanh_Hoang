@@ -41,8 +41,8 @@ public class DocSoThanhChu {
                     nameNumber += "nine";
                     break;
             }
-        } else if (number < 20) {
-            switch (number - 10) {
+        } else if (number >= 10 && number < 20) {
+            switch (number % 10) {
                 case 0:
                     nameNumber += "ten";
                     break;
@@ -74,7 +74,7 @@ public class DocSoThanhChu {
                     nameNumber += "nineteen";
                     break;
             }
-        } else if (number < 100) {
+        } else if (number >=20 && number < 100) {
             switch (number / 10) {
                 case 2:
                     nameNumber += " twenty";
@@ -130,7 +130,7 @@ public class DocSoThanhChu {
                     nameNumber += " nine";
                     break;
             }
-        } else if (number < 1000) {
+        } else if (number>= 100 && number < 1000) {
             switch (number / 100) {
                 case 1:
                     nameNumber += " one hundred";
@@ -255,7 +255,7 @@ public class DocSoThanhChu {
                         nameNumber += " one";
                         break;
                     case 2:
-                        nameNumber += " tow";
+                        nameNumber += " two";
                         break;
                     case 3:
                         nameNumber += " three";
