@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let number;
+        do {
+            number = prompt("Nhap vao mot so")*1;
+            if (!isNaN(number)){
+                break;
+            }else {
+                alert("Ban can nhap vao 1 so");
+            }
+        }while (isNaN(number) || number);
+        alert(number+ " co phai la so nguyen to? "+isPrime(number));
+        function isPrime(number) {
+            let check = true;
+            if (number < 2){
+                check = false;
+            }
+            for (let i = 2; i < number; i++) {
+                if (number % i === 0) {
+                    check = false;
+                    break;
+                }
+            }
+            if (check) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

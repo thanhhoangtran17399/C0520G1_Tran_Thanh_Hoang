@@ -1,0 +1,80 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .khung{
+            border: solid;
+            border-width: 1px;
+        }
+    </style>
+</head>
+<body>
+<div class="khung" style="margin-left: 200px;width: 700px;height: 500px">
+    <h1 style="margin-left: 150px">NHÂN VIÊN</h1>
+    <h3>Tổng lương:</h3>
+    <p id="tongluong"></p>
+    <input type="button" style="color: #ff0000;background-color: #ff9e31" value="Tổng lương"
+           onclick="tinhLuong()">
+    <input type="button" style="background: lightgreen" value="Thêm mới nhân viên" onclick="themNhanVien()">
+    <p id="display"></p>
+</div>
+
+<script>
+    let listNhanVien = [];
+    hienThi();
+    function hienThi() {
+        let tableString = '<table border="1">\n' +
+            '<tr>\n' +
+            '<th> Tên nhân Viên</th>\n' +
+            '<th> Số ngày làm việc</th>\n'+
+            '<th> Lương cơ bản </th>\n'+
+            '</tr>';
+        for (let i = 0; i < listNhanVien.length; i++) {
+            tableString += ' <tr>\n' +
+                '<td>' + listNhanVien[i].getTen()+ '</td>\n' +
+                '<td>' + listNhanVien[i].getNgayLamViec() + '</td>\n'+
+                '<td>' + listNhanVien[i].getLuongCoBan() + '</td>\n'+
+                '</tr>';
+        }
+        document.getElementById("display").innerHTML = tableString;
+    }
+    function themNhanVien() {
+        let ten = prompt("nhập tên nhân viên:");
+        let nhanVien =new NhanVien(ten);
+        listNhanVien.push(nhanVien);
+        hienThi();
+    }
+    function tinhLuong() {
+        let tongLuong = 0;
+        for (let i = 0; i < listNhanVien.length; i++) {
+            tongLuong += listNhanVien[i].getTinhLuong()
+        }
+        document.getElementById("tongluong").innerHTML = tongLuong;
+    }
+    class NhanVien{
+        constructor(ten, ngayLamViec, luongCoBan) {
+            this.ten = ten;
+            this.ngayLamViec = 20;
+            this.luongCoBan = 200000;
+        }
+        setTen(ten){
+            this.ten = ten;
+        }
+        getTen(){
+            return this.ten;
+        }
+        getNgayLamViec(){
+            return this.ngayLamViec;
+        }
+        getLuongCoBan(){
+            return this.luongCoBan;
+        }
+        getTinhLuong(){
+            return this.ngayLamViec * this.getLuongCoBan()
+        }
+    }
+</script>
+</body>
+</html>

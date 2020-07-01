@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let fruit = ["Apple", "Banana", "Lenon"];
+        let deleteElement =  prompt("Nhap vao ten trai cay can xoa: ");
+        alert(removeFruit(fruit,deleteElement));
+        function removeFruit(fruit, deleteElement) {
+            for( let i = 0; i < fruit.length; i++){
+                if ( fruit[i] === deleteElement) {
+                    fruit.splice(i, 1);
+                    return fruit;
+                }
+            }
+            return "Ten trai cay ban vua nhap khong co trong mang";
+        }
+    </script>
+</body>
+</html>
