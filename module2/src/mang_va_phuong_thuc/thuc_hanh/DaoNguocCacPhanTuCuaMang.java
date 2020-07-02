@@ -1,4 +1,4 @@
-package mang.thuc_hanh;
+package mang_va_phuong_thuc.thuc_hanh;
 import java.util.Scanner;
 public class DaoNguocCacPhanTuCuaMang {
     public static void main(String[] args) {

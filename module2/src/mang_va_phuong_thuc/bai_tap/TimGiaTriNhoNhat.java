@@ -1,4 +1,4 @@
-package mang.bai_tap;
+package mang_va_phuong_thuc.bai_tap;
 import java.util.Scanner;
 public class TimGiaTriNhoNhat {
     public static void main(String[] args) {
