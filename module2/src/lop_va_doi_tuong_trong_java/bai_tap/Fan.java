@@ -10,43 +10,43 @@ public class Fan {
     private String color;
 
     public int getSLOW() {
-        return 1;
+        return SLOW;
     }
 
     public int getMEDIUM() {
-        return 2;
+        return MEDIUM;
     }
 
     public int getFAST() {
-        return 3;
+        return FAST;
     }
 
     public int getSpeed() {
         return speed;
     }
 
-    public boolean isOn() {
-        return on;
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public boolean isOn() {
+        return on;
     }
 
     public void setOn(boolean on) {
         this.on = on;
     }
 
+    public double getRadius() {
+        return radius;
+    }
+
     public void setRadius(double radius) {
         this.radius = radius;
+    }
+
+    public String getColor() {
+        return color;
     }
 
     public void setColor(String color) {
