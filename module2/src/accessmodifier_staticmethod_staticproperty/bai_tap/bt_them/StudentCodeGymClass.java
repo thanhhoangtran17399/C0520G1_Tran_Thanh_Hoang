@@ -39,8 +39,16 @@ class StudentCodeGym {
 }
 
 public class StudentCodeGymClass {
-    static StudentCodeGym[] studentCodeGym = new StudentCodeGym[10];
+    private static StudentCodeGym[] listStudent;
+    private static int count = 0;
+    static {
+        listStudent = new StudentCodeGym[10];
+    }
+    public int getCount(){
+        return count;
+    }
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
+
     }
 }
