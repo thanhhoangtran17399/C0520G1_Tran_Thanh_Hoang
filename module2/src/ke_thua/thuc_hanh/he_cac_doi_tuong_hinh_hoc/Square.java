@@ -1,8 +1,6 @@
-package abstract_class_and_interface.bai_tap.colorable;
+package ke_thua.thuc_hanh.he_cac_doi_tuong_hinh_hoc;
 
-import abstract_class_and_interface.bai_tap.resizeable.Rectangle;
-
-public class Square extends Rectangle implements Colorable {
+public class Square extends Rectangle {
     public Square() {
     }
 
@@ -19,11 +17,8 @@ public class Square extends Rectangle implements Colorable {
     }
 
     public void setSide(double side) {
-        super.setWidth(side);
-        super.setLength(side);
-    }
-    public double getArea(){
-        return this.getWidth()*this.getLength();
+        setWidth(side);
+        setLength(side);
     }
 
     @Override
@@ -42,10 +37,5 @@ public class Square extends Rectangle implements Colorable {
                 + getSide()
                 + ", which is a subclass of "
                 + super.toString();
-    }
-
-    @Override
-    public void HowtoColor() {
-        System.out.println("Color all four sides..");
     }
 }
