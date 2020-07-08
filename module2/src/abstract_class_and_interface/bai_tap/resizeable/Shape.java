@@ -1,6 +1,6 @@
 package abstract_class_and_interface.bai_tap.resizeable;
 
-public class Shape implements Resizeable {
+public class Shape  {
     private String color = "green";
     private boolean filled = true;
     public Shape(String color, boolean filled) {
@@ -34,9 +34,5 @@ public class Shape implements Resizeable {
                 + (isFilled() ? "filled" : "not filled");
     }
 
-    @Override
-    public void resize(double percent) {
-
-    }
 }
 

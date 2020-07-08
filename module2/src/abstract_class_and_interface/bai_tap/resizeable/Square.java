@@ -1,6 +1,6 @@
 package abstract_class_and_interface.bai_tap.resizeable;
 
-public class Square extends Rectangle{
+public class Square extends Rectangle implements Resizeable{
     public Square() {
     }
 
