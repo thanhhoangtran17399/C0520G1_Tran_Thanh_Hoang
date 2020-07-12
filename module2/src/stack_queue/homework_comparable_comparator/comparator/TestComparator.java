@@ -1,5 +1,4 @@
-package stack_queue.homework_comparable_compararator.comparator;
-import stack_queue.homework_comparable_compararator.comparator.StudentCodeGym1;
+package stack_queue.homework_comparable_comparator.comparator;
 
 import java.util.ArrayList;
 import java.util.Collections;

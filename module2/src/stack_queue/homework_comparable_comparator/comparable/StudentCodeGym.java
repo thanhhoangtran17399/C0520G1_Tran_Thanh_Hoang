@@ -1,4 +1,4 @@
-package stack_queue.homework_comparable_compararator.comparable;
+package stack_queue.homework_comparable_comparator.comparable;
 
 public class StudentCodeGym implements Comparable<StudentCodeGym> {
     private String name;

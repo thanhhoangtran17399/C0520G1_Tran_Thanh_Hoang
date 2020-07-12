@@ -1,4 +1,4 @@
-package stack_queue.homework_comparable_compararator.comparable;
+package stack_queue.homework_comparable_comparator.comparable;
 
 import java.util.ArrayList;
 import java.util.Collections;
