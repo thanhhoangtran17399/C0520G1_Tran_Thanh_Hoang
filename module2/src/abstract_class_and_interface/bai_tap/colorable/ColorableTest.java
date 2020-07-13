@@ -15,6 +15,7 @@ public class ColorableTest {
             if (elementShape instanceof Square) {
                 System.out.println("Square:");
                 Square s1 = (Square) elementShape;
+                //s1 đại diện cho square
                 s1.HowtoColor();
                 System.out.println(s1);
             }

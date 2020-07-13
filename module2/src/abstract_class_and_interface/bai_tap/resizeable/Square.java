@@ -1,6 +1,8 @@
 package abstract_class_and_interface.bai_tap.resizeable;
 
-public class Square extends Rectangle implements Resizeable{
+import abstract_class_and_interface.bai_tap.colorable.Colorable;
+
+public class Square extends Rectangle implements Resizeable, Colorable {
     public Square() {
     }
 
@@ -37,5 +39,9 @@ public class Square extends Rectangle implements Resizeable{
                 + getSide()
                 + ", which is a subclass of "
                 + super.toString();
+    }
+    @Override
+    public void HowtoColor() {
+        System.out.println("Color all four sides..");
     }
 }

@@ -47,6 +47,7 @@ public class TestMyArrayList {
         studentMyArrayList.add(student3);
         studentMyArrayList.add(student4);
         studentMyArrayList.add(student5, 3);
+
         System.out.println(studentMyArrayList.remove(3));
 
         for (int i = 0; i < studentMyArrayList.size(); i++) {

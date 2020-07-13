@@ -1,6 +1,6 @@
-package abstract_class_and_interface.bai_tap.resizeable;
+package ke_thua.thuc_hanh.he_cac_doi_tuong_hinh_hoc;
 
-public class Rectangle extends Shape implements Resizeable {
+public class Rectangle extends Shape {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -49,13 +49,8 @@ public class Rectangle extends Shape implements Resizeable {
                 + " and length="
                 + getLength()
                 + ", which is a subclass of "
-                + super.toString()
-                +", Area = "
-                + getArea();
+                + super.toString();
     }
-    @Override
-    public void resize(double percent) {
-        this.width = this.width + (this.width /100 * percent);
-        this.length = this.length + (this.length /100 * percent);
-    }
+
 }
+
