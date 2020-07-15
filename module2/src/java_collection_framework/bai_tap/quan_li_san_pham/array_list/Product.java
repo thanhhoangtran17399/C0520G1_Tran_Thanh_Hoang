@@ -1,6 +1,4 @@
-package java_collection_framework.bai_tap.quan_li_san_pham;
-
-import java.util.Comparator;
+package java_collection_framework.bai_tap.quan_li_san_pham.array_list;
 
 public class Product {
     private String name;
@@ -29,12 +27,12 @@ public class Product {
         this.id = id;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = (int) price;
+    public void setPrice(int price) {
+        this.price =  price;
     }
 
     @Override

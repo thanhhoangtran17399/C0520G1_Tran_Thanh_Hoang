@@ -1,4 +1,4 @@
-package java_collection_framework.bai_tap.quan_li_san_pham;
+package java_collection_framework.bai_tap.quan_li_san_pham.array_list;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,8 +44,10 @@ public class ProductManager {
                     break;
                 case 5:
                     findProductByName(arrayList, scanner);
+                    break;
                 case 6:
                     sortProduct(arrayList, scanner);
+                    break;
                 case 7:
                     System.exit(0);
                 default:
@@ -60,12 +62,12 @@ public class ProductManager {
         System.out.println("Nhập id: ");
         int id = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Nhập ten san pham: ");
+        System.out.println("Nhập tên sản phẩm: ");
         String name = scanner.nextLine();
 
         System.out.println("Nhập giá sản phẩm: ");
-        double price = scanner.nextDouble();
-        arrayList.add(new Product(id, name, (int) price));
+        int price = scanner.nextInt();
+        arrayList.add(new Product(id, name, price));
     }
 
     public static void editProductInformation(ArrayList<Product> arrayList, Scanner scanner) {
@@ -81,22 +83,23 @@ public class ProductManager {
         }
         if (check) {
             scanner.nextLine();
-            System.out.println("Nhập tên sản phẩm mới: ");
+            System.out.print("Nhập tên sản phẩm mới: ");
             String name = scanner.nextLine();
-            System.out.println("Nhập mã sản phẩm mới");
+            System.out.print("Nhập mã sản phẩm mới: ");
             int id = scanner.nextInt();
-            System.out.println("Nhập giá sản phẩm mới");
-            double price = scanner.nextDouble();
-            arrayList.set(index, new Product(id, name, (int) price));
+            System.out.print("Nhập giá sản phẩm mới: ");
+            int price = scanner.nextInt();
+            arrayList.set(index, new Product(id, name, price));
         }
     }
 
     public static void deleteProduct(ArrayList<Product> arrayList, Scanner scanner) {
-        System.out.println("Nhập mã sản phẩm cần xóa");
+        System.out.print("Nhập mã sản phẩm cần xóa: ");
         int inputId = scanner.nextInt();
         for (int i = 0; i < arrayList.size(); i++) {
             if (inputId == arrayList.get(i).getId()) {
                 arrayList.remove(i);
+                break;
             }
         }
     }
@@ -106,26 +109,32 @@ public class ProductManager {
         System.out.print("Nhập tên sản phẩm cần tìm: ");
         scanner.nextLine();
         String inputName = scanner.nextLine();
-        Product product = null;
-        for (Product p : arrayList) {
-            if (inputName.equals(p.getName())) {
-                product = p;
+//        Product product = null;
+//        for (Product p : arrayList) {
+//            if (inputName.equals(p.getName())) {
+//                product = p;
+//                break;
+//            }
+//        }
+//
+//        if (product == null) {
+//            System.out.println("Không tìm thấy sản phẩm " + inputName);
+//        } else {
+//            System.out.println("Kết quả tìm kiếm: " + product);
+//        }
+        boolean check = true;
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (inputName.equals(arrayList.get(i).getName())) {
+                System.out.println(arrayList.get(i).toString());
+                check = true;
                 break;
+            } else {
+                check = false;
             }
         }
-
-        if (product == null) {
-            System.out.println("Product " + inputName + " not found!");
-        } else {
-            System.out.println("Result: " + product);
+        if (check == false) {
+            System.out.println("Không tìm thấy sản phẩm " + inputName);
         }
-//            for (int i = 0; i < arrayList.size(); i++) {
-//                if (inputName.equals(arrayList.get(i).getName())) {
-//                    System.out.println(arrayList.get(i).toString());
-//                    check = true;
-//                }
-//                else check = false;
-//            }
     }
 
     private static void sortProduct(ArrayList<Product> arrayList, Scanner scanner) {
@@ -134,13 +143,14 @@ public class ProductManager {
         chosse = scanner.nextInt();
         if (chosse == 1) {
             Collections.sort(arrayList, new SortAscendingt());
-            for (Product arr : arrayList) {
-                System.out.println(arr);
+            for (Product p : arrayList) {
+                System.out.println(p);
             }
         } else {
             Collections.sort(arrayList, new SortDescending());
             for (Product p : arrayList) {
                 System.out.println(p);
+                break;
             }
         }
     }
