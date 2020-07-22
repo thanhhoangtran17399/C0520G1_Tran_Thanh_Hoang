@@ -1,6 +1,7 @@
 package io_text_file.bai_tap.doc_file_csv;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -17,6 +18,9 @@ public class ReadFileCsv {
                 System.out.println("Country [code= " + country[4] + " , name=" + country[5] + "]");
             }
             bufferedReader.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         catch (IOException e) {
             e.printStackTrace();

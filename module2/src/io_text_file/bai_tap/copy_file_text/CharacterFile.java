@@ -18,6 +18,8 @@ public class CharacterFile {
             }
             bufferedReader.close();
             fileReader.close();
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,6 +34,8 @@ public class CharacterFile {
 
             bufferedWriter.close();
             fileWriter.close();
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
