@@ -1,22 +1,22 @@
 package case_study.models;
 
 public class ExtraService {
-    private String serviceName;
+    private String extraserviceName;
     private String unit;
     private double price;
 
-    public ExtraService(String serviceName, String unit, double price) {
-        this.serviceName = serviceName;
+    public ExtraService(String extraserviceName, String unit, double price) {
+        this.extraserviceName = extraserviceName;
         this.unit = unit;
         this.price = price;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getExtraserviceName() {
+        return extraserviceName;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setExtraserviceName(String extraserviceName) {
+        this.extraserviceName = extraserviceName;
     }
 
     public String getUnit() {
@@ -38,7 +38,7 @@ public class ExtraService {
     @Override
     public String toString() {
         return "ExtraService{" +
-                "serviceName='" + serviceName + '\'' +
+                "serviceName='" + extraserviceName + '\'' +
                 ", unit='" + unit + '\'' +
                 ", price=" + price +
                 '}';

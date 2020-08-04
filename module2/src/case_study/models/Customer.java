@@ -1,16 +1,16 @@
 package case_study.models;
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
     private String name;
-    private int birthday;
+    private String birthday;
     private String gender;
-    private int cmnd;
+    private String cmnd;
     private int phoneNumber;
     private String email;
     private String typeCustomer;
     private Services useServices;
 
-    public Customer(String name, int birthday, String gender, int cmnd, int phoneNumber, String email, String typeCustomer, Services useServices) {
+    public Customer(String name, String birthday, String gender, String cmnd, int phoneNumber, String email, String typeCustomer, Services useServices) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
@@ -33,7 +33,7 @@ public class Customer {
         this.name = name;
     }
 
-    public int getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
@@ -45,15 +45,15 @@ public class Customer {
         this.gender = gender;
     }
 
-    public void setBirthday(int birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public int getCmnd() {
+    public String getCmnd() {
         return cmnd;
     }
 
-    public void setCmnd(int cmnd) {
+    public void setCmnd(String cmnd) {
         this.cmnd = cmnd;
     }
 
@@ -81,14 +81,6 @@ public class Customer {
         this.typeCustomer = typeCustomer;
     }
 
-    public Services getUseServices() {
-        return useServices;
-    }
-
-    public void setUseServices(Services useServices) {
-        this.useServices = useServices;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +
@@ -100,5 +92,19 @@ public class Customer {
                 ", typeCustomer='" + typeCustomer + '\'' +
                 ", useServices=" + useServices +
                 '}';
+    }
+    public void showInfor() {
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public int compareTo(Customer o) {
+        int resutl = this.name.compareTo(o.name);
+        if (resutl == 0) {
+            int yearFirtsCustomer = Integer.parseInt(this.birthday.split("/")[2]);
+            int yearSecondCustomer = Integer.parseInt(o.birthday.split("/")[2]);
+            resutl = yearFirtsCustomer - yearSecondCustomer;
+        }
+            return resutl;
     }
 }

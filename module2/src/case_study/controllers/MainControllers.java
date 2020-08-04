@@ -1,12 +1,14 @@
 package case_study.controllers;
 
 import case_study.commons.FuntionReadAndWriteCSV;
+import case_study.commons.Validate;
 import case_study.models.Customer;
-import case_study.models.House;
 import case_study.models.Room;
+import case_study.models.House;
 import case_study.models.Villa;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class MainControllers {
@@ -60,15 +62,12 @@ public class MainControllers {
 
             case "1":
                 addNewVila();
-                addNewSevices();
                 break;
             case "2":
                 addNewHouse();
-                addNewSevices();
                 break;
             case "3":
                 addNewRoom();
-                addNewSevices();
                 break;
             case "4":
                 displayMainMenu();
@@ -87,79 +86,113 @@ public class MainControllers {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Villa> listVilla = new ArrayList<>();
         Villa villa = new Villa();
-        System.out.println("Enter Service name: ");
-        villa.setSeviceName(scanner.nextLine());
+        do {
+            System.out.println("Enter Service name: ");
+            villa.setSeviceName(scanner.nextLine());
+        } while (!Validate.isValid(villa.getSeviceName(), Validate.SEVICE_NAME_REGEX));
         System.out.println("Enter Rental Costs: ");
         villa.setRentalCosts(scanner.nextDouble());
-        System.out.println("Enter max number of people");
-        villa.setMaxNumberOfPeople(scanner.nextInt());
+        do {
+            System.out.println("Enter max number of people");
+            villa.setMaxNumberOfPeople(scanner.nextInt());
+        }while (!Validate.isLessThanAndMoreThan(villa.getMaxNumberOfPeople(), 0, 30));
         scanner.nextLine();
         System.out.println("Enter type of rent");
         villa.setTypeOfRent(scanner.nextLine());
-        System.out.println("Enter ID");
-        villa.setId(scanner.nextLine());
+        do {
+            System.out.println("Enter ID");
+            villa.setId(scanner.nextLine());
+        } while (!Validate.isValid(villa.getId(), Validate.SEVICE_ID_REGEX));
         System.out.println("Enter room standard");
         villa.setRoomStandard(scanner.nextLine());
         System.out.println("Enter other description");
         villa.setOtherDescription(scanner.nextLine());
-        System.out.println("Enter pool area: ");
-        villa.setPoolArea(scanner.nextDouble());
+        do {
+            System.out.println("Enter pool area: ");
+            villa.setPoolArea(scanner.nextDouble());
+        } while (!Validate.isMoreThan(villa.getPoolArea(), 30));
         System.out.println("Enter number of floors");
         villa.setNumberOfFloors(scanner.nextInt());
-        System.out.println("Enter area used");
-        villa.setAreaUsed(scanner.nextInt());
+        do {
+            System.out.println("Enter area used");
+            villa.setAreaUsed(scanner.nextInt());
+        } while (!Validate.isMoreThan(villa.getAreaUsed(), 30));
         listVilla.add(villa);
         FuntionReadAndWriteCSV.writeVilla(listVilla);
-    }
-
-    private static void addNewHouse() {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<House> listHouse = new ArrayList<>();
-        House house = new House();
-        System.out.println("Enter Service name: ");
-        house.setSeviceName(scanner.nextLine());
-        System.out.println("Enter Rental Costs: ");
-        house.setRentalCosts(scanner.nextDouble());
-        System.out.println("Enter max number of people");
-        house.setMaxNumberOfPeople(scanner.nextInt());
+        System.out.println("Add new villa complete, enter to continue !");
         scanner.nextLine();
-        System.out.println("Enter type of rent");
-        house.setTypeOfRent(scanner.nextLine());
-        System.out.println("Enter ID");
-        house.setId(scanner.nextLine());
-        System.out.println("Enter free service included");
-        house.setFreeServiceIncluded(scanner.nextLine());
-        System.out.println("Enter area used");
-        house.setAreaUsed(scanner.nextInt());
-        listHouse.add(house);
-        FuntionReadAndWriteCSV.writeHouse(listHouse);
+        displayMainMenu();
     }
 
     private static void addNewRoom() {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Room> listRoom = new ArrayList<>();
         Room room = new Room();
-        System.out.println("Enter Service name: ");
-        room.setSeviceName(scanner.nextLine());
+        do {
+            System.out.println("Enter Service name: ");
+            room.setSeviceName(scanner.nextLine());
+        } while (!Validate.isValid(room.getSeviceName(), Validate.SEVICE_NAME_REGEX));
         System.out.println("Enter Rental Costs: ");
         room.setRentalCosts(scanner.nextDouble());
-        System.out.println("Enter max number of people");
-        room.setMaxNumberOfPeople(scanner.nextInt());
+        do {
+            System.out.println("Enter max number of people");
+           room.setMaxNumberOfPeople(scanner.nextInt());
+        }while (!Validate.isLessThanAndMoreThan(room.getMaxNumberOfPeople(), 0, 30));
         scanner.nextLine();
         System.out.println("Enter type of rent");
         room.setTypeOfRent(scanner.nextLine());
-        System.out.println("Enter ID");
-        room.setId(scanner.nextLine());
-        System.out.println("Enter room standard");
-        room.setRoomStandard(scanner.nextLine());
-        System.out.println("Enter other description");
-        room.setOtherDescription(scanner.nextLine());
-        System.out.println("Enter number of floors");
-        room.setNumberOfFloors(scanner.nextInt());
-        System.out.println("Enter area used");
-        room.setAreaUsed(scanner.nextInt());
+        do {
+            System.out.println("Enter ID");
+            room.setId(scanner.nextLine());
+        } while (!Validate.isValid(room.getId(), Validate.SEVICE_ID_REGEX));
+        System.out.println("Enter free service included");
+        room.setFreeServiceIncluded(scanner.nextLine());
+        do {
+            System.out.println("Enter area used");
+            room.setAreaUsed(scanner.nextInt());
+        }while (!Validate.isMoreThan(room.getAreaUsed(), 30));
         listRoom.add(room);
-        FuntionReadAndWriteCSV.writeRoom(listRoom);
+        FuntionReadAndWriteCSV.writeroom(listRoom);
+        System.out.println("Add new room complete, enter to continue !");
+        scanner.nextLine();
+        displayMainMenu();
+    }
+
+    private static void addNewHouse() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<House> listHouse = new ArrayList<>();
+        House house = new House();
+        do {
+            System.out.println("Enter Service name: ");
+            house.setSeviceName(scanner.nextLine());
+        } while (!Validate.isValid(house.getSeviceName(), Validate.SEVICE_NAME_REGEX));
+        System.out.println("Enter Rental Costs: ");
+        house.setRentalCosts(scanner.nextDouble());
+        do {
+            System.out.println("Enter max number of people");
+            house.setMaxNumberOfPeople(scanner.nextInt());
+        }while (!Validate.isLessThanAndMoreThan(house.getMaxNumberOfPeople(), 0, 30));
+        scanner.nextLine();
+        System.out.println("Enter type of rent");
+        do {
+            System.out.println("Enter ID");
+            house.setId(scanner.nextLine());
+        } while (!Validate.isValid(house.getId(), Validate.SEVICE_ID_REGEX));
+        System.out.println("Enter room standard");
+        house.setRoomStandard(scanner.nextLine());
+        System.out.println("Enter other description");
+        house.setOtherDescription(scanner.nextLine());
+        System.out.println("Enter number of floors");
+        house.setNumberOfFloors(scanner.nextInt());
+        do {
+            System.out.println("Enter area used");
+            house.setAreaUsed(scanner.nextInt());
+        }while (!Validate.isMoreThan(house.getAreaUsed(), 30));
+        listHouse.add(house);
+        FuntionReadAndWriteCSV.writeHouse(listHouse);
+        System.out.println("Add new house complete, enter to continue !");
+        scanner.nextLine();
+        displayMainMenu();
     }
 
     private static void showServices() {
@@ -203,33 +236,42 @@ public class MainControllers {
     }
 
     private static void showAllVilla() {
+        Scanner scanner = new Scanner(System.in);
         ArrayList<Villa> listVilla;
         listVilla = FuntionReadAndWriteCSV.readVilla();
         for (Villa villa : listVilla) {
             System.out.println("--------------------------");
             villa.showInfor();
-            System.out.println("--------------------------");
         }
+        System.out.println("Show all villa complete, enter to continue !");
+        scanner.nextLine();
+        displayMainMenu();
     }
 
     private static void showAllHouse() {
-        ArrayList<House> listHouse;
-        listHouse = FuntionReadAndWriteCSV.readHouse();
-        for (House house : listHouse) {
-            System.out.println("--------------------------");
-            house.showInfor();
-            System.out.println("--------------------------");
-        }
-    }
-
-    private static void showAllRoom() {
+        Scanner scanner = new Scanner(System.in);
         ArrayList<Room> listRoom;
-        listRoom = FuntionReadAndWriteCSV.readRoom();
+        listRoom = FuntionReadAndWriteCSV.readHouse();
         for (Room room : listRoom) {
             System.out.println("--------------------------");
             room.showInfor();
-            System.out.println("--------------------------");
         }
+        System.out.println("Show all house complete, enter to continue !");
+        scanner.nextLine();
+        displayMainMenu();
+    }
+
+    private static void showAllRoom() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<House> listHouse;
+        listHouse = FuntionReadAndWriteCSV.readRoom();
+        for (House house : listHouse) {
+            System.out.println("--------------------------");
+            house.showInfor();
+        }
+        System.out.println("Show all room complete, enter to continue !");
+        scanner.nextLine();
+        displayMainMenu();
     }
 
     private static void showAllNameVillaNotDuplicate() {
@@ -248,18 +290,49 @@ public class MainControllers {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Customer> listCustomer = new ArrayList<>();
         Customer customer = new Customer();
+        do{
+            System.out.println("Enter name: ");
+            customer.setName(scanner.nextLine());
+        }while (!Validate.isValid(customer.getName(), Validate.NAME_CUSTOMER));
+        do {
+            System.out.println("Enter birthday: ");
+            customer.setBirthday(scanner.nextLine());
+        }while (!Validate.isValid(customer.getBirthday(), Validate.BIRTHDAY_CUSTOMER));
 
+        System.out.println("Enter gender: ");
+        customer.setGender(scanner.nextLine());
+        do {
+            System.out.println("Enter identity card: ");
+            customer.setCmnd(scanner.nextLine());
+        }while (!Validate.isValid(customer.getCmnd(), Validate.ID_CARD_CUSTOMER));
+        System.out.println("Enter phone number: ");
+        customer.setPhoneNumber(scanner.nextInt());
+        do{
+            System.out.println("Enter email: ");
+            customer.setEmail(scanner.nextLine());
+        }while (!Validate.isValid(customer.getEmail(), Validate.EMAIL_CUSTOMER));
+        System.out.println("Enter type customer: ");
+        customer.setTypeCustomer(scanner.nextLine());
+        System.out.println("Enter use services");
+        listCustomer.add(customer);
+        FuntionReadAndWriteCSV.WriteCustomer(listCustomer);
         System.out.println("Add new customer complete, enter to continue !");
         scanner.nextLine();
-        displayMainMenu();
+        addNewSevices();
     }
 
     private static void showInformationCustomer() {
         Scanner scanner = new Scanner(System.in);
-
+        ArrayList<Customer> listCustomer;
+        listCustomer = FuntionReadAndWriteCSV.readCustomer();
+        Collections.sort(listCustomer);
+        for (Customer customer : listCustomer) {
+            System.out.println("--------------------------");
+            customer.showInfor();
+        }
         System.out.println("Show information customer complete, enter to continue !");
         scanner.nextLine();
-        displayMainMenu();
+        addNewSevices();
     }
 
     private static void addNewBooking() {
@@ -267,7 +340,7 @@ public class MainControllers {
 
         System.out.println("Add new booking complete, enter to continue !");
         scanner.nextLine();
-        displayMainMenu();
+        addNewSevices();
     }
 
     private static void showInformationEmployee() {
@@ -281,5 +354,6 @@ public class MainControllers {
     public static void main(String[] args) {
         displayMainMenu();
     }
+
 }
 

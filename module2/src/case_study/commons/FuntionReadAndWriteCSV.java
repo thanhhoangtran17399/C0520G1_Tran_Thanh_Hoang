@@ -1,8 +1,8 @@
 package case_study.commons;
 
 import case_study.models.Customer;
-import case_study.models.House;
 import case_study.models.Room;
+import case_study.models.House;
 import case_study.models.Villa;
 
 import java.io.*;
@@ -19,13 +19,13 @@ public class FuntionReadAndWriteCSV {
     public static void writeVilla(ArrayList<Villa> listVilla) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter(PATH1);
+            writer = new FileWriter(PATH1, true);
             for (Villa villa : listVilla) {
                 writer.append(villa.getSeviceName());
                 writer.append(COMA);
-                writer.append((char) villa.getRentalCosts());
+                writer.append(String.valueOf(villa.getRentalCosts()));
                 writer.append(COMA);
-                writer.append((char) villa.getMaxNumberOfPeople());
+                writer.append(String.valueOf(villa.getMaxNumberOfPeople()));
                 writer.append(COMA);
                 writer.append(villa.getTypeOfRent());
                 writer.append(COMA);
@@ -35,11 +35,11 @@ public class FuntionReadAndWriteCSV {
                 writer.append(COMA);
                 writer.append(villa.getOtherDescription());
                 writer.append(COMA);
-                writer.append((char) villa.getPoolArea());
+                writer.append(String.valueOf(villa.getPoolArea()));
                 writer.append(COMA);
-                writer.append((char) villa.getNumberOfFloors());
+                writer.append(String.valueOf(villa.getNumberOfFloors()));
                 writer.append(COMA);
-                writer.append((char) villa.getAreaUsed());
+                writer.append(String.valueOf(villa.getAreaUsed()));
                 writer.append(NEW_LINE);
             }
         } catch (IOException e) {
@@ -54,24 +54,24 @@ public class FuntionReadAndWriteCSV {
         }
     }
 
-    public static void writeHouse(ArrayList<House> listHouse) {
+    public static void writeroom(ArrayList<Room> listRoom) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter(PATH2);
-            for (House house : listHouse) {
-                writer.append(house.getSeviceName());
+            writer = new FileWriter(PATH2, true);
+            for (Room room : listRoom) {
+                writer.append(room.getSeviceName());
                 writer.append(COMA);
-                writer.append((char) house.getRentalCosts());
+                writer.append(String.valueOf(room.getRentalCosts()));
                 writer.append(COMA);
-                writer.append((char) house.getMaxNumberOfPeople());
+                writer.append(String.valueOf(room.getMaxNumberOfPeople()));
                 writer.append(COMA);
-                writer.append(house.getTypeOfRent());
+                writer.append(room.getTypeOfRent());
                 writer.append(COMA);
-                writer.append(house.getId());
+                writer.append(room.getId());
                 writer.append(COMA);
-                writer.append(house.getFreeServiceIncluded());
+                //writer.append();
                 writer.append(COMA);
-                writer.append((char) house.getAreaUsed());
+                writer.append(String.valueOf(room.getAreaUsed()));
                 writer.append(NEW_LINE);
             }
         } catch (IOException e) {
@@ -86,28 +86,28 @@ public class FuntionReadAndWriteCSV {
         }
     }
 
-    public static void writeRoom(ArrayList<Room> listRoom) {
+    public static void writeHouse(ArrayList<House> listHouse) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter(PATH3);
-            for (Room room : listRoom) {
-                writer.append(room.getSeviceName());
+            writer = new FileWriter(PATH3,true);
+            for (House house : listHouse) {
+                writer.append(house.getSeviceName());
                 writer.append(COMA);
-                writer.append((char) room.getRentalCosts());
+                writer.append(String.valueOf(house.getRentalCosts()));
                 writer.append(COMA);
-                writer.append((char) room.getMaxNumberOfPeople());
+                writer.append(String.valueOf(house.getMaxNumberOfPeople()));
                 writer.append(COMA);
-                writer.append(room.getTypeOfRent());
+                writer.append(house.getTypeOfRent());
                 writer.append(COMA);
-                writer.append(room.getId());
+                writer.append(house.getId());
                 writer.append(COMA);
-                writer.append(room.getRoomStandard());
+                writer.append(house.getRoomStandard());
                 writer.append(COMA);
-                writer.append(room.getOtherDescription());
+                writer.append(house.getOtherDescription());
                 writer.append(COMA);
-                writer.append((char) room.getNumberOfFloors());
+                writer.append(String.valueOf(house.getNumberOfFloors()));
                 writer.append(COMA);
-                writer.append((char) room.getAreaUsed());
+                writer.append(String.valueOf(house.getAreaUsed()));
                 writer.append(NEW_LINE);
             }
         } catch (IOException e) {
@@ -125,7 +125,7 @@ public class FuntionReadAndWriteCSV {
     public static void WriteCustomer(ArrayList<Customer> listCustomer){
         FileWriter writer = null;
         try {
-            writer = new FileWriter(PATH3);
+            writer = new FileWriter(PATH3,true);
             for (Customer customer: listCustomer) {
                 writer.append(customer.getName());
                 writer.append(COMA);
@@ -135,13 +135,13 @@ public class FuntionReadAndWriteCSV {
                 writer.append(COMA);
                 writer.append(customer.getCmnd());
                 writer.append(COMA);
-                writer.append(customer.getPhoneNumber());
+                writer.append(String.valueOf(customer.getPhoneNumber()));
                 writer.append(COMA);
                 writer.append(customer.getEmail());
                 writer.append(COMA);
                 writer.append(customer.getTypeCustomer());
                 writer.append(COMA);
-                writer.append(customer.getUseServices());
+               // writer.append(customer.getUseServices());
                 writer.append(COMA);
             }
         } catch (IOException e) {
@@ -166,15 +166,15 @@ public class FuntionReadAndWriteCSV {
                 String[] splitData = line.split(",");
                 Villa villa = new Villa();
                 villa.setSeviceName(splitData[0]);
-                villa.setRentalCosts((splitData[1]));
-                villa.setMaxNumberOfPeople(splitData[2]);
+                villa.setRentalCosts(Double.parseDouble((splitData[1])));
+                villa.setMaxNumberOfPeople(Integer.parseInt(splitData[2]));
                 villa.setTypeOfRent(splitData[3]);
                 villa.setId(splitData[4]);
                 villa.setRoomStandard(splitData[5]);
                 villa.setOtherDescription(splitData[6]);
-                villa.setPoolArea(splitData[7]);
-                villa.setNumberOfFloors(splitData[8]);
-                villa.setAreaUsed(splitData[9]);
+                villa.setPoolArea(Double.parseDouble(splitData[7]));
+                villa.setNumberOfFloors(Integer.parseInt(splitData[8]));
+                villa.setAreaUsed(Double.parseDouble(splitData[9]));
                 listVilla.add(villa);
             }
         }catch (Exception e){
@@ -189,53 +189,23 @@ public class FuntionReadAndWriteCSV {
         return listVilla;
     }
 
-    public static ArrayList<House> readHouse(){
+    public static ArrayList<Room> readHouse(){
         BufferedReader br = null;
-        ArrayList<House> listHouse = new ArrayList<House>();
+        ArrayList<Room> listRoom = new ArrayList<Room>();
         try {
             String line;
             br = new BufferedReader(new FileReader(PATH2));
 
             while ((line = br.readLine()) != null){
                 String[] splitData = line.split(",");
-                House house = new House();
-                house.setSeviceName(splitData[0]);
-                house.setRentalCosts(splitData[1]);
-                house.setMaxNumberOfPeople(splitData[2]);
-                house.setTypeOfRent(splitData[3]);
-                house.setId(splitData[4]);
-                house.setFreeServiceIncluded(splitData[5]);
-                house.setAreaUsed(Integer.parseInt(splitData[6]));
-                listHouse.add(house);
-            }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }finally {
-            try {
-                br.close();
-            }catch (Exception e){
-                System.out.println(e.getMessage());
-            }
-        }
-        return listHouse;
-    }
-
-    public static ArrayList<Room> readRoom(){
-        BufferedReader br = null;
-        ArrayList<Room> listRoom = new ArrayList<Room>();
-        try {
-            String line;
-            br = new BufferedReader(new FileReader(PATH3));
-
-            while ((line = br.readLine()) != null){
-                String[] splitData = line.split(",");
                 Room room = new Room();
                 room.setSeviceName(splitData[0]);
-                room.setRentalCosts(splitData[1]);
-                room.setMaxNumberOfPeople(splitData[2]);
+                room.setRentalCosts(Double.parseDouble(splitData[1]));
+                room.setMaxNumberOfPeople(Integer.parseInt(splitData[2]));
                 room.setTypeOfRent(splitData[3]);
                 room.setId(splitData[4]);
-                room.setAreaUsed(splitData[5]);
+               //room.setFreeServiceIncluded(splitData[5]);
+                room.setAreaUsed(Integer.parseInt(splitData[6]));
                 listRoom.add(room);
             }
         }catch (Exception e){
@@ -250,12 +220,42 @@ public class FuntionReadAndWriteCSV {
         return listRoom;
     }
 
+    public static ArrayList<House> readRoom(){
+        BufferedReader br = null;
+        ArrayList<House> listHouse = new ArrayList<House>();
+        try {
+            String line;
+            br = new BufferedReader(new FileReader(PATH3));
+
+            while ((line = br.readLine()) != null){
+                String[] splitData = line.split(",");
+                House house = new House();
+                house.setSeviceName(splitData[0]);
+                house.setRentalCosts(Double.parseDouble(splitData[1]));
+                house.setMaxNumberOfPeople(Integer.parseInt(splitData[2]));
+                house.setTypeOfRent(splitData[3]);
+                house.setId(splitData[4]);
+                house.setAreaUsed(Double.parseDouble(splitData[5]));
+                listHouse.add(house);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally {
+            try {
+                br.close();
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return listHouse;
+    }
+
     public static ArrayList<Customer> readCustomer(){
         BufferedReader br = null;
         ArrayList<Customer> listCustomer = new ArrayList<>();
         try {
             String line;
-            br = new BufferedReader(new FileReader());
+            br = new BufferedReader(new FileReader(PATH4));
 
             while ((line = br.readLine()) != null){
                 String[] splitData = line.split(",");
@@ -264,10 +264,9 @@ public class FuntionReadAndWriteCSV {
                 customer.setBirthday(splitData[1]);
                 customer.setGender(splitData[2]);
                 customer.setCmnd(splitData[3]);
-                customer.setPhoneNumber(splitData[4]);
+                customer.setPhoneNumber(Integer.parseInt(splitData[4]));
                 customer.setEmail(splitData[5]);
                 customer.setTypeCustomer(splitData[6]);
-                customer.setUseServices(splitData[7]);
                 listCustomer.add(customer);
             }
         }catch (Exception e){
