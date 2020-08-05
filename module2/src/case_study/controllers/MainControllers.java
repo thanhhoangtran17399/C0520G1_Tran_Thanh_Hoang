@@ -1,15 +1,10 @@
 package case_study.controllers;
 
-import case_study.commons.FuntionReadAndWriteCSV;
-import case_study.commons.Validate;
-import case_study.models.Customer;
-import case_study.models.Room;
-import case_study.models.House;
-import case_study.models.Villa;
+import case_study.commons.*;
+import case_study.models.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
+import java.util.regex.Pattern;
 
 public class MainControllers {
 
@@ -95,14 +90,14 @@ public class MainControllers {
         do {
             System.out.println("Enter max number of people");
             villa.setMaxNumberOfPeople(scanner.nextInt());
-        }while (!Validate.isLessThanAndMoreThan(villa.getMaxNumberOfPeople(), 0, 30));
+        }while (!Validate.isLessThanAndMoreThan(villa.getMaxNumberOfPeople(), 0, 20));
         scanner.nextLine();
         System.out.println("Enter type of rent");
         villa.setTypeOfRent(scanner.nextLine());
         do {
             System.out.println("Enter ID");
             villa.setId(scanner.nextLine());
-        } while (!Validate.isValid(villa.getId(), Validate.SEVICE_ID_REGEX));
+        } while (!Validate.isValid(villa.getId(), Validate.SEVICE_ID_VILLA_REGEX));
         System.out.println("Enter room standard");
         villa.setRoomStandard(scanner.nextLine());
         System.out.println("Enter other description");
@@ -137,16 +132,24 @@ public class MainControllers {
         do {
             System.out.println("Enter max number of people");
            room.setMaxNumberOfPeople(scanner.nextInt());
-        }while (!Validate.isLessThanAndMoreThan(room.getMaxNumberOfPeople(), 0, 30));
+        }while (!Validate.isLessThanAndMoreThan(room.getMaxNumberOfPeople(), 0, 20));
         scanner.nextLine();
         System.out.println("Enter type of rent");
         room.setTypeOfRent(scanner.nextLine());
         do {
             System.out.println("Enter ID");
             room.setId(scanner.nextLine());
-        } while (!Validate.isValid(room.getId(), Validate.SEVICE_ID_REGEX));
-        System.out.println("Enter free service included");
-        room.setFreeServiceIncluded(scanner.nextLine());
+        } while (!Validate.isValid(room.getId(), Validate.SEVICE_ID_ROOM_REGEX));
+        String extraServiceName = null;
+        do {
+            System.out.println("Enter name extra service: ");
+            extraServiceName = scanner.nextLine();
+        }while (!Validate.isValid( extraServiceName, Validate.EXTRA_SERVICE_NAME_REGEX));
+        System.out.println("Enter unit of extra service: ");
+        String unit = scanner.nextLine();
+        System.out.println("Enter price of extra service: ");
+        double price = scanner.nextDouble();
+        room.setExtraService(new ExtraService(extraServiceName,unit,price));
         do {
             System.out.println("Enter area used");
             room.setAreaUsed(scanner.nextInt());
@@ -171,14 +174,15 @@ public class MainControllers {
         do {
             System.out.println("Enter max number of people");
             house.setMaxNumberOfPeople(scanner.nextInt());
-        }while (!Validate.isLessThanAndMoreThan(house.getMaxNumberOfPeople(), 0, 30));
+        }while (!Validate.isLessThanAndMoreThan(house.getMaxNumberOfPeople(), 0, 20));
         scanner.nextLine();
         System.out.println("Enter type of rent");
+        house.setTypeOfRent(scanner.nextLine());
         do {
             System.out.println("Enter ID");
             house.setId(scanner.nextLine());
-        } while (!Validate.isValid(house.getId(), Validate.SEVICE_ID_REGEX));
-        System.out.println("Enter room standard");
+        } while (!Validate.isValid(house.getId(), Validate.SEVICE_ID_HOUSE_REGEX));
+        System.out.println("Enter house standard");
         house.setRoomStandard(scanner.nextLine());
         System.out.println("Enter other description");
         house.setOtherDescription(scanner.nextLine());
@@ -248,69 +252,147 @@ public class MainControllers {
         displayMainMenu();
     }
 
-    private static void showAllHouse() {
+    private static void showAllRoom() {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Room> listRoom;
-        listRoom = FuntionReadAndWriteCSV.readHouse();
+        listRoom = FuntionReadAndWriteCSV.readRoom();
         for (Room room : listRoom) {
             System.out.println("--------------------------");
             room.showInfor();
-        }
-        System.out.println("Show all house complete, enter to continue !");
-        scanner.nextLine();
-        displayMainMenu();
-    }
-
-    private static void showAllRoom() {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<House> listHouse;
-        listHouse = FuntionReadAndWriteCSV.readRoom();
-        for (House house : listHouse) {
-            System.out.println("--------------------------");
-            house.showInfor();
         }
         System.out.println("Show all room complete, enter to continue !");
         scanner.nextLine();
         displayMainMenu();
     }
 
-    private static void showAllNameVillaNotDuplicate() {
+    private static void showAllHouse() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<House> listHouse;
+        listHouse = FuntionReadAndWriteCSV.readHouse();
+        for (House house : listHouse) {
+            System.out.println("--------------------------");
+            house.showInfor();
+        }
+        System.out.println("Show all house complete, enter to continue !");
+        scanner.nextLine();
+        displayMainMenu();
+    }
 
+    private static void showAllNameVillaNotDuplicate() {
+        Set<String> stringSet = new TreeSet<>();
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Villa> listVilla;
+        listVilla = FuntionReadAndWriteCSV.readVilla();
+        for (Villa villa : listVilla) {
+            stringSet.add(villa.getSeviceName());
+        }
+        for (String name : stringSet) {
+            System.out.println(name);
+        }
+        System.out.println("Show all name villa not duplicate complete, enter to continue !");
+        scanner.nextLine();
+        displayMainMenu();
     }
 
     private static void showAllNameHouseNotDuplicate() {
-
+        Set<String> stringSet = new TreeSet<>();
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<House> listHouse;
+        listHouse = FuntionReadAndWriteCSV.readHouse();
+        for (House house : listHouse) {
+            stringSet.add(house.getSeviceName());
+        }
+        for (String name : stringSet) {
+            System.out.println(name);
+        }
+        System.out.println("Show all name house not duplicate complete, enter to continue !");
+        scanner.nextLine();
+        displayMainMenu();
     }
 
     private static void ShowAllNameRoomNotDuplicate() {
-
+        Set<String> stringSet = new TreeSet<>();
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Room> listRoom;
+        listRoom = FuntionReadAndWriteCSV.readRoom();
+        for (Room room : listRoom) {
+            stringSet.add(room.getSeviceName());
+        }
+        for (String name : stringSet) {
+            System.out.println(name);
+        }
+        System.out.println("Show all name room not duplicate complete, enter to continue !");
+        scanner.nextLine();
+        displayMainMenu();
     }
 
     private static void addNewCustomer() {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Customer> listCustomer = new ArrayList<>();
         Customer customer = new Customer();
-        do{
-            System.out.println("Enter name: ");
-            customer.setName(scanner.nextLine());
-        }while (!Validate.isValid(customer.getName(), Validate.NAME_CUSTOMER));
-        do {
-            System.out.println("Enter birthday: ");
-            customer.setBirthday(scanner.nextLine());
-        }while (!Validate.isValid(customer.getBirthday(), Validate.BIRTHDAY_CUSTOMER));
+        String regexName = "^([A-Z][a-z]{1,}[\\s])[A-Z][a-z]*(([\\s][A-Z][a-z]*){0,4})$";
+        String regexEmail = "[a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)";
+        String regexBirthday = "[0-9]{2}/[0-9]{2}/(19[0-9][0-9]|20(00|01|02))";
+        String regexId = "[\\d]{3} [\\d]{3} [\\d]{3}";
+
+        while (true) {
+            try {
+                System.out.println("Enter name: ");
+                customer.setName(scanner.nextLine());
+                if (!Pattern.matches(regexName, customer.getName())) {
+                    throw new NameExeption("Your name must be in the format: Abc Abc, enter again !!!");
+                }
+                break;
+            } catch (NameExeption e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                System.out.println("Enter birthday: ");
+                customer.setBirthday(scanner.nextLine());
+                if (!Pattern.matches(regexBirthday, customer.getBirthday())) {
+                    throw new BirthdayException("The birthday must be in the format: xx/xx/xxxx, enter again !!! ");
+                }
+                break;
+            } catch (BirthdayException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         System.out.println("Enter gender: ");
         customer.setGender(scanner.nextLine());
-        do {
-            System.out.println("Enter identity card: ");
-            customer.setCmnd(scanner.nextLine());
-        }while (!Validate.isValid(customer.getCmnd(), Validate.ID_CARD_CUSTOMER));
+
+        while (true) {
+            try {
+                System.out.println("Enter identity card: ");
+                customer.setCmnd(scanner.nextLine());
+                if (!Pattern.matches(regexId, customer.getCmnd())) {
+                    throw new IdCardException("The ID number must be in the format: xxx xxx xxx, enter again !!!");
+                }
+                break;
+            } catch (IdCardException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         System.out.println("Enter phone number: ");
         customer.setPhoneNumber(scanner.nextInt());
-        do{
-            System.out.println("Enter email: ");
-            customer.setEmail(scanner.nextLine());
-        }while (!Validate.isValid(customer.getEmail(), Validate.EMAIL_CUSTOMER));
+        scanner.nextLine();
+        while (true) {
+            try {
+                System.out.println("Enter email: ");
+                customer.setEmail(scanner.nextLine());
+                if (!Pattern.matches(regexEmail, customer.getEmail())) {
+                    throw new EmailException("The email must be in the format: abc@abc.abc, enter again !!! ");
+                }
+                break;
+            } catch (EmailException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         System.out.println("Enter type customer: ");
         customer.setTypeCustomer(scanner.nextLine());
         System.out.println("Enter use services");
@@ -318,7 +400,7 @@ public class MainControllers {
         FuntionReadAndWriteCSV.WriteCustomer(listCustomer);
         System.out.println("Add new customer complete, enter to continue !");
         scanner.nextLine();
-        addNewSevices();
+        displayMainMenu();
     }
 
     private static void showInformationCustomer() {
@@ -332,7 +414,7 @@ public class MainControllers {
         }
         System.out.println("Show information customer complete, enter to continue !");
         scanner.nextLine();
-        addNewSevices();
+        displayMainMenu();
     }
 
     private static void addNewBooking() {
@@ -345,7 +427,10 @@ public class MainControllers {
 
     private static void showInformationEmployee() {
         Scanner scanner = new Scanner(System.in);
-
+        Map<String, Employee> employeeMap = FuntionReadAndWriteCSV.readEmployee();;
+        for (Map.Entry<String, Employee> employeeEntry : employeeMap.entrySet()){
+            System.out.println(employeeEntry.getKey() + " " + employeeEntry.getValue().toString());
+        }
         System.out.println("Show information employee complete, enter to continue !");
         scanner.nextLine();
         displayMainMenu();

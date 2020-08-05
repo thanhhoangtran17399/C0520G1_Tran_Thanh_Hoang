@@ -1,18 +1,18 @@
 package case_study.commons;
 
-import case_study.models.Customer;
-import case_study.models.Room;
-import case_study.models.House;
-import case_study.models.Villa;
+import case_study.models.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FuntionReadAndWriteCSV {
     public static final String PATH1 = "src/case_study/data/Villa.csv";
     public static final String PATH2 = "src/case_study/data/House.csv";
     public static final String PATH3 = "src/case_study/data/Room.csv";
     public static final String PATH4 = "src/case_study/data/Customer.csv";
+    public static final String PATH5 = "src/case_study/data/Employee.csv";
     public static final String COMA = ",";
     public static final String NEW_LINE = "\n";
 
@@ -57,7 +57,7 @@ public class FuntionReadAndWriteCSV {
     public static void writeroom(ArrayList<Room> listRoom) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter(PATH2, true);
+            writer = new FileWriter(PATH3, true);
             for (Room room : listRoom) {
                 writer.append(room.getSeviceName());
                 writer.append(COMA);
@@ -69,13 +69,17 @@ public class FuntionReadAndWriteCSV {
                 writer.append(COMA);
                 writer.append(room.getId());
                 writer.append(COMA);
-                //writer.append();
+                writer.append(room.getExtraService().getExtraserviceName());
+                writer.append(COMA);
+                writer.append(room.getExtraService().getUnit());
+                writer.append(COMA);
+                writer.append(String.valueOf(room.getExtraService().getPrice()));
                 writer.append(COMA);
                 writer.append(String.valueOf(room.getAreaUsed()));
                 writer.append(NEW_LINE);
             }
         } catch (IOException e) {
-            System.out.println("Error in  writeHouse");
+            System.out.println("Error in  writeRoom");
         } finally {
             try {
                 writer.flush();
@@ -89,7 +93,7 @@ public class FuntionReadAndWriteCSV {
     public static void writeHouse(ArrayList<House> listHouse) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter(PATH3,true);
+            writer = new FileWriter(PATH2, true);
             for (House house : listHouse) {
                 writer.append(house.getSeviceName());
                 writer.append(COMA);
@@ -111,7 +115,7 @@ public class FuntionReadAndWriteCSV {
                 writer.append(NEW_LINE);
             }
         } catch (IOException e) {
-            System.out.println("Error in  writeRoom");
+            System.out.println("Error in  writeHouse");
         } finally {
             try {
                 writer.flush();
@@ -122,11 +126,11 @@ public class FuntionReadAndWriteCSV {
         }
     }
 
-    public static void WriteCustomer(ArrayList<Customer> listCustomer){
+    public static void WriteCustomer(ArrayList<Customer> listCustomer) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter(PATH3,true);
-            for (Customer customer: listCustomer) {
+            writer = new FileWriter(PATH4, true);
+            for (Customer customer : listCustomer) {
                 writer.append(customer.getName());
                 writer.append(COMA);
                 writer.append(customer.getBirthday());
@@ -141,7 +145,7 @@ public class FuntionReadAndWriteCSV {
                 writer.append(COMA);
                 writer.append(customer.getTypeCustomer());
                 writer.append(COMA);
-               // writer.append(customer.getUseServices());
+                // writer.append(customer.getUseServices());
                 writer.append(COMA);
             }
         } catch (IOException e) {
@@ -155,14 +159,15 @@ public class FuntionReadAndWriteCSV {
             }
         }
     }
-    public static ArrayList<Villa> readVilla(){
+
+    public static ArrayList<Villa> readVilla() {
         BufferedReader br = null;
         ArrayList<Villa> listVilla = new ArrayList<Villa>();
         try {
             String line;
             br = new BufferedReader(new FileReader(PATH1));
 
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 String[] splitData = line.split(",");
                 Villa villa = new Villa();
                 villa.setSeviceName(splitData[0]);
@@ -177,26 +182,26 @@ public class FuntionReadAndWriteCSV {
                 villa.setAreaUsed(Double.parseDouble(splitData[9]));
                 listVilla.add(villa);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
             try {
                 br.close();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
         return listVilla;
     }
 
-    public static ArrayList<Room> readHouse(){
+    public static ArrayList<Room> readRoom() {
         BufferedReader br = null;
         ArrayList<Room> listRoom = new ArrayList<Room>();
         try {
             String line;
-            br = new BufferedReader(new FileReader(PATH2));
+            br = new BufferedReader(new FileReader(PATH3));
 
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 String[] splitData = line.split(",");
                 Room room = new Room();
                 room.setSeviceName(splitData[0]);
@@ -204,30 +209,30 @@ public class FuntionReadAndWriteCSV {
                 room.setMaxNumberOfPeople(Integer.parseInt(splitData[2]));
                 room.setTypeOfRent(splitData[3]);
                 room.setId(splitData[4]);
-               //room.setFreeServiceIncluded(splitData[5]);
-                room.setAreaUsed(Integer.parseInt(splitData[6]));
+                room.setExtraService(new ExtraService(splitData[5], splitData[6], Double.parseDouble(splitData[7])));
+                room.setAreaUsed(Integer.parseInt(splitData[5]));
                 listRoom.add(room);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
             try {
                 br.close();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
         return listRoom;
     }
 
-    public static ArrayList<House> readRoom(){
+    public static ArrayList<House> readHouse() {
         BufferedReader br = null;
         ArrayList<House> listHouse = new ArrayList<House>();
         try {
             String line;
-            br = new BufferedReader(new FileReader(PATH3));
+            br = new BufferedReader(new FileReader(PATH2));
 
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 String[] splitData = line.split(",");
                 House house = new House();
                 house.setSeviceName(splitData[0]);
@@ -235,29 +240,32 @@ public class FuntionReadAndWriteCSV {
                 house.setMaxNumberOfPeople(Integer.parseInt(splitData[2]));
                 house.setTypeOfRent(splitData[3]);
                 house.setId(splitData[4]);
-                house.setAreaUsed(Double.parseDouble(splitData[5]));
+                house.setRoomStandard(splitData[5]);
+                house.setOtherDescription(splitData[6]);
+                house.setNumberOfFloors(Integer.parseInt(splitData[7]));
+                house.setAreaUsed(Double.parseDouble(splitData[8]));
                 listHouse.add(house);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
             try {
                 br.close();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
         return listHouse;
     }
 
-    public static ArrayList<Customer> readCustomer(){
+    public static ArrayList<Customer> readCustomer() {
         BufferedReader br = null;
         ArrayList<Customer> listCustomer = new ArrayList<>();
         try {
             String line;
             br = new BufferedReader(new FileReader(PATH4));
 
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 String[] splitData = line.split(",");
                 Customer customer = new Customer();
                 customer.setName(splitData[0]);
@@ -269,15 +277,43 @@ public class FuntionReadAndWriteCSV {
                 customer.setTypeCustomer(splitData[6]);
                 listCustomer.add(customer);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
             try {
                 br.close();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
         return listCustomer;
+    }
+
+    public static Map<String, Employee> readEmployee() {
+        BufferedReader br = null;
+        Map<String,Employee> employeeMap = new HashMap<>();
+        try {
+            String line;
+            br = new BufferedReader(new FileReader(PATH5));
+
+            while ((line = br.readLine()) != null) {
+                String[] splitData = line.split(",");
+                Employee employee = new Employee();
+                employee.setId(splitData[0]);
+                employee.setNameEmloyee(splitData[1]);
+                employee.setAgeEmployee(splitData[2]);
+                employee.setAddress(splitData[3]);
+                employeeMap.put(employee.getId(), employee);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                br.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return employeeMap;
     }
 }

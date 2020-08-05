@@ -42,7 +42,7 @@ public class House extends Services{
 
     @Override
     public String toString() {
-        return "Room{" +
+        return "House{" +
                 "roomStandard='" + roomStandard + '\'' +
                 ", otherDescription='" + otherDescription + '\'' +
                 ", numberOfFloors=" + numberOfFloors +

@@ -8,6 +8,10 @@ public class Room extends Services {
         this.extraService = extraService;
     }
 
+    public Room(ExtraService extraService) {
+        this.extraService = extraService;
+    }
+
     public Room() {
 
     }
@@ -23,7 +27,7 @@ public class Room extends Services {
     @Override
     public String toString() {
         return "Room{" +
-                "extraService=" + extraService +
+                "extraService=" + extraService.toString() +
                 "} " + super.toString();
     }
 

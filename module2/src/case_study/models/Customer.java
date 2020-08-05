@@ -21,6 +21,14 @@ public class Customer implements Comparable<Customer> {
         this.useServices = useServices;
     }
 
+    public Services getUseServices() {
+        return useServices;
+    }
+
+    public void setUseServices(Services useServices) {
+        this.useServices = useServices;
+    }
+
     public Customer() {
 
     }
