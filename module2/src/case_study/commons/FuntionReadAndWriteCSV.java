@@ -161,11 +161,10 @@ public class FuntionReadAndWriteCSV {
         }
     }
 
-    public static void writeCustomerToFileBoooking(ArrayList<Customer> listCustomer) {
+    public static void writeCustomerToFileBoooking(Customer customer) {
         FileWriter writer = null;
         try {
             writer = new FileWriter(PATH6, true);
-            for (Customer customer : listCustomer) {
                 writer.append(customer.getName());
                 writer.append(COMA);
                 writer.append(customer.getBirthday());
@@ -180,9 +179,20 @@ public class FuntionReadAndWriteCSV {
                 writer.append(COMA);
                 writer.append(customer.getTypeCustomer());
                 writer.append(COMA);
-                //writer.append(customer.getUseServices());
+                writer.append(customer.getUseServices().getId());
+                System.out.println();
+                writer.append(customer.getUseServices().getSeviceName());
+                writer.append(COMA);
+                writer.append(String.valueOf(customer.getUseServices().getRentalCosts()));
+                writer.append(COMA);
+                writer.append(String.valueOf(customer.getUseServices().getMaxNumberOfPeople()));
+                writer.append(COMA);
+                writer.append(customer.getUseServices().getTypeOfRent());
+                writer.append(COMA);
+                writer.append(customer.getUseServices().getId());
+                writer.append(COMA);
+                writer.append(String.valueOf(customer.getUseServices().getAreaUsed()));
                 writer.append(NEW_LINE);
-            }
         } catch (IOException e) {
             System.out.println("Error in  writeRoom");
         } finally {
@@ -310,6 +320,7 @@ public class FuntionReadAndWriteCSV {
                 customer.setPhoneNumber(Integer.parseInt(splitData[4]));
                 customer.setEmail(splitData[5]);
                 customer.setTypeCustomer(splitData[6]);
+                customer.setUseServices(null);
                 listCustomer.add(customer);
             }
         } catch (Exception e) {

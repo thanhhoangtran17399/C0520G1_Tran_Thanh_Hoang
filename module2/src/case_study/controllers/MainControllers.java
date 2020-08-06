@@ -412,7 +412,6 @@ public class MainControllers {
     }
 
     private static void showInformationCustomer() {
-        Scanner scanner = new Scanner(System.in);
         ArrayList<Customer> listCustomer;
         listCustomer = FuntionReadAndWriteCSV.readCustomer();
         Collections.sort(listCustomer);
@@ -438,15 +437,43 @@ public class MainControllers {
             scanner.nextLine();
             System.out.println("Enter your choose: ");
             String choose = scanner.nextLine();
+            int chooseServiecs;
+            Customer customer;
             switch (choose) {
                 case "1":
+                    ArrayList<Villa> listVilla;
+                    listVilla = FuntionReadAndWriteCSV.readVilla();
                     showAllVilla();
+                    System.out.println("Enter serviecs to booking: ");
+                    chooseServiecs = scanner.nextInt();
+                    customer = listCustomer.get(chooseCustomer - 1);
+                    customer.setUseServices(listVilla.get(chooseServiecs - 1));
+                    System.out.println(customer.getUseServices().toString());
+                    FuntionReadAndWriteCSV.writeCustomerToFileBoooking(customer);
                     break;
                 case "2":
                     showAllHouse();
+                    ArrayList<House> listHouse;
+                    listHouse = FuntionReadAndWriteCSV.readHouse();
+                    showAllRoom();
+                    System.out.println("Enter serviecs to booking: ");
+                    chooseServiecs = scanner.nextInt();
+                    customer = listCustomer.get(chooseCustomer - 1);
+                    customer.setUseServices(listHouse.get(chooseServiecs - 1));
+                    System.out.println(customer.getUseServices().toString());
+                    FuntionReadAndWriteCSV.writeCustomerToFileBoooking(customer);
                     break;
                 case "3":
                     showAllRoom();
+                    ArrayList<Room> listRoom;
+                    listRoom = FuntionReadAndWriteCSV.readRoom();
+                    showAllRoom();
+                    System.out.println("Enter serviecs to booking: ");
+                    chooseServiecs = scanner.nextInt();
+                    customer = listCustomer.get(chooseCustomer - 1);
+                    customer.setUseServices(listRoom.get(chooseServiecs - 1));
+                    System.out.println(customer.getUseServices().toString());
+                    FuntionReadAndWriteCSV.writeCustomerToFileBoooking(customer);
                     break;
                 case "8":
                     System.exit(0);
@@ -456,8 +483,6 @@ public class MainControllers {
                     scanner.nextLine();
                     addNewBooking();
             }
-
-
         }
         System.out.println("Add new booking complete, enter to continue !");
         scanner.nextLine();
