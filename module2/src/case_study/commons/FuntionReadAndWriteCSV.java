@@ -13,6 +13,7 @@ public class FuntionReadAndWriteCSV {
     public static final String PATH3 = "src/case_study/data/Room.csv";
     public static final String PATH4 = "src/case_study/data/Customer.csv";
     public static final String PATH5 = "src/case_study/data/Employee.csv";
+    public static final String PATH6 = "src/case_study/data/Booking.csv";
     public static final String COMA = ",";
     public static final String NEW_LINE = "\n";
 
@@ -145,8 +146,42 @@ public class FuntionReadAndWriteCSV {
                 writer.append(COMA);
                 writer.append(customer.getTypeCustomer());
                 writer.append(COMA);
-                // writer.append(customer.getUseServices());
+                //writer.append(customer.getUseServices());
+                writer.append(NEW_LINE);
+            }
+        } catch (IOException e) {
+            System.out.println("Error in  writeRoom");
+        } finally {
+            try {
+                writer.flush();
+                writer.close();
+            } catch (Exception e) {
+                System.out.println("Error when flush or close");
+            }
+        }
+    }
+
+    public static void writeCustomerToFileBoooking(ArrayList<Customer> listCustomer) {
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(PATH6, true);
+            for (Customer customer : listCustomer) {
+                writer.append(customer.getName());
                 writer.append(COMA);
+                writer.append(customer.getBirthday());
+                writer.append(COMA);
+                writer.append(customer.getGender());
+                writer.append(COMA);
+                writer.append(customer.getCmnd());
+                writer.append(COMA);
+                writer.append(String.valueOf(customer.getPhoneNumber()));
+                writer.append(COMA);
+                writer.append(customer.getEmail());
+                writer.append(COMA);
+                writer.append(customer.getTypeCustomer());
+                writer.append(COMA);
+                //writer.append(customer.getUseServices());
+                writer.append(NEW_LINE);
             }
         } catch (IOException e) {
             System.out.println("Error in  writeRoom");
@@ -209,7 +244,7 @@ public class FuntionReadAndWriteCSV {
                 room.setMaxNumberOfPeople(Integer.parseInt(splitData[2]));
                 room.setTypeOfRent(splitData[3]);
                 room.setId(splitData[4]);
-                room.setExtraService(new ExtraService(splitData[5], splitData[6], Double.parseDouble(splitData[7])));
+                //room.setExtraService(new ExtraService(splitData[5], splitData[6], Double.parseDouble(splitData[7])));
                 room.setAreaUsed(Integer.parseInt(splitData[5]));
                 listRoom.add(room);
             }
@@ -316,4 +351,6 @@ public class FuntionReadAndWriteCSV {
         }
         return employeeMap;
     }
+
+
 }
