@@ -11,9 +11,9 @@ address_line1  varchar(50) not null,
 address_line2  varchar(50), 
 city varchar(50) not null, 
 state varchar(50) not null, 
-postalCode varchar(15) not null, 
+postal_code varchar(15) not null, 
 country varchar(50) not null, 
-creditLimit float, 
+credit_limit float, 
 primary key (customer_number)
 );
 
