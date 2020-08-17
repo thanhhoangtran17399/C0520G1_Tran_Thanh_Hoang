@@ -14,8 +14,7 @@ public class ChuoiDaiNhat {
 
             // Find the maximum consecutive increasingly ordered substring
             for (int i = 0; i < string.length(); i++) { 		// single loop
-                if (list.size() > 1 && string.charAt(i) <= list.getLast() &&
-                        list.contains(string.charAt(i))) {
+                if (list.size() > 1 && string.charAt(i) <= list.getLast() && list.contains(string.charAt(i))) {
                     list.clear(); // Simple statement
                 }
 

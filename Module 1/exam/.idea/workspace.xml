@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="76be3e52-6872-4e25-a79a-f2934ace84a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/bai_tap/quan_li_san_pham/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/bai_tap/quan_li_san_pham/ProductManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/thuc_hanh/cai_dat_cay_tim_kiem_nhi_phan/AbstractTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/thuc_hanh/cai_dat_cay_tim_kiem_nhi_phan/BST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/thuc_hanh/cai_dat_cay_tim_kiem_nhi_phan/TestBST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/thuc_hanh/cai_dat_cay_tim_kiem_nhi_phan/Tree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/thuc_hanh/cai_dat_cay_tim_kiem_nhi_phan/TreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/thuc_hanh/luu_danh_sach_sinh_vien_theo_do_tuoi/TestMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/thuc_hanh/phan_biet_giua_hashmap_va_hashset/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/java_collection_framework/thuc_hanh/phan_biet_giua_hashmap_va_hashset/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/stack_queue/bai_tap/to_chuc_du_lieu_hop_ly/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../module2/src/stack_queue/bai_tap/to_chuc_du_lieu_hop_ly/TestEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module2/module2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../module2/module2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module2/out/production/module2/introduction_to_java/bai_tap/DocSoThanhChu.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../module2/out/production/module2/introduction_to_java/bai_tap/DocSoThanhChu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module2/out/production/module2/mang/bai_tap/ThemMotPhanTuVaoMang.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module2/out/production/module2/mang/bai_tap/TimGiaTriNhoNhat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module2/out/production/module2/mang/bai_tap/XoaPhanTuKhoiMang.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module2/out/production/module2/mang/thuc_hanh/DaoNguocCacPhanTuCuaMang.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module2/out/production/module2/mang/thuc_hanh/TimGiaTriLonNhatTrongMang.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module2/out/production/module2/mang/thuc_hanh/TimGiaTriTrongMang.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1egTvgAkMY0S0Ua9cDlqZyTAtAj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="76be3e52-6872-4e25-a79a-f2934ace84a8" name="Default Changelist" comment="" />
+      <created>1594742467058</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594742467058</updated>
+      <workItem from="1594742468630" duration="218000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

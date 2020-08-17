@@ -1,10 +1,13 @@
 package java_collection_framework.bai_tap.quan_li_san_pham.array_list;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductManager {
+
     public static void main(String[] args) {
         ArrayList<Product> arrayList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -27,9 +30,11 @@ public class ProductManager {
                     + "5.Tìm kiếm sản phẩm theo tên\n"
                     + "6.Sắp xếp sản phẩm tăng dần, giảm dần theo giá\n"
                     + "7.Thoát ");
+            System.out.println("nhap de ban oi: ");
             int choose = scanner.nextInt();
             switch (choose) {
                 case 1:
+
                     addNewProduct(arrayList, scanner);
                     break;
                 case 2:

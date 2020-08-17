@@ -9,7 +9,7 @@ public class ProductManage {
 
     public static final String FILE_PATH = "D:\\C0520G1_Tran_Thanh_Hoang\\module2\\src\\binary_file_and_serialization\\bai_tap\\quan_li_san_pham_luu_ra_file_nhi_phan\\productManage";
     static List<Product> productList = new ArrayList<>();
-
+    static  Scanner scanner = new Scanner(System.in);
     public static void writeFile(String filePath){
         FileOutputStream fos = null;
         ObjectOutputStream objectOutputStream = null;
@@ -47,9 +47,8 @@ public class ProductManage {
         }
     }
 
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
         boolean check = true;
 
         do {
@@ -63,7 +62,6 @@ public class ProductManage {
             int choose = scanner.nextInt();
             switch (choose) {
                 case 1: {
-
                     System.out.println("Nhập mã sản phẩm: ");
                     int id = scanner.nextInt();
                     scanner.nextLine();

@@ -56,16 +56,15 @@ public class DirectoryControllers {
     private static void additionalDefinitionsForWord() {
         Scanner scanner = new Scanner(System.in);
         LinkedList<Dictionary> listWord = new LinkedList<>();
-        Dictionary word = new Dictionary();
         System.out.print("Enter new word: ");
-        word.setNameOfWord(scanner.nextLine());
+        String nameOfWord = scanner.nextLine();
         System.out.print("Enter pronounce: ");
-        word.setPronounce(scanner.nextLine());
+        String pronounce = scanner.nextLine();
         System.out.print("Enter type of word: ");
-        word.setTypeOfWord(scanner.nextLine());
+        String typeOfWord = scanner.nextLine();
         System.out.print("Enter similar word: ");
-        word.setSimilarWord(scanner.nextLine());
-        listWord.add(word);
+        String similarWord = scanner.nextLine();
+        listWord.add(new Dictionary(nameOfWord,pronounce,typeOfWord,similarWord));
         FuntionReadAndWrite.writeDictionary(listWord);
         System.out.print("Add word complete, enter to continue !");
         scanner.nextLine();

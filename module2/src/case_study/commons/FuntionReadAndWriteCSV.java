@@ -180,7 +180,7 @@ public class FuntionReadAndWriteCSV {
                 writer.append(customer.getTypeCustomer());
                 writer.append(COMA);
                 writer.append(customer.getUseServices().getId());
-                System.out.println();
+                writer.append(COMA);
                 writer.append(customer.getUseServices().getSeviceName());
                 writer.append(COMA);
                 writer.append(String.valueOf(customer.getUseServices().getRentalCosts()));
