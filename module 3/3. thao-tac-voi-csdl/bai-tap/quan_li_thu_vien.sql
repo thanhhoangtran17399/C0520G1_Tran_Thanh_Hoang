@@ -10,7 +10,7 @@ create table category(
 
 -- bảng kiểm tra việc mượn trả sách
 create table borrow_books(
- id_card int primary key,
+	id_card int primary key,
 	date_of_borrowing date,
     date_back date
    
@@ -42,6 +42,3 @@ create table book(
     foreign key(id_category) references category(id_category),
     foreign key(id_card) references library_card(id_card)
 );
-
-
-
