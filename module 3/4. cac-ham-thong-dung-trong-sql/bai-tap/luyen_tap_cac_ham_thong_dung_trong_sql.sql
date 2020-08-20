@@ -23,4 +23,4 @@ where ten = 'Huong';
 select ten, sum(so_tien)  as tong_tien from hoc_sinh
 where ten = 'Huong';
 
-select distinct * from hoc_sinh;
+select distinct ten from hoc_sinh;
