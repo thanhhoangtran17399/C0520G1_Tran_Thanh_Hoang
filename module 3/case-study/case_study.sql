@@ -172,7 +172,7 @@ values
 (1,1,'Hoàng','1999-03-17',12345678,'0912345678','eqwe@gmail.com','Đà Nẵng'),
 (2,2,'Ronaldo','1985-10-15',12345671,'0912345672','zxc@gmail.com','Quảng Nam'),
 (3,3,'Messi','1988-10-01',12345672,'0912345673','bbvn@gmail.com','Quảng Bình'),
-(4,5,'Maria ozawa','1995-10-05',12345673,'0912345674','qqeqwe@gmail.com','Nhật Bản'),
+(4,1,'Maria ozawa','1995-10-05',12345673,'0912345674','qqeqwe@gmail.com','Nhật Bản'),
 (5,4,'Khá Bảnh','1900-10-28',12345676,'0912345675','hjkhj@gmail.com','Quảng Trị');
 
 insert into nhan_vien
@@ -194,11 +194,11 @@ values
 
 insert into hop_dong
 values
-(1,1,1,1,'2020-01-01','2020-12-01',1000000,10000000),
-(2,2,2,3,'2020-01-01','2020-12-01',1000000,10000000),
-(3,5,2,2,'2020-01-01','2020-12-01',1000000,10000000),
-(4,4,4,1,'2020-02-03','2020-12-30',1000000,10000000),
-(5,3,5,1,'2020-10-10','2020-12-30',1000000,10000000);
+(1,1,1,1,'2020-01-01','2020-03-01',1000000,10000000),
+(2,2,2,3,'2020-01-01','2020-03-01',1000000,10000000),
+(3,5,1,2,'2020-01-01','2020-03-01',1000000,10000000),
+(4,4,4,1,'2020-02-03','2020-04-03',1000000,10000000),
+(5,3,5,1,'2020-10-10','2020-04-03',1000000,10000000);
 
 insert into hop_dong_chi_tiet
 values 
@@ -220,3 +220,9 @@ having  (age > 18 and age < 50) and (dia_chi='Đà Nẵng' or dia_chi='Quảng T
 -- task 4: Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. 
 -- Kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. 
 -- Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.
+select khach_hang.ho_ten, count(hop_dong.id_khach_hang) as so_lan_dat_phong
+from khach_hang 
+inner join hop_dong on hop_dong.id_khach_hang = khach_hang.id_khach_hang
+where khach_hang.id_loai_khach = 1
+group by khach_hang.ho_ten
+order by count(hop_dong.id_khach_hang);
