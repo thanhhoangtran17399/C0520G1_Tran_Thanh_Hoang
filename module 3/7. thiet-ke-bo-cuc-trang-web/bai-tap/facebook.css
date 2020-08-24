@@ -1,0 +1,14 @@
+#title{
+    background: blue;
+    height: 70px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+h1{
+    margin-left: 30px;
+    color: white;
+    height: 40px;
+}
+
+

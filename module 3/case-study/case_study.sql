@@ -171,8 +171,8 @@ insert into khach_hang
 values 
 (1,1,'Hoàng','1999-03-17',12345678,'0912345678','eqwe@gmail.com','Đà Nẵng'),
 (2,2,'Ronaldo','1985-10-15',12345671,'0912345672','zxc@gmail.com','Quảng Nam'),
-(3,3,'Messi','1988-10-01',12345672,'0912345673','bbvn@gmail.com','Quảng Bình'),
-(4,1,'Maria ozawa','1995-10-05',12345673,'0912345674','qqeqwe@gmail.com','Nhật Bản'),
+(3,1,'Messi','1988-10-01',12345672,'0912345673','bbvn@gmail.com','Quảng Ngãi'),
+(4,3,'Maria ozawa','1995-10-05',12345673,'0912345674','qqeqwe@gmail.com','Nhật Bản'),
 (5,4,'Khá Bảnh','1900-10-28',12345676,'0912345675','hjkhj@gmail.com','Quảng Trị');
 
 insert into nhan_vien
@@ -194,11 +194,11 @@ values
 
 insert into hop_dong
 values
-(1,1,1,1,'2020-01-01','2020-03-01',1000000,10000000),
-(2,2,2,3,'2020-01-01','2020-03-01',1000000,10000000),
-(3,5,1,2,'2020-01-01','2020-03-01',1000000,10000000),
-(4,4,4,1,'2020-02-03','2020-04-03',1000000,10000000),
-(5,3,5,1,'2020-10-10','2020-04-03',1000000,10000000);
+(1,1,1,1,'2019-01-01','2019-03-01',1000000,10000000),
+(2,2,2,3,'2018-01-01','2018-03-01',1000000,10000000),
+(3,5,1,2,'2019-01-01','2019-03-01',1000000,10000000),
+(4,4,3,1,'2018-02-03','2018-04-03',1000000,10000000),
+(5,3,5,1,'2019-10-10','2019-04-03',1000000,10000000);
 
 insert into hop_dong_chi_tiet
 values 
@@ -222,7 +222,75 @@ having  (age > 18 and age < 50) and (dia_chi='Đà Nẵng' or dia_chi='Quảng T
 -- Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.
 select khach_hang.ho_ten, count(hop_dong.id_khach_hang) as so_lan_dat_phong
 from khach_hang 
-inner join hop_dong on hop_dong.id_khach_hang = khach_hang.id_khach_hang
+join hop_dong on hop_dong.id_khach_hang = khach_hang.id_khach_hang
 where khach_hang.id_loai_khach = 1
 group by khach_hang.ho_ten
 order by count(hop_dong.id_khach_hang);
+
+-- task 5: Hiển thị IDKhachHang, HoTen, TenLoaiKhach, IDHopDong, TenDichVu, NgayLamHopDong, NgayKetThuc, TongTien
+--  (Với TongTien được tính theo công thức như sau: ChiPhiThue + SoLuong*Gia, với SoLuong và Giá là từ bảng DichVuDiKem) 
+--  cho tất cả các Khách hàng đã từng đặt phỏng. (Những Khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra)
+select kh.id_khach_hang, kh.ho_ten, lk.ten_loai_khach, hd.id_hop_dong, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc, dv.ten_dich_vu,
+       (dv.chi_phi_thue + dvdk.don_vi * dvdk.gia) as 'tổng tiền'
+from khach_hang kh
+        join loai_khach lk on kh.id_loai_khach = lk.id_loai_khach
+        left join hop_dong hd on kh.id_khach_hang = hd.id_khach_hang
+        join dich_vu dv on kh.id_khach_hang = dv.id_dich_vu
+        left join hop_dong_chi_tiet hdct on hd.id_hop_dong = hdct.id_hop_dong
+        left join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem = dvdk.id_dich_vu_di_kem;
+
+-- task 6: Hiển thị IDDichVu, TenDichVu, DienTich, ChiPhiThue, TenLoaiDichVu của tất cả các loại Dịch vụ chưa từng được Khách hàng 
+-- thực hiện đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
+select dv.id_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.chi_phi_thue, ldv.ten_loai_dich_vu
+from dich_vu dv
+join loai_dich_vu ldv on dv.id_loai_dich_vu = ldv.id_loai_dich_vu
+where dv.id_dich_vu not in (
+select dv.id_dich_vu
+from dich_vu dv
+join hop_dong hd on dv.id_dich_vu = hd.id_dich_vu
+where (month(hd.ngay_lam_hop_dong) = 1 or month(hd.ngay_lam_hop_dong) = 2 or month(hd.ngay_lam_hop_dong) = 3) 
+and year(hd.ngay_lam_hop_dong) = 2019
+);
+
+-- task 7: Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, TenLoaiDichVu
+-- của tất cả các loại dịch vụ đã từng được Khách hàng đặt phòng trong năm 2018 nhưng chưa từng được Khách hàng đặt phòng  trong năm 2019.
+select dv.id_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.so_nguoi_toi_da, dv.chi_phi_thue, ldv.ten_loai_dich_vu
+from dich_vu dv
+join loai_dich_vu ldv on dv.id_loai_dich_vu = ldv.id_loai_dich_vu
+join hop_dong hd on dv.id_dich_vu = hd.id_dich_vu
+where year(hd.ngay_lam_hop_dong) = 2018 
+and hd.id_dich_vu not in (
+select id_dich_vu
+from hop_dong 
+where year(ngay_lam_hop_dong) = 2019
+);
+
+-- task 8: Hiển thị thông tin HoTenKhachHang có trong hệ thống, với yêu cầu HoThenKhachHang không trùng nhau.
+select distinct kh.ho_ten
+from khach_hang kh;
+
+-- task 9: Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2019 
+-- thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
+select month(ngay_lam_hop_dong) as 'thang',count(id_khach_hang) as 'so_luong_khach_dat_phong'
+from hop_dong 
+where year(ngay_lam_hop_dong) = 2019
+group by ngay_lam_hop_dong;
+
+-- task 10: Hiển thị thông tin tương ứng với từng Hợp đồng thì đã sử dụng bao nhiêu Dịch vụ đi kèm. 
+-- Kết quả hiển thị bao gồm IDHopDong, NgayLamHopDong,
+-- NgayKetthuc, TienDatCoc, SoLuongDichVuDiKem (được tính dựa trên việc count các IDHopDongChiTiet).
+select hd.id_hop_dong, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc, hd.tien_dat_coc, count(hdct.id_hop_dong_chi_tiet) as 'so_luong_dich_vu_di_kem'
+from hop_dong hd
+join hop_dong_chi_tiet hdct on hd.id_hop_dong = hdct.id_hop_dong
+group by id_hop_dong;
+
+-- task 11:	Hiển thị thông tin các Dịch vụ đi kèm đã được sử dụng bởi những Khách hàng có TenLoaiKhachHang là “Diamond” và
+-- có địa chỉ là “Vinh” hoặc “Quảng Ngãi”.
+select kh.ho_ten, kh.dia_chi, lk.ten_loai_khach, dv.ten_dich_vu_di_kem
+from khach_hang kh
+join loai_khach lk on kh.id_loai_khach = lk.id_loai_khach
+left join hop_dong hd on kh.id_khach_hang = hd.id_khach_hang
+left join hop_dong_chi_tiet hdct on hd.id_hop_dong = hdct.id_hop_dong
+left join dich_vu_di_kem dv on hdct.id_dich_vu_di_kem = dv.id_dich_vu_di_kem 
+where ten_loai_khach = 'Diamond' and (dia_chi = 'Vinh' or dia_chi = 'Quảng Ngãi')
+group by ho_ten, ten_dich_vu_di_kem;
