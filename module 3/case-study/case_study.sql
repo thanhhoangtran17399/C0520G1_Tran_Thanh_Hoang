@@ -194,7 +194,7 @@ values
 
 insert into hop_dong
 values
-(1,1,1,1,'2019-01-01','2019-03-01',1000000,10000000),
+(1,1,1,1,'2019-10-01','2019-12-01',1000000,10000000),
 (2,2,2,3,'2018-01-01','2018-03-01',1000000,10000000),
 (3,5,1,2,'2019-01-01','2019-03-01',1000000,10000000),
 (4,4,3,1,'2018-02-03','2018-04-03',1000000,10000000),
@@ -266,8 +266,14 @@ where year(ngay_lam_hop_dong) = 2019
 );
 
 -- task 8: Hiển thị thông tin HoTenKhachHang có trong hệ thống, với yêu cầu HoThenKhachHang không trùng nhau.
+-- Cách 1:
 select distinct kh.ho_ten
 from khach_hang kh;
+
+-- Cách 2:
+select kh.ho_ten
+from khach_hang kh
+group by kh.ho_ten;
 
 -- task 9: Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2019 
 -- thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
@@ -294,3 +300,25 @@ left join hop_dong_chi_tiet hdct on hd.id_hop_dong = hdct.id_hop_dong
 left join dich_vu_di_kem dv on hdct.id_dich_vu_di_kem = dv.id_dich_vu_di_kem 
 where ten_loai_khach = 'Diamond' and (dia_chi = 'Vinh' or dia_chi = 'Quảng Ngãi')
 group by ho_ten, ten_dich_vu_di_kem;
+
+-- TAST 12: Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết),
+-- TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.
+
+select hd.id_hop_dong, nv.ho_ten as 'ho_ten_nhan_vien', kh.ho_ten as 'ho_ten_khach_hang', kh.so_dien_thoai, dv.ten_dich_vu, sum(hdct.so_luong) as 'so_luong_dich_vu_di_kem', hd.tien_dat_coc
+from hop_dong hd
+join nhan_vien nv on hd.id_nhan_vien = nv.id_nhan_vien 
+join khach_hang kh on hd.id_khach_hang = kh.id_khach_hang
+join dich_vu dv on hd.id_dich_vu = dv.id_dich_vu
+join hop_dong_chi_tiet hdct on hd.id_hop_dong = hdct.id_hop_dong
+where (month(hd.ngay_lam_hop_dong) > 9 
+and hd.id_hop_dong not in(
+select id_hop_dong
+from hop_dong
+where month(hd.ngay_lam_hop_dong) < 7))
+and year(hd.ngay_lam_hop_dong) = 2019
+group by id_hop_dong;
+-- TAST 13:	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
+--  (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau)
+
+-- TAST 14:	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
+-- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem,SoLanSuDung.
