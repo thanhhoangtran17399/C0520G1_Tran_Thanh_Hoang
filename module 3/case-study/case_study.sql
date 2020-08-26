@@ -198,7 +198,7 @@ values
 (2,2,2,3,'2018-01-01','2018-03-01',1000000,10000000),
 (3,5,1,2,'2019-01-01','2019-03-01',1000000,10000000),
 (4,4,3,1,'2018-02-03','2018-04-03',1000000,10000000),
-(5,3,5,1,'2019-10-10','2019-04-03',1000000,10000000);
+(5,3,5,1,'2020-01-10','2020-04-03',1000000,10000000);
 
 insert into hop_dong_chi_tiet
 values 
@@ -303,7 +303,6 @@ group by ho_ten, ten_dich_vu_di_kem;
 
 -- TAST 12: Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết),
 -- TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.
-
 select hd.id_hop_dong, nv.ho_ten as 'ho_ten_nhan_vien', kh.ho_ten as 'ho_ten_khach_hang', kh.so_dien_thoai, dv.ten_dich_vu, sum(hdct.so_luong) as 'so_luong_dich_vu_di_kem', hd.tien_dat_coc
 from hop_dong hd
 join nhan_vien nv on hd.id_nhan_vien = nv.id_nhan_vien 
@@ -319,6 +318,39 @@ and year(hd.ngay_lam_hop_dong) = 2019
 group by id_hop_dong;
 -- TAST 13:	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
 --  (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau)
+select hd.id_hop_dong, ldv.ten_loai_dich_vu, dvdk.ten_dich_vu_di_kem, count(dvdk.id_dich_vu_di_kem)
+as 'so_lan_su_dung'
+from hop_dong hd
+join dich_vu dv on hd.id_dich_vu = dv.id_dich_vu
+join loai_dich_vu ldv on dv.id_loai_dich_vu = ldv.id_loai_dich_vu
+join hop_dong_chi_tiet hdct on hd.id_hop_dong = hdct.id_hop_dong
+join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem = dvdk.id_dich_vu_di_kem
+group by dvdk.ten_dich_vu_di_kem
+order by 'so_lan_su_dung' desc;
 
 -- TAST 14:	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
 -- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem,SoLanSuDung.
+select hd.id_hop_dong, ldv.ten_loai_dich_vu, dvdk.ten_dich_vu_di_kem, count(dvdk.id_dich_vu_di_kem)
+as 'so_lan_su_dung'
+from hop_dong hd
+join dich_vu dv on hd.id_dich_vu = dv.id_dich_vu
+join loai_dich_vu ldv on dv.id_loai_dich_vu = ldv.id_loai_dich_vu
+join hop_dong_chi_tiet hdct on hd.id_hop_dong = hdct.id_hop_dong
+join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem = dvdk.id_dich_vu_di_kem
+group by dvdk.ten_dich_vu_di_kem
+having 'so_lan_su_dung' = 2;
+
+-- TAST 15:	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi 
+-- mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.
+select nv.id_nhan_vien, nv.ho_ten, bp.ten_bo_phan, nv.so_dien_thoai, nv.dia_chi, count(hd.id_nhan_vien) as so_luong_hop_dong
+from nhan_vien nv
+join trinh_do td on nv.id_trinh_do = td.id_trinh_do
+join bo_phan bp on nv.id_bo_phan = bp.id_bo_phan
+join hop_dong hd on nv.id_nhan_vien = hd.id_nhan_vien
+where year(hd.ngay_lam_hop_dong) between '2018' and '2019'
+group by nv.id_nhan_vien
+having  count(hd.id_nhan_vien) <= 3; 
+
+-- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
+-- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond,
+-- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
