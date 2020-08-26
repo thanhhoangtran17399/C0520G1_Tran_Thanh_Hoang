@@ -51,7 +51,8 @@ so_dien_thoai varchar(45),
 email varchar(45),
 dia_chi varchar(45),
 foreign key(id_loai_khach) 
-references loai_khach(id_loai_khach) 
+references loai_khach(id_loai_khach) on delete cascade 
+on update cascade
 );
 
 create table nhan_vien (
@@ -67,11 +68,14 @@ so_dien_thoai varchar(45),
 email varchar(45),
 dia_chi varchar(45),
 foreign key(id_vi_tri) 
-references vi_tri(id_vi_tri),
+references vi_tri(id_vi_tri) on delete cascade 
+on update cascade,
 foreign key(id_trinh_do) 
-references trinh_do(id_trinh_do),
+references trinh_do(id_trinh_do) on delete cascade 
+on update cascade,
 foreign key(id_bo_phan) 
-references bo_phan(id_bo_phan)
+references bo_phan(id_bo_phan) on delete cascade 
+on update cascade
 );
 
 create table dich_vu(
@@ -85,9 +89,11 @@ id_kieu_thue int,
 id_loai_dich_vu int,
 trang_thai varchar(45),
 foreign key(id_kieu_thue) 
-references kieu_thue(id_kieu_thue),
+references kieu_thue(id_kieu_thue) on delete cascade 
+on update cascade,
 foreign key(id_loai_dich_vu) 
-references loai_dich_vu(id_loai_dich_vu)
+references loai_dich_vu(id_loai_dich_vu) on delete cascade 
+on update cascade
 );
 
 create table hop_dong(
@@ -99,9 +105,12 @@ ngay_lam_hop_dong date,
 ngay_ket_thuc date,
 tien_dat_coc double,
 tong_tien double,
-foreign key (id_nhan_vien) references nhan_vien(id_nhan_vien),
-foreign key (id_khach_hang) references khach_hang(id_khach_hang),
-foreign key (id_dich_vu) references dich_vu(id_dich_vu)
+foreign key (id_nhan_vien) references nhan_vien(id_nhan_vien) on delete cascade 
+on update cascade,
+foreign key (id_khach_hang) references khach_hang(id_khach_hang) on delete cascade 
+on update cascade,
+foreign key (id_dich_vu) references dich_vu(id_dich_vu) on delete cascade 
+on update cascade
 );
 
 create table hop_dong_chi_tiet(
@@ -110,9 +119,11 @@ id_hop_dong int,
 id_dich_vu_di_kem int,
 so_luong int,
 foreign key(id_hop_dong) 
-references hop_dong(id_hop_dong),
+references hop_dong(id_hop_dong) on delete cascade 
+on update cascade,
 foreign key (id_dich_vu_di_kem) 
-references dich_vu_di_kem(id_dich_vu_di_kem)
+references dich_vu_di_kem(id_dich_vu_di_kem) on delete cascade 
+on update cascade
 );
 
 -- Nhập data
@@ -198,7 +209,7 @@ values
 (2,2,2,3,'2018-01-01','2018-03-01',1000000,10000000),
 (3,5,1,2,'2019-01-01','2019-03-01',1000000,10000000),
 (4,4,3,1,'2018-02-03','2018-04-03',1000000,10000000),
-(5,3,5,1,'2020-01-10','2020-04-03',1000000,10000000);
+(5,3,5,1,'2015-01-10','2016-04-03',1000000,10000000);
 
 insert into hop_dong_chi_tiet
 values 
@@ -352,5 +363,16 @@ group by nv.id_nhan_vien
 having  count(hd.id_nhan_vien) <= 3; 
 
 -- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
+ SET FOREIGN_KEY_CHECKS =  0 ;
+ delete from nhan_vien where id_nhan_vien not in (
+	select hd.id_nhan_vien
+    from hop_dong hd
+    where year(hd.ngay_lam_hop_dong) in (2017,2018,2019));
+SET FOREIGN_KEY_CHECKS =  1 ;
+
 -- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond,
 -- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
+update khach_hang set id_loai_khach = 1
+where id_loai_khach in (
+
+)
