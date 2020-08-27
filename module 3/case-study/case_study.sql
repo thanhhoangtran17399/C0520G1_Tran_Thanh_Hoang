@@ -401,20 +401,20 @@ select*from khach_hang;
 
 -- task 19:	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
 -- Chạy chưa ra kết quả
--- update dich_vu_di_kem
--- set gia = gia * 2
--- where id_dich_vu_di_kem in (
--- select id_dich_vu_di_kem
--- from (select dvdk.id_dich_vu_di_kem
--- 		from dich_vu_di_kem dvdk
--- 		join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem= hdct.id_dich_vu_di_kem
---         join hop_dong hd on hd.id_hop_dong=hdct.id_hop_dong
---         where year(hd.ngay_lam_hop_dong) = 2019 
--- 		group by dvdk.id_dich_vu_di_kem
--- 		having sum(hdct.so_luong) > 2 ) as temp);
--- select*from hop_dong;        
--- select*from hop_dong_chi_tiet;
--- select*from dich_vu_di_kem;
+update dich_vu_di_kem
+set gia = gia * 2
+where id_dich_vu_di_kem in (
+select id_dich_vu_di_kem
+from (select dvdk.id_dich_vu_di_kem
+		from dich_vu_di_kem dvdk
+		join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem= hdct.id_dich_vu_di_kem
+        join hop_dong hd on hd.id_hop_dong=hdct.id_hop_dong
+        where year(hd.ngay_lam_hop_dong) = 2019 
+		group by dvdk.id_dich_vu_di_kem
+		having count(hdct.id_dich_vu_di_kem) > 1 ) as temp);
+select*from hop_dong;        
+select*from hop_dong_chi_tiet;
+select*from dich_vu_di_kem;
 
 -- task 20:	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống,
 -- thông tin hiển thị bao gồm ID (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.
