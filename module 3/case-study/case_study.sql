@@ -180,7 +180,7 @@ values
 
 insert into khach_hang 
 values 
-(1,1,'Hoàng','1999-03-17',12345678,'0912345678','eqwe@gmail.com','Đà Nẵng'),
+(1,2,'Hoàng','1999-03-17',12345678,'0912345678','eqwe@gmail.com','Đà Nẵng'),
 (2,2,'Ronaldo','1985-10-15',12345671,'0912345672','zxc@gmail.com','Quảng Nam'),
 (3,1,'Messi','1988-10-01',12345672,'0912345673','bbvn@gmail.com','Quảng Ngãi'),
 (4,3,'Maria ozawa','1995-10-05',12345673,'0912345674','qqeqwe@gmail.com','Nhật Bản'),
@@ -213,7 +213,7 @@ values
 
 insert into hop_dong_chi_tiet
 values 
-(1,1,2,2),
+(1,1,1,3),
 (2,2,1,2),
 (3,4,2,2),
 (4,3,1,2);
@@ -312,7 +312,7 @@ left join dich_vu_di_kem dv on hdct.id_dich_vu_di_kem = dv.id_dich_vu_di_kem
 where ten_loai_khach = 'Diamond' and (dia_chi = 'Vinh' or dia_chi = 'Quảng Ngãi')
 group by ho_ten, ten_dich_vu_di_kem;
 
--- TAST 12: Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết),
+-- task 12: Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết),
 -- TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.
 select hd.id_hop_dong, nv.ho_ten as 'ho_ten_nhan_vien', kh.ho_ten as 'ho_ten_khach_hang', kh.so_dien_thoai, dv.ten_dich_vu, sum(hdct.so_luong) as 'so_luong_dich_vu_di_kem', hd.tien_dat_coc
 from hop_dong hd
@@ -327,7 +327,7 @@ from hop_dong
 where month(hd.ngay_lam_hop_dong) < 7))
 and year(hd.ngay_lam_hop_dong) = 2019
 group by id_hop_dong;
--- TAST 13:	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
+-- task 13:	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
 --  (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau)
 select hd.id_hop_dong, ldv.ten_loai_dich_vu, dvdk.ten_dich_vu_di_kem, count(dvdk.id_dich_vu_di_kem)
 as 'so_lan_su_dung'
@@ -339,7 +339,7 @@ join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem = dvdk.id_dich_vu_di_kem
 group by dvdk.ten_dich_vu_di_kem
 order by 'so_lan_su_dung' desc;
 
--- TAST 14:	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
+-- task 14:	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
 -- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem,SoLanSuDung.
 select hd.id_hop_dong, ldv.ten_loai_dich_vu, dvdk.ten_dich_vu_di_kem, count(dvdk.id_dich_vu_di_kem)
 as 'so_lan_su_dung'
@@ -351,7 +351,7 @@ join dich_vu_di_kem dvdk on hdct.id_dich_vu_di_kem = dvdk.id_dich_vu_di_kem
 group by dvdk.ten_dich_vu_di_kem
 having 'so_lan_su_dung' = 2;
 
--- TAST 15:	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi 
+-- task 15:	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi 
 -- mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.
 select nv.id_nhan_vien, nv.ho_ten, bp.ten_bo_phan, nv.so_dien_thoai, nv.dia_chi, count(hd.id_nhan_vien) as so_luong_hop_dong
 from nhan_vien nv
@@ -362,17 +362,64 @@ where year(hd.ngay_lam_hop_dong) between '2018' and '2019'
 group by nv.id_nhan_vien
 having  count(hd.id_nhan_vien) <= 3; 
 
--- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
- SET FOREIGN_KEY_CHECKS =  0 ;
- delete from nhan_vien where id_nhan_vien not in (
-	select hd.id_nhan_vien
-    from hop_dong hd
-    where year(hd.ngay_lam_hop_dong) in (2017,2018,2019));
-SET FOREIGN_KEY_CHECKS =  1 ;
+-- task 16:	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
+delete from nhan_vien 
+where id_nhan_vien not in (
+select id_nhan_vien
+from (select nv.id_nhan_vien 
+	from nhan_vien nv
+	join hop_dong on nv.id_nhan_vien = hop_dong.id_nhan_vien 
+	where year( hop_dong.ngay_lam_hop_dong) between '2018' and '2019') as temp);
+	select*from nhan_vien;
 
--- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond,
--- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
-update khach_hang set id_loai_khach = 1
-where id_loai_khach in (
+-- task 17: Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond,
+--  chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ
+update khach_hang
+set id_loai_khach = 1
+where id_khach_hang in
+(select id_khach_hang 
+from (select kh.id_khach_hang
+	from khach_hang kh
+	join hop_dong hd on kh.id_khach_hang = hd.id_khach_hang
+	where kh.id_loai_khach = 2 and year(hd.ngay_lam_hop_dong) = 2019
+	group by kh.id_khach_hang
+	having sum(hd.tong_tien) > 10000000) as temp);
+    
+select*from hop_dong;   
+select*from khach_hang;
 
-)
+-- task 18:	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràng buộc giữa các bảng)
+delete khach_hang
+from khach_hang 
+where id_khach_hang in (
+select id_khach_hang
+from (select kh.id_khach_hang
+		from khach_hang kh
+		join hop_dong hd on kh.id_khach_hang = hd.id_khach_hang
+		where year(hd.ngay_lam_hop_dong) < 2016) as temp);
+select*from khach_hang;
+
+-- task 19:	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
+-- Chạy chưa ra kết quả
+-- update dich_vu_di_kem
+-- set gia = gia * 2
+-- where id_dich_vu_di_kem in (
+-- select id_dich_vu_di_kem
+-- from (select dvdk.id_dich_vu_di_kem
+-- 		from dich_vu_di_kem dvdk
+-- 		join hop_dong_chi_tiet hdct on dvdk.id_dich_vu_di_kem= hdct.id_dich_vu_di_kem
+--         join hop_dong hd on hd.id_hop_dong=hdct.id_hop_dong
+--         where year(hd.ngay_lam_hop_dong) = 2019 
+-- 		group by dvdk.id_dich_vu_di_kem
+-- 		having sum(hdct.so_luong) > 2 ) as temp);
+-- select*from hop_dong;        
+-- select*from hop_dong_chi_tiet;
+-- select*from dich_vu_di_kem;
+
+-- task 20:	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống,
+-- thông tin hiển thị bao gồm ID (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.
+select nv.id_nhan_vien as 'id', nv.ho_ten, nv.email, nv.so_dien_thoai, nv.ngay_sinh, nv.dia_chi, 'nhân viên' as 'loai'
+from nhan_vien nv 
+union
+select kh.id_khach_hang, kh.ho_ten, kh.email, kh.so_dien_thoai, kh.ngay_sinh, kh.dia_chi, 'khách hàng' as 'loai'
+from khach_hang kh;
