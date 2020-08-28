@@ -15,11 +15,11 @@
 <h2>Discount Calculator</h2>
 <form action="calculate" method="post">
   <label>Product Description: </label><br/>
-  <input type="text" name="product description" placeholder="product description"/><br/>
+  <input type="text" name="productDescription" placeholder="product description"/><br/>
   <label>list Price: </label><br/>
-  <input type="text" name="list price" placeholder="list price" value="0"/><br/>
+  <input type="text" name="listPrice" placeholder="list price" value="0"/><br/>
   <label>Discount Percent: </label><br/>
-  <input type="text" name="discount percent" placeholder="discount percent" value="0"/><br/>
+  <input type="text" name="discountPercent" placeholder="discount percent" value="0"/><br/>
   <input type = "submit" id = "submit" value = "Calculater"/>
 </form>
 </body>
