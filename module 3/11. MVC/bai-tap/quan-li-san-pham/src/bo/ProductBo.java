@@ -1,11 +1,10 @@
-package dao;
+package bo;
 
 import model.Product;
 
 import java.util.List;
 
-public interface ProductDao {
-
+public interface ProductBo {
     List<Product> getListProduct();
 
     void save(Product product);
