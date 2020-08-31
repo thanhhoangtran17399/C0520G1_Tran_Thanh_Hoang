@@ -31,4 +31,15 @@ public class ProductDao {
     public static void deleteById(Integer id) {
         productMap.remove(id);
     }
+
+    public static List<Product> searchByName(String name) {
+        List<Product> productList = new ArrayList<>(productMap.values());
+        List<Product> product = new ArrayList<>();
+        for (int i = 0; i < productList.size(); i++){
+            if (name.contains(productList.get(i).getName())){
+                product.add(productList.get(i));
+            }
+        }
+        return product;
+    }
 }

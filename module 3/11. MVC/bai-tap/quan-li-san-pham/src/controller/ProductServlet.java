@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "ProductServlet", urlPatterns = "/productServlet")
+@WebServlet(name = "ProductServlet", urlPatterns = {"","/productServlet"})
 public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -38,7 +39,7 @@ public class ProductServlet extends HttpServlet {
         Product product = new Product(id,name,price,productDescription,producer);
         ProductDao.save(product);
         request.setAttribute("message", "Update product is successfully!!!");
-        goStudentList(request,response);
+        goProductList(request,response);
     }
 
     private void createProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,7 +51,7 @@ public class ProductServlet extends HttpServlet {
         Product product = new Product(id,name,price,productDescription,producer);
         ProductDao.save(product);
         request.setAttribute("message", "Create new product is successfully!!!");
-        goStudentList(request,response);
+        goProductList(request,response);
     }
 
 
@@ -73,17 +74,27 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 goDelete(request,response);
                 break;
+            case "search":
+                goSearch(request,response);
+                break;
             default:
-            goStudentList(request,response);
+            goProductList(request,response);
             break;
         }
+    }
+
+    private void goSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        List<Product> product =  ProductDao.searchByName(name);
+        request.setAttribute("listProduct", product);
+        request.getRequestDispatcher("list.jsp").forward(request,response);
     }
 
     private void goDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
         ProductDao.deleteById(id);
         request.setAttribute("message", "Delete product is successfully!!!");
-        goStudentList(request,response);
+        goProductList(request,response);
     }
 
     private void goUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -101,8 +112,10 @@ public class ProductServlet extends HttpServlet {
         request.getRequestDispatcher("detail.jsp").forward(request,response);
     }
 
-    private void goStudentList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void goProductList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("listProduct", ProductDao.getListProduct());
         request.getRequestDispatcher("list.jsp").forward(request,response);
     }
+
+
 }

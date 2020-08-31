@@ -13,9 +13,13 @@
 </head>
 <body>
 <h1 style="text-align: center">Products Mangagement</h1>
-<p>
-    <a href="/productServlet?action=search" style="color: rgba(0,0,0,0.5)">Search By Name</a>
-</p>
+<form action="/productServlet">
+    <h3>Search by name</h3><br>
+    <input type="hidden" name="action" value="search">
+    <input type="submit" value="search">
+    <input type="text" name="name">
+</form>
+
 <p>
     <a href="/productServlet?action=create" style="color: rgba(0,0,0,0.49)">Create new product</a>
 </p>
