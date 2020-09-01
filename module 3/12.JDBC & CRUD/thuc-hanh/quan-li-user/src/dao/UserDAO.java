@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO implements IUserDAO{
-    private String jdbcURL = "jdbc:mysql://localhost:3306/demo?useSSL=false";
+    private String jdbcURL = "jdbc:mysql://localhost:3306/demo";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "khanhtung@123";
+    private String jdbcPassword = "12345678";
 
     private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES " +
             " (?, ?, ?);";
@@ -20,6 +20,8 @@ public class UserDAO implements IUserDAO{
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
+    private static final String SEARCH_BY_COUNTRY = "select * from users where country = ?";
+    private static final String SORT_BY_NAME = "select * from users order by name";
 
     public UserDAO() {
     }
@@ -124,6 +126,53 @@ public class UserDAO implements IUserDAO{
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;
+    }
+
+    @Override
+    public List<User> searchByCountry(String country) {
+        List<User> userList = new ArrayList<>();
+        try (Connection connection = getConnection();
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_COUNTRY);) {
+            preparedStatement.setString(1, country);
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+                user.setCountry(rs.getString("country"));
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return userList;
+    }
+
+    @Override
+    public List<User> shortByName() {
+        List<User> userList = new ArrayList<>();
+        try(Connection connection = getConnection();
+           PreparedStatement preparedStatement = connection.prepareStatement(SORT_BY_NAME)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+                user.setCountry(rs.getString("country"));
+                userList.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } ;
+        return userList;
     }
 
     private void printSQLException(SQLException ex) {

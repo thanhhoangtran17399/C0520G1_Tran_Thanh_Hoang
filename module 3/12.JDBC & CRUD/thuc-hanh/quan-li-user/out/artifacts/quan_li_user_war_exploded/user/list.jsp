@@ -8,6 +8,18 @@
 <body>
 <center>
     <h1>User Management</h1>
+
+    <form action="/users">
+        <h3>Search by country</h3><br>
+        <input type="hidden" name="action" value="search">
+        <input type="submit" value="search">
+        <input type="text" name="country">
+    </form>
+    <form action="/users">
+        <h3>Search by country</h3><br>
+        <input type="hidden" name="action" value="sort">
+        <input type="submit" value="sort">
+    </form>
     <h2>
         <a href="/users?action=create">Add New User</a>
     </h2>
