@@ -43,4 +43,9 @@ public class UserBO implements IUserBO{
     public List<User> shortByName() {
         return userDAO.shortByName();
     }
+
+    @Override
+    public void insertUserTransaction(User user, int id_contract, int id_user, String name_contract) {
+        userDAO.insertUserTransaction(user,id_contract,id_user,name_contract);
+    }
 }

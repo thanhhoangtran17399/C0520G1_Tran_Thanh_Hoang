@@ -1,17 +1,18 @@
 package dao;
+
 import model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO implements IUserDAO{
+public class UserDAO implements IUserDAO {
     private String jdbcURL = "jdbc:mysql://localhost:3306/demo";
     private String jdbcUsername = "root";
     private String jdbcPassword = "12345678";
 
-    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES " +
-            " (?, ?, ?);";
+    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES " + " (?, ?, ?);";
+    private static final String INSERT_CONTRACT_SQL = "INSERT INTO contract" + "  (id_contract, id_user, name_contract) VALUES " + " (?, ?, ?);";
 
     private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
     private static final String SELECT_ALL_USERS = "{call get_all_user()}";
@@ -154,10 +155,10 @@ public class UserDAO implements IUserDAO{
     @Override
     public List<User> shortByName() {
         List<User> userList = new ArrayList<>();
-        try(Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SORT_BY_NAME)) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SORT_BY_NAME)) {
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("id"));
                 user.setName(rs.getString("name"));
@@ -168,8 +169,36 @@ public class UserDAO implements IUserDAO{
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } ;
+        }
+        ;
         return userList;
+    }
+
+    public void insertUserTransaction(User user, int id_contract, int id_user, String name_contract) {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            if (connection != null) {
+                connection.setAutoCommit(false);
+                    preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
+                    preparedStatement.setString(1, user.getName());
+                    preparedStatement.setString(2, user.getEmail());
+                    preparedStatement.setString(3, user.getCountry());
+                    preparedStatement.executeUpdate();
+
+
+                    preparedStatement = connection.prepareStatement(INSERT_CONTRACT_SQL);
+                preparedStatement.setInt(1, id_contract);
+                preparedStatement.setInt(2, id_user);
+                preparedStatement.setString(3, name_contract);
+                preparedStatement.executeUpdate();
+
+                connection.commit();
+                connection.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
     }
 
     private void printSQLException(SQLException ex) {
@@ -187,4 +216,6 @@ public class UserDAO implements IUserDAO{
             }
         }
     }
+
+
 }

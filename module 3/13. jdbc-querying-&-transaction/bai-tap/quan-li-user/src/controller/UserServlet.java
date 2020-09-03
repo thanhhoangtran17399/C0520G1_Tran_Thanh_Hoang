@@ -67,6 +67,10 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "sort":
                     sortByName(request,response);
+                    break;
+                case "insert_transaction":
+                    insertUserTransaction(request,response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
@@ -74,6 +78,11 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void insertUserTransaction(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User("Hoang","abc@gmail.com","vn");
+        userBO.insertUserTransaction(user, 2,1,"a");
     }
 
     private void sortByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -147,4 +156,6 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
     }
+
+
 }

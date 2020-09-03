@@ -18,4 +18,6 @@ public interface IUserDAO {
     public List<User> searchByCountry(String country);
 
     List<User> shortByName();
+
+    public void insertUserTransaction(User user, int id_contract, int id_user, String name_contract);
 }
