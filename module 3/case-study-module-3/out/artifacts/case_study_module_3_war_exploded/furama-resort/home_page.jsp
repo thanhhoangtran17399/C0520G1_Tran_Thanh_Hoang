@@ -17,12 +17,21 @@
 </head>
 <body>
 <form action="/HomePage">
-    <div class="row">
+    <div class="container-fluid">
+        <div class="row" style="background: #c9d6df">
+            <div class="col-lg-3">
+                <img src="../../case-study-module-3/logo.png" height="60" width="50" style="margin-left: 20px"/>
+            </div>
+            <div class="col-lg-9">
+                <h5 style="margin-left: 600px">Tran Thanh Hoang</h5>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="container-fluid">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -30,11 +39,6 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
                             </li>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Employee</a>
@@ -62,22 +66,24 @@
         </div>
     </div>
 
-
-
-    <div class="container">
-        <div class="row" style="background: #ebebeb">
-            <div class="col-lg-2">
-
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3" style="background: #6c757d">
+                <p>list</p>
             </div>
-            <div class="col-lg-10">
-                <p>body</p>
+            <div class="col-lg-9">
+                <div class="image">
+                    <img src="../../case-study-module-3/furama-resort.jpg" height="600" width="840"/></div>
             </div>
         </div>
     </div>
 
-
-    <div class="row">
-        <p>footer</p>
+    <div class="container-fluid">
+        <div class="row" style="background: #4e555b">
+            <div class="col-lg-12">
+                <p style="text-align: center">footer</p>
+            </div>
+        </div>
     </div>
 </form>
 </body>
