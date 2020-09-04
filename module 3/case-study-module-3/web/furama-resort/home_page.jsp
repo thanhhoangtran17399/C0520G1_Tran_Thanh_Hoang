@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-<form action="/HomePage">
     <div class="container-fluid">
         <div class="row" style="background: #c9d6df">
             <div class="col-lg-3">
@@ -45,7 +44,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Customer</a>
+                                <a class="nav-link" href="/HomePage?action=listCustomer">Customer</a>
                             </li>
 
                             <li class="nav-item">
@@ -85,6 +84,5 @@
             </div>
         </div>
     </div>
-</form>
 </body>
 </html>

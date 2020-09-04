@@ -34,6 +34,8 @@ customer_address varchar(45),
 foreign key (customer_type_id) references customer_type(customer_type_id)
 );
 
+
+
 create table service_type(
 	service_type_id int primary key,
     service_type_name varchar(45)
@@ -131,3 +133,11 @@ foreign key(role_id) references role(role_id)
  foreign key (attach_service_id) references attach_service(attach_service_id),
  foreign key (contract_id) references contract(contract_id)
  );
+ insert into customer_type() values (1,'a');
+ 
+insert into customer(customer_id, customer_type_id, customer_name, customer_birthday, customer_gender, customer_id_card, customer_phone, customer_email, customer_address) 
+values (1,1,'1','2019-10-10',1,'1','1','1','1');
+
+select*from customer;
+
+
