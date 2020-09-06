@@ -12,13 +12,13 @@
     <title>Title</title>
 </head>
 <body>
-<h1>User Management</h1>
+<h1>Customer Management</h1>
 
-<form action="/HomePage?action=">
+<form action="/HomePage?action=search">
     <h3>Search by country</h3><br>
     <input type="hidden" name="action" value="search">
     <input type="submit" value="search">
-    <input type="text" name="country">
+    <input type="text" name="customerId">
 </form>
 
 <h2>
@@ -27,7 +27,7 @@
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
-        <caption><h2>List of Users</h2></caption>
+        <caption><h2>List Of Customer</h2></caption>
         <tr>
             <th>Customer Id</th>
             <th>Customer Type Id</th>
@@ -37,10 +37,10 @@
             <th>Customer Id Card</th>
             <th>Customer Phone</th>
             <th>Customer Email</th>
-            <th>Customer Email</th>
             <th>Customer Address</th>
+            <th>Actions</th>
         </tr>
-        <c:forEach var="customer" items="${listCustomer}">
+        <c:forEach var="customer" items="${customerList}">
             <tr>
                 <td><c:out value="${customer.customerId}"/></td>
                 <td><c:out value="${customer.customerTypeId}"/></td>
@@ -52,8 +52,8 @@
                 <td><c:out value="${customer.customerEmail}"/></td>
                 <td><c:out value="${customer.customerAddress}"/></td>
                 <td>
-                    <a href="/users?action=edit&id=${customer.customerId}">Edit</a>
-                    <a href="/users?action=delete&id=${customer.customerId}">Delete</a>
+                    <a href="/HomePage?action=update&customerId=${customer.customerId}">Update</a>
+                    <a href="/HomePage?action=delete&customerId=${customer.customerId}">Delete</a>
                 </td>
             </tr>
         </c:forEach>

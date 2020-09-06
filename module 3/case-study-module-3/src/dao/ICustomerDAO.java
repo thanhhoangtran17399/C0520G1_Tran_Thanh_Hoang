@@ -6,5 +6,9 @@ import java.util.List;
 
 public interface ICustomerDAO {
     List<Customer> selectAllCustomer();
-    public void insertCustomer(Customer customer);
+    void insertCustomer(Customer customer);
+    Customer selectCustomer(int customerId);
+    boolean updateCustomer(Customer customer);
+    boolean deleteCustomer(int customerId);
+    List<Customer> searchById(int customerId);
 }
