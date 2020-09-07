@@ -15,7 +15,7 @@
 <h1>Customer Management</h1>
 
 <form action="/HomePage?action=search">
-    <h3>Search by country</h3><br>
+    <h3>Search by id</h3><br>
     <input type="hidden" name="action" value="search">
     <input type="submit" value="search">
     <input type="text" name="customerId">

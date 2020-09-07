@@ -1,7 +1,12 @@
 package controller;
 
 import bo.CustomerBO;
+import bo.EmployeeBO;
+import bo.IServiceBO;
+import bo.ServiceBO;
 import model.Customer;
+import model.Employee;
+import model.Service;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +21,8 @@ import java.util.List;
 @WebServlet(name = "HomePageServlet", urlPatterns = {"", "/HomePage"})
 public class HomePageServlet extends HttpServlet {
     CustomerBO customerBO = new CustomerBO();
-
+    ServiceBO serviceBO = new ServiceBO();
+    EmployeeBO employeeBO = new EmployeeBO();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -33,14 +39,74 @@ public class HomePageServlet extends HttpServlet {
             case "createService":
                 createService(request, response);
                 break;
+            case "createEmployee":
+                createEmployee(request, response);
+                break;
+            case "updateEmployee":
+                updateEmployee(request, response);
+                break;
             default:
                 homePage(request, response);
                 break;
         }
     }
 
-    private void createService(HttpServletRequest request, HttpServletResponse response) {
+    private void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+        String employeeName = request.getParameter("employeeName");
+        String employeeBirthday =request.getParameter("employeeBirthday");
+        String employeeIdCard = request.getParameter("employeeIdCard");
+        double employeeSalary = Double.parseDouble(request.getParameter("employeeSalary"));
+        String employeePhone = request.getParameter("employeePhone");
+        String employeeEmail = request.getParameter("employeeEmail");
+        String employeeAddress = request.getParameter("employeeAddress");
+        int positionId = Integer.parseInt(request.getParameter("positionId"));
+        int educationDegreeId = Integer.parseInt(request.getParameter("educationDegreeId"));
+        int divisionId = Integer.parseInt(request.getParameter("divisionId"));
+        String username = request.getParameter("username");
+        Employee employee = new Employee(employeeId, employeeName, employeeBirthday, employeeIdCard, employeeSalary, employeePhone, employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId, username);
+        employeeBO.updateEmployee(employee);
+        List<Employee> employeeList = employeeBO.selectAllEmployee();
+        request.setAttribute("employeeList", employeeList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/list.jsp");
+        dispatcher.forward(request, response);
+    }
 
+    private void createEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+        String employeeName = request.getParameter("employeeName");
+        String employeeBirthday =request.getParameter("employeeBirthday");
+        String employeeIdCard = request.getParameter("employeeIdCard");
+        double employeeSalary = Double.parseDouble(request.getParameter("employeeSalary"));
+        String employeePhone = request.getParameter("employeePhone");
+        String employeeEmail = request.getParameter("employeeEmail");
+        String employeeAddress = request.getParameter("employeeAddress");
+        int positionId = Integer.parseInt(request.getParameter("positionId"));
+        int educationDegreeId = Integer.parseInt(request.getParameter("educationDegreeId"));
+        int divisionId = Integer.parseInt(request.getParameter("divisionId"));
+        String username = request.getParameter("username");
+        Employee employee = new Employee(employeeId, employeeName, employeeBirthday, employeeIdCard, employeeSalary, employeePhone, employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId, username);
+        employeeBO.insertEmployee(employee);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/create.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void createService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int serviceId = Integer.parseInt(request.getParameter("serviceId"));
+        String serviceName = request.getParameter("serviceName");
+        int serviceArea = Integer.parseInt(request.getParameter("serviceArea"));
+        double serviceCode = Double.parseDouble(request.getParameter("serviceCode"));
+        int serviceMaxPeople = Integer.parseInt(request.getParameter("serviceMaxPeople"));
+        int rentTypeId = Integer.parseInt(request.getParameter("rentTypeId"));
+        int serviceTypeId = Integer.parseInt(request.getParameter("serviceTypeId"));
+        String standardRoom = request.getParameter("standardRoom");
+        String descriptionOtherConvenionce = request.getParameter("descriptionOtherConvenionce");
+        double poolArea = Double.parseDouble(request.getParameter("poolArea"));
+        int numberOfFloors = Integer.parseInt(request.getParameter("numberOfFloors"));
+        Service service = new Service(serviceId, serviceName, serviceArea, serviceCode, serviceMaxPeople, rentTypeId, serviceTypeId, standardRoom, descriptionOtherConvenionce, poolArea,numberOfFloors );
+        serviceBO.insertService(service);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/service/create.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -105,14 +171,66 @@ public class HomePageServlet extends HttpServlet {
             case "listService":
                 listService(request, response);
                 break;
+            case "createEmployee":
+                showEmployeeFom(request, response);
+                break;
+            case "listEmployee":
+                listEmployee(request, response);
+                break;
+            case "updateEmployee":
+                showUpdateEmpForm(request, response);
+                break;
+            case "deleteEmployee":
+                deleteEmployee(request, response);
+                break;
+            case "searchEmployee":
+                searchEmpById(request, response);
+                break;
             default:
                 homePage(request, response);
                 break;
         }
     }
 
+    private void searchEmpById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int employeeId = Integer.parseInt(request.getParameter("customerId"));
+        List<Employee> employeeList = employeeBO.searchEmpById(employeeId);
+        request.setAttribute("employeeList", employeeList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/list.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+        employeeBO.deleteEmployee(employeeId);
+        List<Employee> employeeList = employeeBO.selectAllEmployee();
+        request.setAttribute("employeeList", employeeList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/list.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showUpdateEmpForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+        Employee employee = employeeBO.selectEmployee(employeeId);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/update.jsp");
+        request.setAttribute("employee", employee);
+        dispatcher.forward(request, response);
+    }
+
+    private void listEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Employee> employeeList = employeeBO.selectAllEmployee();
+        request.setAttribute("employeeList", employeeList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/list.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showEmployeeFom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/create.jsp");
+        dispatcher.forward(request, response);
+    }
+
     private void listService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Service> serviceList = customerBO.selectAllCustomer();
+        List<Service> serviceList = serviceBO.selectAllService();
         request.setAttribute("serviceList", serviceList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/service/list.jsp");
         dispatcher.forward(request, response);

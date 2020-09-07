@@ -125,15 +125,15 @@ public class CustomerDAO implements ICustomerDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(UPDATE_CUSTOMER);
-                statement.setInt(1, customer.getCustomerId());
-                statement.setInt(2, customer.getCustomerTypeId());
-                statement.setString(3, customer.getCustomerName());
-                statement.setString(4, customer.getCustomerBirthday());
-                statement.setInt(5, customer.getCustomerGender());
-                statement.setString(6, customer.getCustomerIdCard());
-                statement.setString(7, customer.getCustomerPhone());
-                statement.setString(8, customer.getCustomerEmail());
-                statement.setString(9, customer.getCustomerAddress());
+                statement.setInt(1, customer.getCustomerTypeId());
+                statement.setString(2, customer.getCustomerName());
+                statement.setString(3, customer.getCustomerBirthday());
+                statement.setInt(4, customer.getCustomerGender());
+                statement.setString(5, customer.getCustomerIdCard());
+                statement.setString(6, customer.getCustomerPhone());
+                statement.setString(7, customer.getCustomerEmail());
+                statement.setString(8, customer.getCustomerAddress());
+                statement.setInt(9, customer.getCustomerId());
                 rowUpdate = statement.executeUpdate() > 0;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

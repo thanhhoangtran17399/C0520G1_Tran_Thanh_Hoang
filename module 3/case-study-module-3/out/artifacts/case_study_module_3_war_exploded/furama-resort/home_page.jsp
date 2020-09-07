@@ -40,7 +40,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Employee</a>
+                                <a class="nav-link" href="/HomePage?action=listEmployee">Employee</a>
                             </li>
 
                             <li class="nav-item">
@@ -48,7 +48,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Service</a>
+                                <a class="nav-link" href="/HomePage?action=listService">Service</a>
                             </li>
 
                             <li class="nav-item">

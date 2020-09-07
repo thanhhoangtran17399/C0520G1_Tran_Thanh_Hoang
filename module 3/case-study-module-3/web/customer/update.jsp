@@ -19,7 +19,7 @@
 </head>
 <body>
 <div class="container">
-    <h2>Update Student</h2>
+    <h2>Update Customer</h2>
     <form method="post">
         <div class="form-group">
             <label for="customerId">Customer ID</label>
