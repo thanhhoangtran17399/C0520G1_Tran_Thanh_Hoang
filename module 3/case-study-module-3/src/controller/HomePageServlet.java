@@ -1,12 +1,7 @@
 package controller;
 
-import bo.CustomerBO;
-import bo.EmployeeBO;
-import bo.IServiceBO;
-import bo.ServiceBO;
-import model.Customer;
-import model.Employee;
-import model.Service;
+import bo.*;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,6 +18,8 @@ public class HomePageServlet extends HttpServlet {
     CustomerBO customerBO = new CustomerBO();
     ServiceBO serviceBO = new ServiceBO();
     EmployeeBO employeeBO = new EmployeeBO();
+    ContractBO contractBO = new ContractBO();
+    ContractDetailBO contractDetailBO = new ContractDetailBO();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -45,10 +42,42 @@ public class HomePageServlet extends HttpServlet {
             case "updateEmployee":
                 updateEmployee(request, response);
                 break;
+            case "createContract":
+                createContract(request, response);
+                break;
+            case "createContractDetail":
+                createContractDetail(request, response);
+                break;
             default:
                 homePage(request, response);
                 break;
         }
+    }
+
+    private void createContractDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int contractDetailId = Integer.parseInt(request.getParameter("contractDetailId"));
+        int contractId = Integer.parseInt(request.getParameter("contractId"));
+        int attachServiceId = Integer.parseInt(request.getParameter("attachServiceId"));
+        int quanlity = Integer.parseInt(request.getParameter("quanlity"));
+         ContractDetail contractDetail = new ContractDetail(contractDetailId, contractId, attachServiceId, quanlity);
+        contractDetailBO.insertContractDetail(contractDetail);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contract/create.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void createContract(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int contractId = Integer.parseInt(request.getParameter("contractId"));
+        String contractStartDate = request.getParameter("contractStartDate");
+        String contractEndDate = request.getParameter("contractEndDate");
+        double contractDeposit = Double.parseDouble(request.getParameter("contractDeposit"));
+        double contractTotalMoney = Double.parseDouble(request.getParameter("contractTotalMoney"));
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        int serviceId = Integer.parseInt(request.getParameter("serviceId"));
+        Contract contract = new Contract(contractId, contractStartDate, contractEndDate, contractDeposit, contractTotalMoney, employeeId, customerId, serviceId);
+        contractBO.insertContract(contract);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contract/create.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -186,10 +215,47 @@ public class HomePageServlet extends HttpServlet {
             case "searchEmployee":
                 searchEmpById(request, response);
                 break;
+            case "createContract":
+                showContractForm(request, response);
+                break;
+            case "listContract":
+                listContract(request, response);
+                break;
+            case "createContractDetail":
+                showContractDetailForm(request, response);
+                break;
+            case "listContractDetail":
+                listContractDetail(request, response);
+                break;
+
             default:
                 homePage(request, response);
                 break;
         }
+    }
+
+    private void listContractDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<ContractDetail> contractDetailList = contractDetailBO.selectAllContractDetail();
+        request.setAttribute("contractDetailList", contractDetailList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contractDetail/list.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showContractDetailForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contractDetail/create.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void listContract(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Contract> contractList = contractBO.selectAllContract();
+        request.setAttribute("contractList", contractList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contract/list.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showContractForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contract/create.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void searchEmpById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

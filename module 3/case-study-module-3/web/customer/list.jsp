@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="bootstrap413/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="datatables/css/dataTables.bootstrap4.min.css"/>
 </head>
 <body>
 <h1>Customer Management</h1>
@@ -24,40 +26,57 @@
 <h2>
     <a href="/HomePage?action=createCustomer">Add New Customer</a>
 </h2>
-</center>
-<div align="center">
-    <table border="1" cellpadding="5">
-        <caption><h2>List Of Customer</h2></caption>
-        <tr>
-            <th>Customer Id</th>
-            <th>Customer Type Id</th>
-            <th>Customer Name</th>
-            <th>Customer Birthday</th>
-            <th>Customer Gender</th>
-            <th>Customer Id Card</th>
-            <th>Customer Phone</th>
-            <th>Customer Email</th>
-            <th>Customer Address</th>
-            <th>Actions</th>
-        </tr>
-        <c:forEach var="customer" items="${customerList}">
-            <tr>
-                <td><c:out value="${customer.customerId}"/></td>
-                <td><c:out value="${customer.customerTypeId}"/></td>
-                <td><c:out value="${customer.customerName}"/></td>
-                <td><c:out value="${customer.customerBirthday}"/></td>
-                <td><c:out value="${customer.customerGender}"/></td>
-                <td><c:out value="${customer.customerIdCard}"/></td>
-                <td><c:out value="${customer.customerPhone}"/></td>
-                <td><c:out value="${customer.customerEmail}"/></td>
-                <td><c:out value="${customer.customerAddress}"/></td>
-                <td>
-                    <a href="/HomePage?action=update&customerId=${customer.customerId}">Update</a>
-                    <a href="/HomePage?action=delete&customerId=${customer.customerId}">Delete</a>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <table id="tableCustomer" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Customer Id</th>
+                    <th>Customer Type Id</th>
+                    <th>Customer Name</th>
+                    <th>Customer Birthday</th>
+                    <th>Customer Gender</th>
+                    <th>Customer Id Card</th>
+                    <th>Customer Phone</th>
+                    <th>Customer Email</th>
+                    <th>Customer Address</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="customer" items="${customerList}">
+                    <tr>
+                        <td><c:out value="${customer.customerId}"/></td>
+                        <td><c:out value="${customer.customerTypeId}"/></td>
+                        <td><c:out value="${customer.customerName}"/></td>
+                        <td><c:out value="${customer.customerBirthday}"/></td>
+                        <td><c:out value="${customer.customerGender}"/></td>
+                        <td><c:out value="${customer.customerIdCard}"/></td>
+                        <td><c:out value="${customer.customerPhone}"/></td>
+                        <td><c:out value="${customer.customerEmail}"/></td>
+                        <td><c:out value="${customer.customerAddress}"/></td>
+                        <td>
+                            <a href="/HomePage?action=update&customerId=${customer.customerId}">Update</a>
+                            <a href="/HomePage?action=delete&customerId=${customer.customerId}">Delete</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script src="datatables/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tableCustomer').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        });
+    });
+</script>
 </body>
 </html>
