@@ -61,7 +61,7 @@ public class HomePageServlet extends HttpServlet {
         int quanlity = Integer.parseInt(request.getParameter("quanlity"));
          ContractDetail contractDetail = new ContractDetail(contractDetailId, contractId, attachServiceId, quanlity);
         contractDetailBO.insertContractDetail(contractDetail);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/contract/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contract_detail/create.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -237,12 +237,12 @@ public class HomePageServlet extends HttpServlet {
     private void listContractDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<ContractDetail> contractDetailList = contractDetailBO.selectAllContractDetail();
         request.setAttribute("contractDetailList", contractDetailList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/contractDetail/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contract_detail/list.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showContractDetailForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/contractDetail/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contract_detail/create.jsp");
         dispatcher.forward(request, response);
     }
 
