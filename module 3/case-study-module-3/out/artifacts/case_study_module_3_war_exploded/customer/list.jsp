@@ -10,8 +10,8 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="bootstrap413/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="datatables/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="../bootstrap413/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../datatables/css/dataTables.bootstrap4.min.css"/>
 </head>
 <body>
 <h1>Customer Management</h1>
@@ -41,24 +41,27 @@
                     <th>Customer Phone</th>
                     <th>Customer Email</th>
                     <th>Customer Address</th>
-                    <th>Actions</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="customer" items="${customerList}">
+                <c:forEach var="customerUsingService" items="${customerList}">
                     <tr>
-                        <td><c:out value="${customer.customerId}"/></td>
-                        <td><c:out value="${customer.customerTypeId}"/></td>
-                        <td><c:out value="${customer.customerName}"/></td>
-                        <td><c:out value="${customer.customerBirthday}"/></td>
-                        <td><c:out value="${customer.customerGender}"/></td>
-                        <td><c:out value="${customer.customerIdCard}"/></td>
-                        <td><c:out value="${customer.customerPhone}"/></td>
-                        <td><c:out value="${customer.customerEmail}"/></td>
-                        <td><c:out value="${customer.customerAddress}"/></td>
+                        <td><c:out value="${customerUsingService.customerId}"/></td>
+                        <td><c:out value="${customerUsingService.customerTypeId}"/></td>
+                        <td><c:out value="${customerUsingService.customerName}"/></td>
+                        <td><c:out value="${customerUsingService.customerBirthday}"/></td>
+                        <td><c:out value="${customerUsingService.customerGender}"/></td>
+                        <td><c:out value="${customerUsingService.customerIdCard}"/></td>
+                        <td><c:out value="${customerUsingService.customerPhone}"/></td>
+                        <td><c:out value="${customerUsingService.customerEmail}"/></td>
+                        <td><c:out value="${customerUsingService.customerAddress}"/></td>
                         <td>
-                            <a href="/HomePage?action=update&customerId=${customer.customerId}">Update</a>
-                            <a href="/HomePage?action=delete&customerId=${customer.customerId}">Delete</a>
+                            <a href="/HomePage?action=update&customerId=${customerUsingService.customerId}">Update</a>
+                        </td>
+                        <td>
+                            <a href="/HomePage?action=delete&customerId=${customerUsingService.customerId}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -67,9 +70,9 @@
         </div>
     </div>
 </div>
-<script src="jquery/jquery-3.5.1.min.js"></script>
-<script src="datatables/js/jquery.dataTables.min.js"></script>
-<script src="datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="../jquery/jquery-3.5.1.min.js"></script>
+<script src="../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../datatables/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#tableCustomer').dataTable({

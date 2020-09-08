@@ -2,11 +2,11 @@ package model;
 
 public class ContractDetail {
     private int contractDetailId;
-    private int contractId;
+    private String contractId;
     private int attachServiceId;
     private int quanlity;
 
-    public ContractDetail(int contractDetailId, int contractId, int attachServiceId, int quanlity) {
+    public ContractDetail(int contractDetailId, String contractId, int attachServiceId, int quanlity) {
         this.contractDetailId = contractDetailId;
         this.contractId = contractId;
         this.attachServiceId = attachServiceId;
@@ -25,11 +25,11 @@ public class ContractDetail {
         this.contractDetailId = contractDetailId;
     }
 
-    public int getContractId() {
+    public String getContractId() {
         return contractId;
     }
 
-    public void setContractId(int contractId) {
+    public void setContractId(String contractId) {
         this.contractId = contractId;
     }
 

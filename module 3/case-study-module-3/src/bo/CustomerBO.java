@@ -2,6 +2,7 @@ package bo;
 
 import dao.CustomerDAO;
 import model.Customer;
+import model.CustomerUsingService;
 
 import java.util.List;
 
@@ -36,5 +37,10 @@ public class CustomerBO implements ICustomerBO {
     @Override
     public List<Customer> searchById(int customerId) {
         return customerDAO.searchById(customerId);
+    }
+
+    @Override
+    public List<CustomerUsingService> selectAllCustomerUsingService() {
+        return customerDAO.selectAllCustomerUsingService();
     }
 }

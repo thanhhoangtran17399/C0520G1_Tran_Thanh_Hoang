@@ -24,13 +24,13 @@ public class ContractDAO implements IContractDAO {
                 Contract contract = null;
                 while (resultSet.next()) {
                     contract = new Contract();
-                    contract.setContractId(resultSet.getInt("contract_id"));
+                    contract.setContractId(resultSet.getString("contract_id"));
                     contract.setContractStartDate(resultSet.getString("contract_start_date"));
                     contract.setContractEndDate(resultSet.getString("contract_end_date"));
                     contract.setContractDeposit(resultSet.getDouble("contract_deposit"));
                     contract.setContractTotalMoney(resultSet.getInt("contract_total_money"));
                     contract.setEmployeeId(resultSet.getInt("employee_id"));
-                    contract.setCustomerId(resultSet.getInt("customer_id"));
+                    contract.setCustomerId(resultSet.getString("customer_id"));
                     contract.setServiceId(resultSet.getInt("service_id"));
                     contractList.add(contract);
                 }
@@ -56,13 +56,13 @@ public class ContractDAO implements IContractDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(INSERT_NEW_CONTRACT);
-                statement.setInt(1, contract.getContractId());
+                statement.setString(1, contract.getContractId());
                 statement.setString(2, contract.getContractStartDate());
                 statement.setString(3, contract.getContractEndDate());
                 statement.setDouble(4, contract.getContractDeposit());
                 statement.setDouble(5, contract.getContractTotalMoney());
                 statement.setInt(6, contract.getEmployeeId());
-                statement.setInt(7, contract.getCustomerId());
+                statement.setString(7, contract.getCustomerId());
                 statement.setInt(8, contract.getServiceId());
                 statement.executeUpdate();
             } catch (SQLException throwables) {

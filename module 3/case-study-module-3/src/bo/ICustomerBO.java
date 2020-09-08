@@ -1,6 +1,7 @@
 package bo;
 
 import model.Customer;
+import model.CustomerUsingService;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface ICustomerBO {
 
     List<Customer> searchById(int customerId);
 
+    List<CustomerUsingService> selectAllCustomerUsingService();
 }

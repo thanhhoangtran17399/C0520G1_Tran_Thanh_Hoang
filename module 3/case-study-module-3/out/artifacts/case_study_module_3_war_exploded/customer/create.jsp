@@ -26,7 +26,7 @@
             <tr>
                 <th>Customer Id:</th>
                 <td>
-                    <input type="text" name="customerId" id="customerId" size="45"/>
+                    <input type="text" name="customerId" id="customerId" size="45" placeholder="${Message}"/>
                 </td>
             </tr>
             <tr>

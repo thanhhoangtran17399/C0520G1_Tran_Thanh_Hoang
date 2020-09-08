@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row" style="background: #c9d6df">
             <div class="col-lg-3">
-                <img src="../../case-study-module-3/logo.png" height="60" width="50" style="margin-left: 20px"/>
+                <img src="../img/logo.png" height="60" width="50" style="margin-left: 20px"/>
             </div>
             <div class="col-lg-9">
                 <h5 style="margin-left: 600px">Tran Thanh Hoang</h5>
@@ -77,16 +77,13 @@
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" >
                         <div class="carousel-item active">
-
-                        </div>
+                            <img src="../img/Furama-Resort1.jpg" height="570px" width="100%" ></div>
                         <div class="carousel-item">
-                            <img src="..." class="d-block w-100" alt="...">
-                        </div>
+                            <img src="../img/furama2.jpg" height="570px" width="100%" ></div>
                         <div class="carousel-item">
-                            <img src="..." class="d-block w-100" alt="...">
-                        </div>
+                            <img src="../img/furama3.jpg" height="570px" width="100%" ></div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

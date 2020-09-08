@@ -25,7 +25,7 @@ public class ContractDetailDAO implements IContractDetailDAO {
                 while (resultSet.next()) {
                     contractDetail = new ContractDetail();
                     contractDetail.setContractDetailId(resultSet.getInt("contract_detail_id"));
-                    contractDetail.setContractId(resultSet.getInt("contract_id"));
+                    contractDetail.setContractId(resultSet.getString("contract_id"));
                     contractDetail.setAttachServiceId(resultSet.getInt("attach_service_id"));
                     contractDetail.setQuanlity(resultSet.getInt("quanlity"));
                     contractDetailList.add(contractDetail);
@@ -53,7 +53,7 @@ public class ContractDetailDAO implements IContractDetailDAO {
             try {
                 statement = connection.prepareStatement(INSERT_NEW_CONTRACT_DETAIL);
                 statement.setInt(1, contractDetail.getContractDetailId());
-                statement.setInt(2, contractDetail.getContractId());
+                statement.setString(2, contractDetail.getContractId());
                 statement.setInt(3, contractDetail.getAttachServiceId());
                 statement.setInt(4, contractDetail.getQuanlity());
                 statement.executeUpdate();

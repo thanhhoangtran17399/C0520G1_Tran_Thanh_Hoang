@@ -1,16 +1,16 @@
 package model;
 
 public class Contract {
-    private int contractId;
+    private String contractId;
     private String contractStartDate;
     private String contractEndDate;
     private double contractDeposit;
     private double contractTotalMoney;
     private int employeeId;
-    private int customerId;
+    private String customerId;
     private int serviceId;
 
-    public Contract(int contractId, String contractStartDate, String contractEndDate, double contractDeposit, double contractTotalMoney, int employeeId, int customerId, int serviceId) {
+    public Contract(String contractId, String contractStartDate, String contractEndDate, double contractDeposit, double contractTotalMoney, int employeeId, String customerId, int serviceId) {
         this.contractId = contractId;
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
@@ -25,11 +25,11 @@ public class Contract {
 
     }
 
-    public int getContractId() {
+    public String getContractId() {
         return contractId;
     }
 
-    public void setContractId(int contractId) {
+    public void setContractId(String contractId) {
         this.contractId = contractId;
     }
 
@@ -73,11 +73,11 @@ public class Contract {
         this.employeeId = employeeId;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 

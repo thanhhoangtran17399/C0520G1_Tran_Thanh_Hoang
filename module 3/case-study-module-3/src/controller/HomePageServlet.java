@@ -1,6 +1,8 @@
 package controller;
 
 import bo.*;
+import bo.common.Validate;
+import jdk.nashorn.internal.ir.RuntimeNode;
 import model.*;
 
 import javax.servlet.RequestDispatcher;
@@ -56,7 +58,7 @@ public class HomePageServlet extends HttpServlet {
 
     private void createContractDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int contractDetailId = Integer.parseInt(request.getParameter("contractDetailId"));
-        int contractId = Integer.parseInt(request.getParameter("contractId"));
+        String contractId = request.getParameter("contractId");
         int attachServiceId = Integer.parseInt(request.getParameter("attachServiceId"));
         int quanlity = Integer.parseInt(request.getParameter("quanlity"));
          ContractDetail contractDetail = new ContractDetail(contractDetailId, contractId, attachServiceId, quanlity);
@@ -66,13 +68,13 @@ public class HomePageServlet extends HttpServlet {
     }
 
     private void createContract(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int contractId = Integer.parseInt(request.getParameter("contractId"));
+        String contractId = request.getParameter("contractId");
         String contractStartDate = request.getParameter("contractStartDate");
         String contractEndDate = request.getParameter("contractEndDate");
         double contractDeposit = Double.parseDouble(request.getParameter("contractDeposit"));
         double contractTotalMoney = Double.parseDouble(request.getParameter("contractTotalMoney"));
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        String customerId = request.getParameter("customerId");
         int serviceId = Integer.parseInt(request.getParameter("serviceId"));
         Contract contract = new Contract(contractId, contractStartDate, contractEndDate, contractDeposit, contractTotalMoney, employeeId, customerId, serviceId);
         contractBO.insertContract(contract);
@@ -139,7 +141,7 @@ public class HomePageServlet extends HttpServlet {
     }
 
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        String customerId = request.getParameter("customerId");
         int customerTypeId = Integer.parseInt(request.getParameter("customerTypeId"));
         String customerName = request.getParameter("customerName");
         String customerBirthday = request.getParameter("customerBirthday");
@@ -157,7 +159,7 @@ public class HomePageServlet extends HttpServlet {
     }
 
     private void createCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        String customerId = request.getParameter("customerId");
         int customerTypeId = Integer.parseInt(request.getParameter("customerTypeId"));
         String customerName = request.getParameter("customerName");
         String customerBirthday = request.getParameter("customerBirthday");
@@ -167,7 +169,13 @@ public class HomePageServlet extends HttpServlet {
         String customerEmail = request.getParameter("customerEmail");
         String customerAddress = request.getParameter("customerAddress");
         Customer customer = new Customer(customerId, customerTypeId, customerName, customerBirthday, customerGender, customerIdCard, customerPhone, customerEmail, customerAddress);
-        customerBO.insertCustomer(customer);
+        if(!Validate.isValid(customerId, Validate.CUSTOMER_ID_REGEX)){
+            request.setAttribute("Message", "Input is wrong!!!");
+        }
+        else {
+            customerBO.insertCustomer(customer);
+        }
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/create.jsp");
         dispatcher.forward(request, response);
     }
@@ -227,11 +235,21 @@ public class HomePageServlet extends HttpServlet {
             case "listContractDetail":
                 listContractDetail(request, response);
                 break;
+            case "listCustomerUsingService":
+                listCustomerUsingService(request, response);
+                break;
 
             default:
                 homePage(request, response);
                 break;
         }
+    }
+
+    private void listCustomerUsingService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<CustomerUsingService> customerUsingServiceList = customerBO.selectAllCustomerUsingService();
+        request.setAttribute("customerUsingServiceList", customerUsingServiceList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/list.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void listContractDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

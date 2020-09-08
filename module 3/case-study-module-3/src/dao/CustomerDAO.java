@@ -1,6 +1,7 @@
 package dao;
 
 import model.Customer;
+import model.CustomerUsingService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,7 +13,12 @@ public class CustomerDAO implements ICustomerDAO {
     private static final String SELECT_CUSTOMER_BY_ID = "select*from customer where customer_id = ?;";
     private static final String UPDATE_CUSTOMER = "update customer set customer_type_id = ?, customer_name = ?, customer_birthday = ?, customer_gender = ?, customer_id_card = ?, customer_phone = ?, customer_email = ?, customer_address = ? where customer_id = ?;";
     private static final String DELETE_CUSTOMER = "delete from customer where customer_id = ?;";
-
+    private static final String SELECT_ALL_CUSTOMER_USING_SERVICE = " select customer.customer_id, customer.customer_name, service.service_id, service.service_name, contract.contract_id, attach_service.attach_service_name\n" +
+            " from customer\n" +
+            " join contract on customer.customer_id = contract.customer_id\n" +
+            " join service on service.service_id = contract.service_id\n" +
+            " join contract_detail on contract.contract_id = contract_detail.contract_id\n" +
+            " join attach_service on attach_service.attach_service_id = contract_detail.attach_service_id;";
     @Override
     public List<Customer> selectAllCustomer() {
         Connection connection = DBConnection.getConnection();
@@ -26,7 +32,7 @@ public class CustomerDAO implements ICustomerDAO {
                 Customer customer = null;
                 while (resultSet.next()) {
                     customer = new Customer();
-                    customer.setCustomerId(resultSet.getInt("customer_id"));
+                    customer.setCustomerId(resultSet.getString("customer_id"));
                     customer.setCustomerTypeId(resultSet.getInt("customer_type_id"));
                     customer.setCustomerName(resultSet.getString("customer_name"));
                     customer.setCustomerBirthday(resultSet.getString("customer_birthday"));
@@ -59,7 +65,7 @@ public class CustomerDAO implements ICustomerDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(INSERT_NEW_CUSTOMER);
-                statement.setInt(1, customer.getCustomerId());
+                statement.setString(1, customer.getCustomerId());
                 statement.setInt(2, customer.getCustomerTypeId());
                 statement.setString(3, customer.getCustomerName());
                 statement.setString(4, customer.getCustomerBirthday());
@@ -94,7 +100,7 @@ public class CustomerDAO implements ICustomerDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     customer = new Customer();
-                    customer.setCustomerId(resultSet.getInt("customer_id"));
+                    customer.setCustomerId(resultSet.getString("customer_id"));
                     customer.setCustomerTypeId(resultSet.getInt("customer_type_id"));
                     customer.setCustomerName(resultSet.getString("customer_name"));
                     customer.setCustomerBirthday(resultSet.getString("customer_birthday"));
@@ -133,7 +139,7 @@ public class CustomerDAO implements ICustomerDAO {
                 statement.setString(6, customer.getCustomerPhone());
                 statement.setString(7, customer.getCustomerEmail());
                 statement.setString(8, customer.getCustomerAddress());
-                statement.setInt(9, customer.getCustomerId());
+                statement.setString(9, customer.getCustomerId());
                 rowUpdate = statement.executeUpdate() > 0;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -178,7 +184,7 @@ public class CustomerDAO implements ICustomerDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     Customer customer = new Customer();
-                    customer.setCustomerId(resultSet.getInt("customer_id"));
+                    customer.setCustomerId(resultSet.getString("customer_id"));
                     customer.setCustomerTypeId(resultSet.getInt("customer_type_id"));
                     customer.setCustomerName(resultSet.getString("customer_name"));
                     customer.setCustomerBirthday(resultSet.getString("customer_birthday"));
@@ -200,5 +206,41 @@ public class CustomerDAO implements ICustomerDAO {
             }
         }
         return customerList;
+    }
+
+    @Override
+    public List<CustomerUsingService> selectAllCustomerUsingService() {
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<CustomerUsingService> customerUsingServiceList = new ArrayList<>();
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement(SELECT_ALL_CUSTOMER_USING_SERVICE);
+                resultSet = statement.executeQuery();
+                CustomerUsingService customerUsingService = null;
+                while (resultSet.next()) {
+                    customerUsingService = new CustomerUsingService();
+                    customerUsingService.setCustomerId(resultSet.getInt("customer_id"));
+                    customerUsingService.setCustomerName(resultSet.getString("customer_name"));
+                    customerUsingService.setServiceId(resultSet.getInt("service_id"));
+                    customerUsingService.setServiceName(resultSet.getString("service_name"));
+                    customerUsingService.setContractId(resultSet.getInt("contract_id"));
+                    customerUsingService.setAttach_service_name(resultSet.getString("attach_service_name"));
+                    customerUsingServiceList.add(customerUsingService);
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } finally {
+                try {
+                    statement.close();
+                    resultSet.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                DBConnection.close();
+            }
+        }
+        return customerUsingServiceList;
     }
 }
