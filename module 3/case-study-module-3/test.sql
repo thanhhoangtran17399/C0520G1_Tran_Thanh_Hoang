@@ -2,7 +2,7 @@ drop database if exists test;
 create database test;
 use test;
 create table customer(
-customer_id int primary key,
+customer_id varchar(45) primary key,
 customer_type_id int,
 customer_name varchar(45),
 customer_birthday date,
@@ -42,19 +42,19 @@ username varchar(255)
 );
 
 create table contract(
-contract_id int primary key,
+contract_id varchar(45) primary key,
 contract_start_date date,
 contract_end_date date,
 contract_deposit double,
 contract_total_money double,
 employee_id int,
-customer_id int,
+customer_id varchar(45),
 service_id int
 );
 
  create table contract_detail(
  contract_detail_id int primary key,
- contract_id int,
+ contract_id varchar(45),
  attach_service_id int,
  quanlity int
  );
@@ -68,5 +68,5 @@ insert into customer(customer_id, customer_type_id, customer_name, customer_birt
 values (1,1,'1','2019-10-10',1,'1','1','1','1'),
 		(2,2,'2','2019-10-10',0,'2','2','2','2');
 select*from customer;
-select*from customer where customer_id = 2;
-update customer set customer_type_id = 4, customer_name = "e", customer_birthday = "2019-10-10", customer_gender = 1, customer_id_card = "2", customer_phone = "3", customer_email = "z", customer_address = "4" where customer_id = 1;
+select*from customer where customer_id = "2";
+update customer set customer_type_id = 4, customer_name = "e", customer_birthday = "2019-10-10", customer_gender = 1, customer_id_card = "2", customer_phone = "3", customer_email = "z", customer_address = "4" where customer_id = "1";

@@ -41,7 +41,7 @@
                         <td><c:out value="${customerUsingService.serviceId}"/></td>
                         <td><c:out value="${customerUsingService.serviceName}"/></td>
                         <td><c:out value="${customerUsingService.contractId}"/></td>
-                        <td><c:out value="${customerUsingService.attach_service_name}"/></td>
+                        <td><c:out value="${customerUsingService.attachServiceName}"/></td>
                         <td>
                             <a href="">Update</a>
                         </td>

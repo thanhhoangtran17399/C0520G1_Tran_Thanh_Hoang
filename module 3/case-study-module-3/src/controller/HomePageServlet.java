@@ -2,7 +2,6 @@ package controller;
 
 import bo.*;
 import bo.common.Validate;
-import jdk.nashorn.internal.ir.RuntimeNode;
 import model.*;
 
 import javax.servlet.RequestDispatcher;
@@ -75,7 +74,7 @@ public class HomePageServlet extends HttpServlet {
         double contractTotalMoney = Double.parseDouble(request.getParameter("contractTotalMoney"));
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
         String customerId = request.getParameter("customerId");
-        int serviceId = Integer.parseInt(request.getParameter("serviceId"));
+        String serviceId = request.getParameter("serviceId");
         Contract contract = new Contract(contractId, contractStartDate, contractEndDate, contractDeposit, contractTotalMoney, employeeId, customerId, serviceId);
         contractBO.insertContract(contract);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/contract/create.jsp");
@@ -117,16 +116,21 @@ public class HomePageServlet extends HttpServlet {
         int divisionId = Integer.parseInt(request.getParameter("divisionId"));
         String username = request.getParameter("username");
         Employee employee = new Employee(employeeId, employeeName, employeeBirthday, employeeIdCard, employeeSalary, employeePhone, employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId, username);
-        employeeBO.insertEmployee(employee);
+        if(!Validate.isValid(employeeIdCard, Validate.ID_CARD_REGEX)){
+            request.setAttribute("Message", "Input is wrong!!!");
+        }
+        else {
+            employeeBO.insertEmployee(employee);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/create.jsp");
         dispatcher.forward(request, response);
     }
 
     private void createService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int serviceId = Integer.parseInt(request.getParameter("serviceId"));
+        String serviceId = (request.getParameter("serviceId"));
         String serviceName = request.getParameter("serviceName");
         int serviceArea = Integer.parseInt(request.getParameter("serviceArea"));
-        double serviceCode = Double.parseDouble(request.getParameter("serviceCode"));
+        double serviceCost = Double.parseDouble(request.getParameter("serviceCost"));
         int serviceMaxPeople = Integer.parseInt(request.getParameter("serviceMaxPeople"));
         int rentTypeId = Integer.parseInt(request.getParameter("rentTypeId"));
         int serviceTypeId = Integer.parseInt(request.getParameter("serviceTypeId"));
@@ -134,8 +138,13 @@ public class HomePageServlet extends HttpServlet {
         String descriptionOtherConvenionce = request.getParameter("descriptionOtherConvenionce");
         double poolArea = Double.parseDouble(request.getParameter("poolArea"));
         int numberOfFloors = Integer.parseInt(request.getParameter("numberOfFloors"));
-        Service service = new Service(serviceId, serviceName, serviceArea, serviceCode, serviceMaxPeople, rentTypeId, serviceTypeId, standardRoom, descriptionOtherConvenionce, poolArea,numberOfFloors );
-        serviceBO.insertService(service);
+        Service service = new Service(serviceId, serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId, standardRoom, descriptionOtherConvenionce, poolArea,numberOfFloors );
+        if(!Validate.isValid(serviceId, Validate.SERVICE_ID_REGEX)){
+            request.setAttribute("Message", "Input is wrong!!!");
+        }
+        else {
+            serviceBO.insertService(service);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/service/create.jsp");
         dispatcher.forward(request, response);
     }
@@ -151,7 +160,12 @@ public class HomePageServlet extends HttpServlet {
         String customerEmail = request.getParameter("customerEmail");
         String customerAddress = request.getParameter("customerAddress");
         Customer customer = new Customer(customerId, customerTypeId, customerName, customerBirthday, customerGender, customerIdCard, customerPhone, customerEmail, customerAddress);
-        customerBO.updateCustomer(customer);
+        if(!Validate.isValid(customerId, Validate.CUSTOMER_ID_REGEX) && !Validate.isValid(customerIdCard, Validate.ID_CARD_REGEX)){
+            request.setAttribute("Message", "Input is wrong!!!");
+        }
+        else {
+            customerBO.updateCustomer(customer);
+        }
         List<Customer> customerList = customerBO.selectAllCustomer();
         request.setAttribute("customerList", customerList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/list.jsp");
@@ -169,7 +183,7 @@ public class HomePageServlet extends HttpServlet {
         String customerEmail = request.getParameter("customerEmail");
         String customerAddress = request.getParameter("customerAddress");
         Customer customer = new Customer(customerId, customerTypeId, customerName, customerBirthday, customerGender, customerIdCard, customerPhone, customerEmail, customerAddress);
-        if(!Validate.isValid(customerId, Validate.CUSTOMER_ID_REGEX)){
+        if(!Validate.isValid(customerId, Validate.CUSTOMER_ID_REGEX) && !Validate.isValid(customerIdCard, Validate.ID_CARD_REGEX)){
             request.setAttribute("Message", "Input is wrong!!!");
         }
         else {
@@ -238,7 +252,6 @@ public class HomePageServlet extends HttpServlet {
             case "listCustomerUsingService":
                 listCustomerUsingService(request, response);
                 break;
-
             default:
                 homePage(request, response);
                 break;
@@ -248,7 +261,7 @@ public class HomePageServlet extends HttpServlet {
     private void listCustomerUsingService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<CustomerUsingService> customerUsingServiceList = customerBO.selectAllCustomerUsingService();
         request.setAttribute("customerUsingServiceList", customerUsingServiceList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/listUserService.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -277,7 +290,7 @@ public class HomePageServlet extends HttpServlet {
     }
 
     private void searchEmpById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int employeeId = Integer.parseInt(request.getParameter("customerId"));
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
         List<Employee> employeeList = employeeBO.searchEmpById(employeeId);
         request.setAttribute("employeeList", employeeList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/list.jsp");
@@ -326,7 +339,7 @@ public class HomePageServlet extends HttpServlet {
     }
 
     private void searchById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        String customerId = request.getParameter("customerId");
         List<Customer> customerList = customerBO.searchById(customerId);
         request.setAttribute("customerList", customerList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/list.jsp");
@@ -334,7 +347,7 @@ public class HomePageServlet extends HttpServlet {
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        String customerId = request.getParameter("customerId");
         customerBO.deleteCustomer(customerId);
         List<Customer> customerList = customerBO.selectAllCustomer();
         request.setAttribute("customerList", customerList);
@@ -343,7 +356,7 @@ public class HomePageServlet extends HttpServlet {
     }
 
     private void showUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        String customerId = request.getParameter("customerId");
         Customer customer = customerBO.selectCustomer(customerId);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/update.jsp");
         request.setAttribute("customer", customer);

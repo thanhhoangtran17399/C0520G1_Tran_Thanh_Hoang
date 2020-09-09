@@ -88,7 +88,7 @@ public class CustomerDAO implements ICustomerDAO {
     }
 
     @Override
-    public Customer selectCustomer(int customerId) {
+    public Customer selectCustomer(String customerId) {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -96,7 +96,7 @@ public class CustomerDAO implements ICustomerDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
-                statement.setInt(1, customerId);
+                statement.setString(1, customerId);
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     customer = new Customer();
@@ -155,14 +155,14 @@ public class CustomerDAO implements ICustomerDAO {
     }
 
     @Override
-    public boolean deleteCustomer(int customerId) {
+    public boolean deleteCustomer(String customerId) {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         boolean rowDeleted = false;
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(DELETE_CUSTOMER);
-                statement.setInt(1, customerId);
+                statement.setString(1, customerId);
                 rowDeleted = statement.executeUpdate() > 0;
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -172,7 +172,7 @@ public class CustomerDAO implements ICustomerDAO {
     }
 
     @Override
-    public List<Customer> searchById(int customerId) {
+    public List<Customer> searchById(String customerId) {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -180,7 +180,7 @@ public class CustomerDAO implements ICustomerDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
-                statement.setInt(1, customerId);
+                statement.setString(1, customerId);
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     Customer customer = new Customer();
@@ -221,12 +221,12 @@ public class CustomerDAO implements ICustomerDAO {
                 CustomerUsingService customerUsingService = null;
                 while (resultSet.next()) {
                     customerUsingService = new CustomerUsingService();
-                    customerUsingService.setCustomerId(resultSet.getInt("customer_id"));
+                    customerUsingService.setCustomerId(resultSet.getString("customer_id"));
                     customerUsingService.setCustomerName(resultSet.getString("customer_name"));
                     customerUsingService.setServiceId(resultSet.getInt("service_id"));
                     customerUsingService.setServiceName(resultSet.getString("service_name"));
                     customerUsingService.setContractId(resultSet.getInt("contract_id"));
-                    customerUsingService.setAttach_service_name(resultSet.getString("attach_service_name"));
+                    customerUsingService.setAttachServiceName(resultSet.getString("attach_service_name"));
                     customerUsingServiceList.add(customerUsingService);
                 }
             } catch (SQLException throwables) {

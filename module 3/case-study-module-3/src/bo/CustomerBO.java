@@ -20,7 +20,7 @@ public class CustomerBO implements ICustomerBO {
     }
 
     @Override
-    public Customer selectCustomer(int customerId) {
+    public Customer selectCustomer(String customerId) {
         return customerDAO.selectCustomer(customerId);
     }
 
@@ -30,12 +30,12 @@ public class CustomerBO implements ICustomerBO {
     }
 
     @Override
-    public boolean deleteCustomer(int customerId) {
+    public boolean deleteCustomer(String customerId) {
         return customerDAO.deleteCustomer(customerId);
     }
 
     @Override
-    public List<Customer> searchById(int customerId) {
+    public List<Customer> searchById(String customerId) {
         return customerDAO.searchById(customerId);
     }
 

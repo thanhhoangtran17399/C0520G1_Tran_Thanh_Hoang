@@ -15,9 +15,6 @@ public class Validate {
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(str);
         boolean check = matcher.matches();
-        if (!check){
-            System.out.println("Input is wrong !!!" + regex);
-        }
         return check;
     }
 }

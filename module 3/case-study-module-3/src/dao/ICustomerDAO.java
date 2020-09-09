@@ -10,13 +10,13 @@ public interface ICustomerDAO {
 
     void insertCustomer(Customer customer);
 
-    Customer selectCustomer(int customerId);
+    Customer selectCustomer(String customerId);
 
     boolean updateCustomer(Customer customer);
 
-    boolean deleteCustomer(int customerId);
+    boolean deleteCustomer(String customerId);
 
-    List<Customer> searchById(int customerId);
+    List<Customer> searchById(String customerId);
 
     List<CustomerUsingService> selectAllCustomerUsingService();
 

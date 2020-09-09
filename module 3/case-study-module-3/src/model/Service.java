@@ -1,10 +1,10 @@
 package model;
 
 public class Service {
-    private int serviceId;
+    private String serviceId;
     private String serviceName;
     private int serviceArea;
-    private double serviceCode;
+    private double serviceCost;
     private int serviceMaxPeople;
     private int rentTypeId;
     private int serviceTypeId;
@@ -13,29 +13,29 @@ public class Service {
     private double poolArea;
     private int numberOfFloors;
 
-    public Service(int serviceId, String serviceName, int serviceArea, double serviceCode, int serviceMaxPeople, int rentTypeId, int serviceTypeId, String standard_room, String description_other_convenionce, double pool_area, int number_of_floors) {
+    public Service(String serviceId, String serviceName, int serviceArea, double serviceCost, int serviceMaxPeople, int rentTypeId, int serviceTypeId, String standardRoom, String descriptionOtherConvenionce, double poolArea, int numberOfFloors) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.serviceArea = serviceArea;
-        this.serviceCode = serviceCode;
+        this.serviceCost = serviceCost;
         this.serviceMaxPeople = serviceMaxPeople;
         this.rentTypeId = rentTypeId;
         this.serviceTypeId = serviceTypeId;
-        this.standardRoom = standard_room;
-        this.descriptionOtherConvenionce = description_other_convenionce;
-        this.poolArea = pool_area;
-        this.numberOfFloors = number_of_floors;
+        this.standardRoom = standardRoom;
+        this.descriptionOtherConvenionce = descriptionOtherConvenionce;
+        this.poolArea = poolArea;
+        this.numberOfFloors = numberOfFloors;
     }
 
     public Service() {
 
     }
 
-    public int getServiceId() {
+    public String getServiceId() {
         return serviceId;
     }
 
-    public void setServiceId(int serviceId) {
+    public void setServiceId(String serviceId) {
         this.serviceId = serviceId;
     }
 
@@ -55,12 +55,12 @@ public class Service {
         this.serviceArea = serviceArea;
     }
 
-    public double getServiceCode() {
-        return serviceCode;
+    public double getServiceCost() {
+        return serviceCost;
     }
 
-    public void setServiceCode(double serviceCode) {
-        this.serviceCode = serviceCode;
+    public void setServiceCost(double serviceCost) {
+        this.serviceCost = serviceCost;
     }
 
     public int getServiceMaxPeople() {

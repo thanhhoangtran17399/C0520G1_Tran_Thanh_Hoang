@@ -9,7 +9,7 @@ customer_type_name varchar(45)
  create table rent_type(
  rent_type_id int primary key,
  rent_type_name varchar(45),
- rent_type_code double
+ rent_type_cost double
  );
  
  create table attach_service(
@@ -22,7 +22,7 @@ customer_type_name varchar(45)
  
 
 create table customer(
-customer_id int primary key,
+customer_id varchar(45) primary key,
 customer_type_id int,
 customer_name varchar(45),
 customer_birthday date,
@@ -31,7 +31,8 @@ customer_id_card varchar(45),
 customer_phone varchar(45),
 customer_email varchar(45),
 customer_address varchar(45),	
-foreign key (customer_type_id) references customer_type(customer_type_id)
+foreign key (customer_type_id) references customer_type(customer_type_id) on delete cascade 
+on update cascade
 );
 
 
@@ -70,7 +71,7 @@ create table service(
 service_id int primary key,
 service_name varchar(45),
 service_area int,
-service_code double,
+service_cost double,
 service_max_people int,
 rent_type_id int,
 service_type_id int,
@@ -78,9 +79,10 @@ standard_room varchar(45),
 description_other_convenionce varchar(45),
 pool_area double,
 number_of_floors int,
-foreign key (rent_type_id) references rent_type(rent_type_id),
-foreign key (service_type_id) references service_type(service_type_id)
-
+foreign key (rent_type_id) references rent_type(rent_type_id) on delete cascade 
+on update cascade,
+foreign key (service_type_id) references service_type(service_type_id) on delete cascade 
+on update cascade
 );
 
 create table employee(
@@ -96,48 +98,144 @@ position_id int,
 education_degree_id int,
 division_id int,
 username varchar(255),
-foreign key (position_id) references position_employee(position_id),
-foreign key (education_degree_id) references education_degree(education_degree_id),
-foreign key (division_id) references division(division_id),
-foreign key (username) references user(user_name)
+foreign key (position_id) references position_employee(position_id) on delete cascade 
+on update cascade,
+foreign key (education_degree_id) references education_degree(education_degree_id) on delete cascade 
+on update cascade,
+foreign key (division_id) references division(division_id) on delete cascade 
+on update cascade,
+foreign key (username) references user(user_name) on delete cascade 
+on update cascade
 
 );
 
 create table contract(
-contract_id int primary key,
+contract_id varchar(45) primary key,
 contract_start_date date,
 contract_end_date date,
 contract_deposit double,
 contract_total_money double,
-employee_id int,
-customer_id int,
+employee_id  int,
+customer_id varchar(45),
 service_id int,
-foreign key(employee_id) references employee(employee_id),
-foreign key(customer_id) references customer(customer_id),
-foreign key(service_id) references service(service_id)
+foreign key(employee_id) references employee(employee_id) on delete cascade 
+on update cascade,
+foreign key(customer_id) references customer(customer_id) on delete cascade 
+on update cascade,
+foreign key(service_id) references service(service_id) on delete cascade 
+on update cascade
 );
 
  create table user_role(
  user_name varchar(255),
  role_id int,
 primary key(user_name,role_id),
-foreign key(user_name) references user(user_name),
-foreign key(role_id) references role(role_id)
+foreign key(user_name) references user(user_name) on delete cascade 
+on update cascade,
+foreign key(role_id) references role(role_id) on delete cascade 
+on update cascade
  );
  
  create table contract_detail(
  contract_detail_id int primary key,
- contract_id int,
+ contract_id varchar(45),
  attach_service_id int,
  quanlity int,
- foreign key (attach_service_id) references attach_service(attach_service_id),
- foreign key (contract_id) references contract(contract_id)
+ foreign key (attach_service_id) references attach_service(attach_service_id) on delete cascade 
+on update cascade,
+ foreign key (contract_id) references contract(contract_id) on delete cascade 
+on update cascade
  );
- insert into customer_type() values (1,'a');
  
-insert into customer(customer_id, customer_type_id, customer_name, customer_birthday, customer_gender, customer_id_card, customer_phone, customer_email, customer_address) 
-values (1,1,'1','2019-10-10',1,'1','1','1','1');
+insert into position_employee(position_id,position_name )
+values ("1","Lễ tân"),
+	   ("2","Phục vụ"),
+	   ("3","Chuyên viên"),
+	   ("4","Giám sát"),
+	   ("5","Quản lý"),
+	   ("6","Giám đốc");
+insert into education_degree(education_degree_id,education_degree_name)
+values ("1","Trung cấp"),
+       ("2","Cao đẳng"),
+       ("3","Đại học"),
+       ("4","Sau đại học");
+insert into division(division_id,division_name)
+value ("1","Sale marketing"),
+	  ("2","Hành Chính"),
+	  ("3","Phục vụ"),
+	  ("4","Quản lý");
+	
+insert into user(user_name,password)
+value ("Quang","130801"),
+	  ("Nhat","120900"),
+	  ("Hoang","040199"),
+	  ("HienTrumJav","121296");
+insert into role(role_id,role_name)
+value ("1","a"),
+	  ("2","b"),
+	  ("3","c"),
+	  ("4","d");
+insert into user_role(role_id,user_name)
+value ("1","Quang"),
+	  ("2","Nhat"),
+	  ("3","Hoang"),
+	  ("4","HienTrumJav");
+insert into employee(employee_id,employee_name,employee_birthday,employee_id_card,employee_salary,employee_phone,employee_email,employee_address,position_id,education_degree_id,division_id,username)
+value ("1","Remu Suzumori","1999/01/01","123",200.0,"0466764237","kimochi@gmail.com","japan","1","1","2","HienTrumJav"),
+      ("2","Nishinomiya Konomi","2000/01/01","234",200.0,"0566764237","yamate@gmail.com","japan","2","2","1","Hoang"),
+      ("3","June Liu","1998/01/01","345",200.0,"0468964237","hehehegmail.com","China","3","1","3","Nhat"),
+      ("4","Iori Kogawa","1995/01/01","456",200.0,"0366764237","hahahag@gmail.com","japan","4","4","1","HienTrumJav"),
+      ("5","Risa Tachibana","1996/01/01","567",200.0,"0196764237","hihihi@gmail.com","japan","5","3","2","Hoang"),
+      ("6","Yumi Maeda","1997/01/01","678",200.0,"0166764237","aaaa@gmail.com","japan","6","1","4","Quang");
+insert into customer_type(customer_type_id,customer_type_name)
+value ("1","Diamond"),
+	  ("2","Platinium"),
+	  ("3","Gold"),
+	  ("4","Silver"),
+	  ("5","Member");
+insert into customer (customer_id ,customer_type_id ,customer_name, customer_birthday,customer_gender,customer_id_card ,customer_phone ,customer_email ,customer_address)
+value ("1","2","Hoang",'1999-03-17',1,"433","0394772917","hoangdeptrai@gmail.com","Viet Nam"),
+	("2","2","HaiDuoi",'1950-09-09',1,"433","0394772917","haiduoi123@gmail.com","Viet Nam"),
+	("3","2","Nhat",'2020-09-09',1,"433","0394772917","nhatvogiacu@gmail.com","Viet Nam"),
+	("4","2","Quang",'1900-09-09',1,"433","0394772917","yeuMai@gmail.com","Viet Nam"),
+	("5","2","HienTrumJav",'2100-09-09',1,"433","0394772917","trụmjav@gmail.com","Viet Nam");
+insert into service_type(service_type_id,service_type_name)
+value ("1","Villa"),
+	  ("2","House"),
+	  ("3","Room");
+	
+insert into rent_type(rent_type_id,rent_type_name,rent_type_cost)
+value ("1","Thuê theo năm",30.0),
+	  ("2","Thuê theo tháng",20.0),
+	  ("3","Thuê theo ngày",10.0),
+	  ("4","Thuê theo giờ",5.0);
+insert into service(service_id,service_name,service_area,service_cost,service_max_people,rent_type_id ,service_type_id,standard_room ,description_other_convenionce,pool_area,number_of_floors)
+value ("1","Villa",40,50,3,1,1,"Vip","2 phòng ngủ",30,4),
+      ("2","House",20,60,4,2,2,"thường","1 phòng tắm",20,6),
+	  ("3","Room",40,50,5,3,3,"Vip","1 giường",30,3);
+	
+insert into contract(contract_id,contract_start_date ,contract_end_date ,contract_deposit,contract_total_money,employee_id,customer_id,service_id )
+value ("1","2020/09/04","2020/09/11",100.0,200.0,"1","1","2"),
+		("2","2020/09/04","2020/09/11",100.0,200.0,"4","1","2"),
+		("4","2020/09/04","2020/09/11",100.0,200.0,"3","4","1"),
+		("3","2020/09/04","2020/09/11",100.0,200.0,"5","3","3"),
+		("5","2020/09/04","2020/09/11",100.0,200.0,"6","2","2");
+insert into attach_service(attach_service_id,attach_service_name,attach_service_cost,attach_service_unit,attach_service_status)
+value ("1","massage",100.0,2,"có sẵn"),
+	  ("2","karaoke",50.0,4,"có sẵn"),
+	  ("3","thức ăn",10.0,4,"có sẵn"),
+	  ("4","nước uống",10.0,4,"có sẵn"),
+	  ("5","thuê xe",10.0,4,"có sẵn");
+insert into contract_detail(contract_detail_id,contract_id,attach_service_id,quanlity)
+value ("1","1","1",1),
+	  ("2","2","2",5),
+      ("3","3","3",2),
+      ("4","4","5",3),
+      ("5","5","4",2);
 
-select*from customer;
-
-
+ select customer.customer_id, customer.customer_name, service.service_id, service.service_name, contract.contract_id, attach_service.attach_service_name
+ from customer
+ join contract on customer.customer_id = contract.customer_id
+ join service on service.service_id = contract.service_id
+ join contract_detail on contract.contract_id = contract_detail.contract_id
+ join attach_service on attach_service.attach_service_id = contract_detail.attach_service_id;

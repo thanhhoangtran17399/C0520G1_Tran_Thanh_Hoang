@@ -1,31 +1,31 @@
 package model;
 
 public class CustomerUsingService {
-    private int customerId;
+    private String customerId;
     private String customerName;
     private int serviceId;
     private String serviceName;
     private int contractId;
-    private  String attach_service_name;
+    private  String attachServiceName;
 
-    public CustomerUsingService(int customerId, String customerName, int serviceId, String serviceName, int contractId, String attach_service_name) {
+    public CustomerUsingService(String customerId, String customerName, int serviceId, String serviceName, int contractId, String attachServiceName) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.contractId = contractId;
-        this.attach_service_name = attach_service_name;
+        this.attachServiceName = attachServiceName;
     }
 
     public CustomerUsingService() {
 
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
@@ -61,11 +61,11 @@ public class CustomerUsingService {
         this.contractId = contractId;
     }
 
-    public String getAttach_service_name() {
-        return attach_service_name;
+    public String getAttachServiceName() {
+        return attachServiceName;
     }
 
-    public void setAttach_service_name(String attach_service_name) {
-        this.attach_service_name = attach_service_name;
+    public void setAttachServiceName(String attachServiceName) {
+        this.attachServiceName = attachServiceName;
     }
 }

@@ -52,7 +52,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contract</a>
+                                <a class="nav-link" href="/HomePage?action=listContract">Contract</a>
                             </li>
                         </ul>
                         <form class="form-inline my-2 my-lg-0">

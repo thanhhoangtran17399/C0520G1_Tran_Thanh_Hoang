@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ServiceDAO implements IServiceDAO {
     private static final String SELECT_ALL_SERVICE = "select*from service;";
-    private static final String INSERT_NEW_SERVICE = "insert into service(service_id, service_name, service_area, service_code, service_max_people, rent_type_id, service_type_id, standard_room, description_other_convenionce, pool_area, number_of_floors) values (?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String INSERT_NEW_SERVICE = "insert into service(service_id, service_name, service_area, service_cost, service_max_people, rent_type_id, service_type_id, standard_room, description_other_convenionce, pool_area, number_of_floors) values (?,?,?,?,?,?,?,?,?,?,?);";
     @Override
     public List<Service> selectAllService() {
         Connection connection = DBConnection.getConnection();
@@ -25,10 +25,10 @@ public class ServiceDAO implements IServiceDAO {
                 Service service = null;
                 while (resultSet.next()) {
                     service = new Service();
-                    service.setServiceId(resultSet.getInt("service_id"));
+                    service.setServiceId(resultSet.getString("service_id"));
                     service.setServiceName(resultSet.getString("service_name"));
                     service.setServiceArea(resultSet.getInt("service_area"));
-                    service.setServiceCode(resultSet.getDouble("service_code"));
+                    service.setServiceCost(resultSet.getDouble("service_cost"));
                     service.setServiceMaxPeople(resultSet.getInt("service_max_people"));
                     service.setRentTypeId(resultSet.getInt("rent_type_id"));
                     service.setServiceTypeId(resultSet.getInt("service_type_id"));
@@ -60,10 +60,10 @@ public class ServiceDAO implements IServiceDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(INSERT_NEW_SERVICE);
-                statement.setInt(1, service.getServiceId());
+                statement.setString(1, service.getServiceId());
                 statement.setString(2, service.getServiceName());
                 statement.setInt(3, service.getServiceArea());
-                statement.setDouble(4, service.getServiceCode());
+                statement.setDouble(4, service.getServiceCost());
                 statement.setInt(5, service.getServiceMaxPeople());
                 statement.setInt(6, service.getRentTypeId());
                 statement.setInt(7, service.getServiceTypeId());

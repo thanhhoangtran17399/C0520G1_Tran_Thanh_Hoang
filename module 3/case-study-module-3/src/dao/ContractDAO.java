@@ -31,7 +31,7 @@ public class ContractDAO implements IContractDAO {
                     contract.setContractTotalMoney(resultSet.getInt("contract_total_money"));
                     contract.setEmployeeId(resultSet.getInt("employee_id"));
                     contract.setCustomerId(resultSet.getString("customer_id"));
-                    contract.setServiceId(resultSet.getInt("service_id"));
+                    contract.setServiceId(resultSet.getString("service_id"));
                     contractList.add(contract);
                 }
             } catch (SQLException throwables) {
@@ -63,7 +63,7 @@ public class ContractDAO implements IContractDAO {
                 statement.setDouble(5, contract.getContractTotalMoney());
                 statement.setInt(6, contract.getEmployeeId());
                 statement.setString(7, contract.getCustomerId());
-                statement.setInt(8, contract.getServiceId());
+                statement.setString(8, contract.getServiceId());
                 statement.executeUpdate();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

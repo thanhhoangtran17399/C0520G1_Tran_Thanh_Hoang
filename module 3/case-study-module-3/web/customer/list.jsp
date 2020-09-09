@@ -22,10 +22,8 @@
     <input type="submit" value="search">
     <input type="text" name="customerId">
 </form>
-
-<h2>
-    <a href="/HomePage?action=createCustomer">Add New Customer</a>
-</h2>
+<button> <a href="/HomePage?action=createCustomer">Add New Customer</a></button><br>
+<button> <a href="/HomePage?action=listCustomerUsingService">List Customer Using Service</a></button>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
