@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <label for="employeeIdCard">Employee Id Card</label>
-            <input type="text" name="employeeIdCard" id="employeeIdCard" class="form-control" value="${employee.employeeIdCard}">
+            <input type="text" name="employeeIdCard" id="employeeIdCard" class="form-control" value="${employee.employeeIdCard}" placeholder="${Message2}">
         </div>
         <div class="form-group">
             <label for="employeeSalary">Employee Salary</label>
@@ -43,11 +43,11 @@
         </div>
         <div class="form-group">
             <label for="employeePhone">Employee Phone</label>
-            <input type="text" name="employeePhone" id="employeePhone" class="form-control" value="${employee.employeePhone}">
+            <input type="text" name="employeePhone" id="employeePhone" class="form-control" value="${employee.employeePhone}" placeholder="${Message3}">
         </div>
         <div class="form-group">
             <label for="employeeEmail">Employee Email</label>
-            <input type="text" name="employeeEmail" id="employeeEmail" class="form-control" value="${employee.employeeEmail}">
+            <input type="text" name="employeeEmail" id="employeeEmail" class="form-control" value="${employee.employeeEmail}" placeholder="${Message4}">
         </div>
         <div class="form-group">
             <label for="employeeAddress">Employee Address</label>

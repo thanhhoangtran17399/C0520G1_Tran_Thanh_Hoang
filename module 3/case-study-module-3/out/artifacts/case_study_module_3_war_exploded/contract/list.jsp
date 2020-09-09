@@ -39,16 +39,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="contractDetail" items="${contractList}">
+                <c:forEach var="employee" items="${contractList}">
                     <tr>
-                        <td><c:out value="${contractDetail.contractId}"/></td>
-                        <td><c:out value="${contractDetail.contractStartDate}"/></td>
-                        <td><c:out value="${contractDetail.contractEndDate}"/></td>
-                        <td><c:out value="${contractDetail.contractDeposit}"/></td>
-                        <td><c:out value="${contractDetail.contractTotalMoney}"/></td>
-                        <td><c:out value="${contractDetail.employeeId}"/></td>
-                        <td><c:out value="${contractDetail.customerId}"/></td>
-                        <td><c:out value="${contractDetail.serviceId}"/></td>
+                        <td><c:out value="${employee.contractId}"/></td>
+                        <td><c:out value="${employee.contractStartDate}"/></td>
+                        <td><c:out value="${employee.contractEndDate}"/></td>
+                        <td><c:out value="${employee.contractDeposit}"/></td>
+                        <td><c:out value="${employee.contractTotalMoney}"/></td>
+                        <td><c:out value="${employee.employeeId}"/></td>
+                        <td><c:out value="${employee.customerId}"/></td>
+                        <td><c:out value="${employee.serviceId}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>

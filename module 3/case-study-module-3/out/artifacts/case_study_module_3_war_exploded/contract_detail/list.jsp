@@ -27,12 +27,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="contractDetail" items="${contractDetailList}">
+                <c:forEach var="employee" items="${contractDetailList}">
                     <tr>
-                        <td><c:out value="${contractDetail.contractDetailId}"/></td>
-                        <td><c:out value="${contractDetail.contractId}"/></td>
-                        <td><c:out value="${contractDetail.attachServiceId}"/></td>
-                        <td><c:out value="${contractDetail.quanlity}"/></td>
+                        <td><c:out value="${employee.contractDetailId}"/></td>
+                        <td><c:out value="${employee.contractId}"/></td>
+                        <td><c:out value="${employee.attachServiceId}"/></td>
+                        <td><c:out value="${employee.quanlity}"/></td>
 
                     </tr>
                 </c:forEach>

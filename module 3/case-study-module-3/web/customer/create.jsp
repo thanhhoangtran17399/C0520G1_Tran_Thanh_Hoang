@@ -26,7 +26,7 @@
             <tr>
                 <th>Customer Id:</th>
                 <td>
-                    <input type="text" name="customerId" id="customerId" size="45" placeholder="${Message}"/>
+                    <input type="text" name="customerId" id="customerId" size="45" placeholder="${Message1}"/>
                 </td>
             </tr>
             <tr>
@@ -56,19 +56,19 @@
             <tr>
                 <th>Customer Id Card:</th>
                 <td>
-                    <input type="text" name="customerIdCard" id="customerIdCard" size="45"/>
+                    <input type="text" name="customerIdCard" id="customerIdCard" size="45" placeholder="${Message2}"/>
                 </td>
             </tr>
             <tr>
                 <th>Customer Phone:</th>
                 <td>
-                    <input type="text" name="customerPhone" id="customerPhone" size="45"/>
+                    <input type="text" name="customerPhone" id="customerPhone" size="45" placeholder="${Message3}"/>
                 </td>
             </tr>
             <tr>
                 <th>Customer Email:</th>
                 <td>
-                    <input type="text" name="customerEmail" id="customerEmail" size="45"/>
+                    <input type="text" name="customerEmail" id="customerEmail" size="45" placeholder="${Message3}"/>
                 </td>
             </tr>
             <tr>

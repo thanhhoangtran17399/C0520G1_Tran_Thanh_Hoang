@@ -44,25 +44,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="contractDetail" items="${employeeList}">
+                <c:forEach var="employee" items="${employeeList}">
                     <tr>
-                        <td><c:out value="${contractDetail.employeeId}"/></td>
-                        <td><c:out value="${contractDetail.employeeName}"/></td>
-                        <td><c:out value="${contractDetail.employeeBirthday}"/></td>
-                        <td><c:out value="${contractDetail.employeeIdCard}"/></td>
-                        <td><c:out value="${contractDetail.employeeSalary}"/></td>
-                        <td><c:out value="${contractDetail.employeePhone}"/></td>
-                        <td><c:out value="${contractDetail.employeeEmail}"/></td>
-                        <td><c:out value="${contractDetail.employeeAddress}"/></td>
-                        <td><c:out value="${contractDetail.positionId}"/></td>
-                        <td><c:out value="${contractDetail.educationDegreeId}"/></td>
-                        <td><c:out value="${contractDetail.divisionId}"/></td>
-                        <td><c:out value="${contractDetail.username}"/></td>
+                        <td><c:out value="${employee.employeeId}"/></td>
+                        <td><c:out value="${employee.employeeName}"/></td>
+                        <td><c:out value="${employee.employeeBirthday}"/></td>
+                        <td><c:out value="${employee.employeeIdCard}"/></td>
+                        <td><c:out value="${employee.employeeSalary}"/></td>
+                        <td><c:out value="${employee.employeePhone}"/></td>
+                        <td><c:out value="${employee.employeeEmail}"/></td>
+                        <td><c:out value="${employee.employeeAddress}"/></td>
+                        <td><c:out value="${employee.positionId}"/></td>
+                        <td><c:out value="${employee.educationDegreeId}"/></td>
+                        <td><c:out value="${employee.divisionId}"/></td>
+                        <td><c:out value="${employee.username}"/></td>
                         <td>
-                            <a href="/HomePage?action=updateEmployee&employeeId=${contractDetail.employeeId}">Update</a>
+                            <a href="/HomePage?action=updateEmployee&employeeId=${employee.employeeId}">Update</a>
                         </td>
                         <td>
-                            <a href="/HomePage?action=deleteEmployee&employeeId=${contractDetail.employeeId}">Delete</a>
+                            <a href="/HomePage?action=deleteEmployee&employeeId=${employee.employeeId}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
