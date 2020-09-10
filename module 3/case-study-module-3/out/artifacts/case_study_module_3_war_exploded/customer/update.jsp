@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <label for="customerBirthday">Customer Birthday</label>
-            <input type="text" name="customerBirthday" id="customerBirthday" class="form-control" value="${customer.customerBirthday}">
+            <input type="date" name="customerBirthday" id="customerBirthday" class="form-control" value="${customer.customerBirthday}">
         </div>
         <div class="form-group">
             <label for="customerGender">Customer Gender</label>

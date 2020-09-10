@@ -26,7 +26,7 @@
             <tr>
                 <th>service id:</th>
                 <td>
-                    <input type="text" name="serviceId" id="serviceId" size="45"/>
+                    <input type="text" name="serviceId" id="serviceId" size="45" placeholder="${Message}"/>
                 </td>
             </tr>
             <tr>

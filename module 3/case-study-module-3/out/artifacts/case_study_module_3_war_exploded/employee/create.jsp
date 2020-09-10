@@ -26,7 +26,7 @@
             <tr>
                 <th>service id:</th>
                 <td>
-                    <input type="text" name="employeeId" id="employeeId" size="45"/>
+                    <input type="text" name="employeeId" id="employeeId" size="45" placeholder="${Message1}"/>
                 </td>
             </tr>
             <tr>
@@ -38,13 +38,13 @@
             <tr>
                 <th>employee birthday:</th>
                 <td>
-                    <input type="text" name="employeeBirthday" id="employeeBirthday" size="45"/>
+                    <input type="date" name="employeeBirthday" id="employeeBirthday" size="45"/>
                 </td>
             </tr>
             <tr>
                 <th>employeeId card:</th>
                 <td>
-                    <input type="text" name="employeeIdCard" id="employeeIdCard" size="45"/>
+                    <input type="text" name="employeeIdCard" id="employeeIdCard" size="45" placeholder="${Message2}"/>
                 </td>
             </tr>
             <tr>
@@ -56,13 +56,13 @@
             <tr>
                 <th>employee phone:</th>
                 <td>
-                    <input type="text" name="employeePhone" id="employeePhone" size="45"/>
+                    <input type="text" name="employeePhone" id="employeePhone" size="45" placeholder="${Message3}"/>
                 </td>
             </tr>
             <tr>
                 <th>employee email:</th>
                 <td>
-                    <input type="text" name="employeeEmail" id="employeeEmail" size="45"/>
+                    <input type="text" name="employeeEmail" id="employeeEmail" size="45" placeholder="${Message4}"/>
                 </td>
             </tr>
             <tr>

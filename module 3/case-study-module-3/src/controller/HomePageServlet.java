@@ -21,6 +21,7 @@ public class HomePageServlet extends HttpServlet {
     EmployeeBO employeeBO = new EmployeeBO();
     ContractBO contractBO = new ContractBO();
     ContractDetailBO contractDetailBO = new ContractDetailBO();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -60,7 +61,7 @@ public class HomePageServlet extends HttpServlet {
         String contractId = request.getParameter("contractId");
         int attachServiceId = Integer.parseInt(request.getParameter("attachServiceId"));
         int quanlity = Integer.parseInt(request.getParameter("quanlity"));
-         ContractDetail contractDetail = new ContractDetail(contractDetailId, contractId, attachServiceId, quanlity);
+        ContractDetail contractDetail = new ContractDetail(contractDetailId, contractId, attachServiceId, quanlity);
         contractDetailBO.insertContractDetail(contractDetail);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/contract_detail/create.jsp");
         dispatcher.forward(request, response);
@@ -84,7 +85,7 @@ public class HomePageServlet extends HttpServlet {
     private void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
         String employeeName = request.getParameter("employeeName");
-        String employeeBirthday =request.getParameter("employeeBirthday");
+        String employeeBirthday = request.getParameter("employeeBirthday");
         String employeeIdCard = request.getParameter("employeeIdCard");
         double employeeSalary = Double.parseDouble(request.getParameter("employeeSalary"));
         String employeePhone = request.getParameter("employeePhone");
@@ -95,23 +96,27 @@ public class HomePageServlet extends HttpServlet {
         int divisionId = Integer.parseInt(request.getParameter("divisionId"));
         String username = request.getParameter("username");
         Employee employee = new Employee(employeeId, employeeName, employeeBirthday, employeeIdCard, employeeSalary, employeePhone, employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId, username);
-        if(!Validate.isValid(employeeIdCard, Validate.ID_CARD_REGEX)){
+        boolean check = true;
+        if (!Validate.isValid(employeeIdCard, Validate.ID_CARD_REGEX)) {
             request.setAttribute("Message1", "Input id card is wrong!!!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/update.jsp");
-            dispatcher.forward(request, response);
-        }else if(!Validate.isValid(employeePhone, Validate.PHONE_NUMBER_REGEX)){
+            check = false;
+        }
+        if (!Validate.isValid(employeePhone, Validate.PHONE_NUMBER_REGEX)) {
             request.setAttribute("Message2", "Input phone number is wrong!!!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/update.jsp");
-            dispatcher.forward(request, response);
-        } else if (!Validate.isValid(employeeEmail, Validate.EMAIL_REGEX)){
+            check = false;
+        }
+        if (!Validate.isValid(employeeEmail, Validate.EMAIL_REGEX)) {
             request.setAttribute("Message3", "Input email is wrong!!!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/update.jsp");
-            dispatcher.forward(request, response);
-        }else {
+            check = false;
+        }
+        if (check) {
             employeeBO.updateEmployee(employee);
             List<Employee> employeeList = employeeBO.selectAllEmployee();
             request.setAttribute("employeeList", employeeList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/list.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/update.jsp");
             dispatcher.forward(request, response);
         }
     }
@@ -119,7 +124,7 @@ public class HomePageServlet extends HttpServlet {
     private void createEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
         String employeeName = request.getParameter("employeeName");
-        String employeeBirthday =request.getParameter("employeeBirthday");
+        String employeeBirthday = request.getParameter("employeeBirthday");
         String employeeIdCard = request.getParameter("employeeIdCard");
         double employeeSalary = Double.parseDouble(request.getParameter("employeeSalary"));
         String employeePhone = request.getParameter("employeePhone");
@@ -130,14 +135,20 @@ public class HomePageServlet extends HttpServlet {
         int divisionId = Integer.parseInt(request.getParameter("divisionId"));
         String username = request.getParameter("username");
         Employee employee = new Employee(employeeId, employeeName, employeeBirthday, employeeIdCard, employeeSalary, employeePhone, employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId, username);
-        if(!Validate.isValid(employeeIdCard, Validate.ID_CARD_REGEX)){
+        boolean check = true;
+        if (!Validate.isValid(employeeIdCard, Validate.ID_CARD_REGEX)) {
             request.setAttribute("Message1", "Input id card is wrong!!!");
-        }else if(!Validate.isValid(employeePhone, Validate.PHONE_NUMBER_REGEX)){
-            request.setAttribute("Message2", "Input phone number is wrong!!!");
-        }else if(!Validate.isValid(employeeEmail, Validate.EMAIL_REGEX)){
-            request.setAttribute("Message3", "Input email number is wrong!!!");
+            check = false;
         }
-        else {
+        if (!Validate.isValid(employeePhone, Validate.PHONE_NUMBER_REGEX)) {
+            request.setAttribute("Message2", "Input phone number is wrong!!!");
+            check = false;
+        }
+        if (!Validate.isValid(employeeEmail, Validate.EMAIL_REGEX)) {
+            request.setAttribute("Message3", "Input email number is wrong!!!");
+            check = false;
+        }
+        if (check) {
             employeeBO.insertEmployee(employee);
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/create.jsp");
@@ -156,11 +167,10 @@ public class HomePageServlet extends HttpServlet {
         String descriptionOtherConvenionce = request.getParameter("descriptionOtherConvenionce");
         double poolArea = Double.parseDouble(request.getParameter("poolArea"));
         int numberOfFloors = Integer.parseInt(request.getParameter("numberOfFloors"));
-        Service service = new Service(serviceId, serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId, standardRoom, descriptionOtherConvenionce, poolArea,numberOfFloors );
-        if(!Validate.isValid(serviceId, Validate.SERVICE_ID_REGEX)){
+        Service service = new Service(serviceId, serviceName, serviceArea, serviceCost, serviceMaxPeople, rentTypeId, serviceTypeId, standardRoom, descriptionOtherConvenionce, poolArea, numberOfFloors);
+        if (!Validate.isValid(serviceId, Validate.SERVICE_ID_REGEX)) {
             request.setAttribute("Message", "Input is wrong!!!");
-        }
-        else {
+        } else {
             serviceBO.insertService(service);
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/service/create.jsp");
@@ -178,24 +188,27 @@ public class HomePageServlet extends HttpServlet {
         String customerEmail = request.getParameter("customerEmail");
         String customerAddress = request.getParameter("customerAddress");
         Customer customer = new Customer(customerId, customerTypeId, customerName, customerBirthday, customerGender, customerIdCard, customerPhone, customerEmail, customerAddress);
-        if(!Validate.isValid(customerIdCard, Validate.ID_CARD_REGEX)){
+        boolean check = true;
+        if (!Validate.isValid(customerIdCard, Validate.ID_CARD_REGEX)) {
             request.setAttribute("Message1", "Input id card is wrong!!!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/update.jsp");
-            dispatcher.forward(request, response);
-        }else if(!Validate.isValid(customerPhone, Validate.PHONE_NUMBER_REGEX)){
-            request.setAttribute("Message2", "Input phone number is wrong!!!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/update.jsp");
-            dispatcher.forward(request, response);
-        } else if (!Validate.isValid(customerEmail, Validate.EMAIL_REGEX)){
-            request.setAttribute("Message3", "Input email is wrong!!!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/update.jsp");
-            dispatcher.forward(request, response);
+            check = false;
         }
-        else {
+        if (!Validate.isValid(customerPhone, Validate.PHONE_NUMBER_REGEX)) {
+            request.setAttribute("Message2", "Input phone number is wrong!!!");
+            check = false;
+        }
+        if (!Validate.isValid(customerEmail, Validate.EMAIL_REGEX)) {
+            request.setAttribute("Message3", "Input email is wrong!!!");
+            check = false;
+        }
+        if (check) {
             customerBO.updateCustomer(customer);
             List<Customer> customerList = customerBO.selectAllCustomer();
             request.setAttribute("customerList", customerList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/list.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/update.jsp");
             dispatcher.forward(request, response);
         }
     }
@@ -211,15 +224,24 @@ public class HomePageServlet extends HttpServlet {
         String customerEmail = request.getParameter("customerEmail");
         String customerAddress = request.getParameter("customerAddress");
         Customer customer = new Customer(customerId, customerTypeId, customerName, customerBirthday, customerGender, customerIdCard, customerPhone, customerEmail, customerAddress);
-        if(!Validate.isValid(customerId, Validate.CUSTOMER_ID_REGEX)){
+        boolean check = true;
+        if (!Validate.isValid(customerId, Validate.CUSTOMER_ID_REGEX)) {
             request.setAttribute("Message1", "Input id is wrong!!!");
-        }else if(!Validate.isValid(customerIdCard, Validate.ID_CARD_REGEX)){
+            check = false;
+        }
+        if (!Validate.isValid(customerIdCard, Validate.ID_CARD_REGEX)) {
             request.setAttribute("Message2", "Input id card is wrong!!!");
-        }else if(!Validate.isValid(customerPhone, Validate.PHONE_NUMBER_REGEX)){
+            check = false;
+        }
+        if (!Validate.isValid(customerPhone, Validate.PHONE_NUMBER_REGEX)) {
             request.setAttribute("Message3", "Input phone number is wrong!!!");
-        } else if (!Validate.isValid(customerEmail, Validate.EMAIL_REGEX)){
+            check = false;
+        }
+        if (!Validate.isValid(customerEmail, Validate.EMAIL_REGEX)) {
             request.setAttribute("Message4", "Input email is wrong!!!");
-        }else {
+            check = false;
+        }
+        if (check) {
             customerBO.insertCustomer(customer);
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/create.jsp");

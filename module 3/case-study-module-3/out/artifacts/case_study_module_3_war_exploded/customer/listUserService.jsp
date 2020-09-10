@@ -34,14 +34,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="customerUsingService" items="${customerUsingServiceList}">
+                <c:forEach var="customer" items="${customerUsingServiceList}">
                     <tr>
-                        <td><c:out value="${customerUsingService.customerId}"/></td>
-                        <td><c:out value="${customerUsingService.customerName}"/></td>
-                        <td><c:out value="${customerUsingService.serviceId}"/></td>
-                        <td><c:out value="${customerUsingService.serviceName}"/></td>
-                        <td><c:out value="${customerUsingService.contractId}"/></td>
-                        <td><c:out value="${customerUsingService.attachServiceName}"/></td>
+                        <td><c:out value="${customer.customerId}"/></td>
+                        <td><c:out value="${customer.customerName}"/></td>
+                        <td><c:out value="${customer.serviceId}"/></td>
+                        <td><c:out value="${customer.serviceName}"/></td>
+                        <td><c:out value="${customer.contractId}"/></td>
+                        <td><c:out value="${customer.attachServiceName}"/></td>
                         <td>
                             <a href="">Update</a>
                         </td>

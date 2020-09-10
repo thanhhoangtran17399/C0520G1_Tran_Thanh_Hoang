@@ -16,7 +16,7 @@
 <body>
 <h1>Customer Management</h1>
 
-<form action="/HomePage?action=search">
+<form action="/HomePage">
     <h3>Search by id</h3><br>
     <input type="hidden" name="action" value="search">
     <input type="submit" value="search">
@@ -44,22 +44,48 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="customerUsingService" items="${customerList}">
+                <c:forEach var="customer" items="${customerList}">
                     <tr>
-                        <td><c:out value="${customerUsingService.customerId}"/></td>
-                        <td><c:out value="${customerUsingService.customerTypeId}"/></td>
-                        <td><c:out value="${customerUsingService.customerName}"/></td>
-                        <td><c:out value="${customerUsingService.customerBirthday}"/></td>
-                        <td><c:out value="${customerUsingService.customerGender}"/></td>
-                        <td><c:out value="${customerUsingService.customerIdCard}"/></td>
-                        <td><c:out value="${customerUsingService.customerPhone}"/></td>
-                        <td><c:out value="${customerUsingService.customerEmail}"/></td>
-                        <td><c:out value="${customerUsingService.customerAddress}"/></td>
+                        <td><c:out value="${customer.customerId}"/></td>
+                        <td><c:out value="${customer.customerTypeId}"/></td>
+                        <td><c:out value="${customer.customerName}"/></td>
+                        <td><c:out value="${customer.customerBirthday}"/></td>
+                        <td><c:out value="${customer.customerGender}"/></td>
+                        <td><c:out value="${customer.customerIdCard}"/></td>
+                        <td><c:out value="${customer.customerPhone}"/></td>
+                        <td><c:out value="${customer.customerEmail}"/></td>
+                        <td><c:out value="${customer.customerAddress}"/></td>
                         <td>
-                            <a href="/HomePage?action=update&customerId=${customerUsingService.customerId}">Update</a>
+                            <a href="/HomePage?action=update&customerId=${customer.customerId}">Update</a>
                         </td>
                         <td>
-                            <a href="/HomePage?action=delete&customerId=${customerUsingService.customerId}">Delete</a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#abc${customer.customerId}">
+                                Delete
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="abc${customer.customerId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure to delete ?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <a href="/HomePage?action=delete&customerId=${customer.customerId}">
+                                                <button type="button" class="btn btn-primary">Accept Delete</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </c:forEach>
@@ -69,6 +95,7 @@
     </div>
 </div>
 <script src="../jquery/jquery-3.5.1.min.js"></script>
+<script src="../bootstrap413/js/bootstrap.min.js"></script>
 <script src="../datatables/js/jquery.dataTables.min.js"></script>
 <script src="../datatables/js/dataTables.bootstrap4.min.js"></script>
 <script>
