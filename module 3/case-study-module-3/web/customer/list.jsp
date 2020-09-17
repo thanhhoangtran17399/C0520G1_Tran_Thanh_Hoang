@@ -60,12 +60,12 @@
                         </td>
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#abc${customer.customerId}">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#a${customer.customerId}">
                                 Delete
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="abc${customer.customerId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="a${customer.customerId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">

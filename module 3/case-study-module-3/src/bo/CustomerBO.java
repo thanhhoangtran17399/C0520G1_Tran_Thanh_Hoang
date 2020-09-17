@@ -23,7 +23,6 @@ public class CustomerBO implements ICustomerBO {
     public Customer selectCustomer(String customerId) {
         return customerDAO.selectCustomer(customerId);
     }
-
     @Override
     public boolean updateCustomer(Customer customer) {
         return customerDAO.updateCustomer(customer);
