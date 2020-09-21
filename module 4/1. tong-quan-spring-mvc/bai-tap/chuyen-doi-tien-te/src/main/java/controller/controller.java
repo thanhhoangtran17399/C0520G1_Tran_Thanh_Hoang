@@ -11,20 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class controller {
-//    @RequestMapping("/Converter")
-////    public String getConverter(@RequestParam String usd, String rate, Model model){
-////        Float result = Float.parseFloat(usd)*Float.parseFloat(rate);
-////        model.addAttribute("result",result);
-////        return "Converter";
-////    }
     @PostMapping("/Converter")
     public ModelAndView change(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("currency-conversion");
         double rate = Double.parseDouble(request.getParameter("rate"));
         double usd = Double.parseDouble(request.getParameter("usd"));
         double result = rate*usd;
-//        modelAndView.addObject("rate",rate);
-//        modelAndView.addObject("usd",usd);
         modelAndView.addObject("result",result);
         return modelAndView;
     }
