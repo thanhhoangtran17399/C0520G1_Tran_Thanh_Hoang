@@ -1,6 +1,7 @@
 package controllers;
 
 import model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.ProductService;
 import service.ProductServiceImpl;
+
 
 import java.util.List;
 
@@ -32,7 +34,6 @@ public class ProductController {
 
     @PostMapping("/product/save")
     public String save(Product product, RedirectAttributes redirect) {
-        product.setProductId (String.valueOf(Math.random() * 10000));
         productService.save(product);
         redirect.addFlashAttribute("success", "Saved product successfully!");
         return "redirect:/";
@@ -45,8 +46,8 @@ public class ProductController {
     }
 
     @PostMapping("/product/update")
-    public String update(Product product, RedirectAttributes redirect) {
-        productService.update(Integer.parseInt(product.getProductId()), product);
+    public String update(Product product1, RedirectAttributes redirect) {
+        productService.update(Integer.parseInt(product1.getProductId()), product1);
         redirect.addFlashAttribute("success", "Modified product successfully!");
         return "redirect:/";
     }
@@ -63,10 +64,10 @@ public class ProductController {
         redirect.addFlashAttribute("success", "Removed product successfully!");
         return "redirect:/";
     }
-//
-//    @GetMapping("/customer/{id}/view")
-//    public String view(@PathVariable int id, Model model) {
-//        model.addAttribute("customer", customerService.findById(id));
-//        return "/view";
-//    }
+
+    @GetMapping("/product/{id}/view")
+    public String view(@PathVariable int id, Model model) {
+        model.addAttribute("product", productService.findById(id));
+        return "/view";
+    }
 }

@@ -10,25 +10,28 @@
 </p>
 <div id="form">
     <form action="#" th:action="@{/product/save}" th:object="${product}"
-          method="POST" novalidate="novalidate">
-        <input type="hidden" th:field="*{productId}"/>
+          method="POST" >
+        <div>
+            <label>Id</label>
+            <input type="text" th:field="*{productId}"/>
+        </div>
         <div>
             <label>Name</label>
             <input type="text" th:field="*{productName}"/>
         </div>
         <div>
-            <label>Email</label>
+            <label>Price</label>
             <input type="text" th:field="*{productPrice}"/>
         </div>
         <div>
-            <label>Address</label>
+            <label>Description</label>
             <input type="text" th:field="*{description}"/>
         </div>
         <div>
-            <label>Address</label>
+            <label>Producer</label>
             <input type="text" th:field="*{producer}"/>
         </div>
-        <input type="submit" value="Save"></input>
+        <input type="submit" value="Save"/>
     </form>
 </div>
 <footer th:replace="/layout :: footer"></footer>

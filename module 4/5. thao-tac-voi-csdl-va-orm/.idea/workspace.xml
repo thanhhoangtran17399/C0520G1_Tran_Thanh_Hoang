@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3b92194b-9e3a-4f68-95a4-c08196496569" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.idea/modules/quan-li-san-pham.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/webapp/WEB-INF/views/view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thuc-hanh/ThucHanhQuanLyKhachHang/cms/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thuc-hanh/quan-li-khach-hang/src/main/java/vn/codegym/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thuc-hanh/quan-li-khach-hang/src/main/java/vn/codegym/repository/ConnectionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thuc-hanh/quan-li-khach-hang/src/main/java/vn/codegym/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thuc-hanh/quan-li-khach-hang/src/main/java/vn/codegym/service/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thuc-hanh/quan-li-khach-hang/src/main/resources/hibernate.conf.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thuc-hanh/quan-li-khach-hang/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thuc-hanh/quan-li-khach-hang/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thuc-hanh/quan-li-khach-hang/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/build/classes/java/main/controllers/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/build/classes/java/main/controllers/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/build/libs/quan-li-khach-hang-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/bai-tap/quan-li-khach-hang/build/libs/quan-li-khach-hang-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/build/classes/java/main/AppConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/build/classes/java/main/AppInitializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/build/classes/java/main/controllers/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/build/classes/java/main/controllers/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/build/classes/java/main/service/ProductServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/build/classes/java/main/service/ProductServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/build/libs/quan-li-san-pham-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/build/libs/quan-li-san-pham-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/java/AppConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/java/AppConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/java/AppInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/java/AppInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/java/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/java/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/java/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/java/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/webapp/WEB-INF/views/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../4. view-&amp;-thymeleaf/quan-li-san-pham/src/main/webapp/WEB-INF/views/create.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1hwmZnZQYOpWm82DsEaQwKGXfaB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bai-tap/buc-anh-cua-ngay" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3b92194b-9e3a-4f68-95a4-c08196496569" name="Default Changelist" comment="" />
+      <created>1600930586987</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600930586987</updated>
+      <workItem from="1600930588316" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="580" y="206" key="FileChooserDialogImpl" timestamp="1600930597743">
+      <screen x="0" y="0" width="1600" height="900" />
+    </state>
+    <state x="580" y="206" key="FileChooserDialogImpl/0.0.1600.900@0.0.1600.900" timestamp="1600930597743" />
+  </component>
+</project>

@@ -1,17 +1,18 @@
 package service;
 
 import model.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class ProductServiceImpl implements ProductService {
     private static Map<Integer, Product> products;
 
     static {
-
         products = new HashMap<>();
         products.put(1, new Product("1", "John", "john@codegym.vn", "Hanoi", "Hanoi"));
         products.put(2, new Product("2", "Bill", "bill@codegym.vn", "Danang","Danang"));
